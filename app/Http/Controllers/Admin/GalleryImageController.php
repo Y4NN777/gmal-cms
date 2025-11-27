@@ -25,7 +25,8 @@ class GalleryImageController extends Controller
         $album = GalleryAlbum::findOrFail($request->album_id);
         $uploadedImages = [];
 
-        foreach ($request->file('images') as $file) {
+        $imageFiles = $request->file('images');
+        foreach ($imageFiles as $file) {
             // Generate unique filename
             $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
             $year = date('Y');
@@ -76,11 +77,7 @@ class GalleryImageController extends Controller
             $uploadedImages[] = $galleryImage->load('media');
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => count($uploadedImages) . ' image(s) uploaded successfully',
-            'images' => $uploadedImages,
-        ]);
+        return back()->with('success', count($uploadedImages) . ' image(s) uploaded successfully');
     }
 
     /**
@@ -111,10 +108,6 @@ class GalleryImageController extends Controller
 
         $image->update($validated);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Image updated successfully',
-            'image' => $image,
-        ]);
+        return back()->with('success', 'Image updated successfully');
     }
 }
