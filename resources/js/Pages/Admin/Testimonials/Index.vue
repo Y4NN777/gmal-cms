@@ -225,7 +225,16 @@ const formatDate = (date) => {
 
             <!-- Avatar -->
             <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              <img 
+                v-if="testimonial.avatar"
+                :src="testimonial.avatar" 
+                :alt="testimonial.name"
+                class="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
+              />
+              <div 
+                v-else
+                class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-xl border-2 border-orange-300"
+              >
                 {{ testimonial.name?.charAt(0).toUpperCase() || '?' }}
               </div>
             </div>

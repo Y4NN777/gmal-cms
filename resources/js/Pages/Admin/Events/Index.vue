@@ -169,10 +169,28 @@ const formatDate = (date) => {
           :key="event.id"
           class="bg-white rounded-lg shadow hover:shadow-md transition-shadow p-6"
         >
-          <div class="flex justify-between items-start">
-            <div class="flex-1">
+          <div class="flex gap-4 items-start">
+            <!-- Event Thumbnail -->
+            <div class="flex-shrink-0">
+              <img 
+                v-if="event.featured_image"
+                :src="event.featured_image" 
+                :alt="event.title"
+                class="w-24 h-24 rounded-lg object-cover border-2 border-gray-200"
+              />
+              <div 
+                v-else
+                class="w-24 h-24 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center border-2 border-gray-300"
+              >
+                <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="flex-1 min-w-0">
               <div class="flex items-center gap-3 mb-2">
-                <h3 class="text-xl font-bold text-gray-900">{{ event.title }}</h3>
+                <h3 class="text-xl font-bold text-gray-900 truncate">{{ event.title }}</h3>
                 <span
                   class="px-2 py-1 text-xs font-medium rounded"
                   :class="getStatusClass(event.status)"
@@ -213,37 +231,27 @@ const formatDate = (date) => {
                   <span>{{ event.category.name }}</span>
                 </div>
               </div>
-            </div>
 
-            <div class="flex gap-2">
-              <button
-                @click="viewEvent(event.id)"
-                class="px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-lg"
-                title="View"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </button>
-              <button
-                @click="editEvent(event.id)"
-                class="px-3 py-2 text-sm text-orange-600 hover:bg-orange-50 rounded-lg"
-                title="Edit"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-              </button>
-              <button
-                @click="deleteEvent(event.id)"
-                class="px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg"
-                title="Delete"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                </svg>
-              </button>
+              <div class="flex gap-2 mt-3">
+                <button
+                  @click="viewEvent(event.id)"
+                  class="px-3 py-1.5 text-sm text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors"
+                >
+                  View
+                </button>
+                <button
+                  @click="editEvent(event.id)"
+                  class="px-3 py-1.5 text-sm text-orange-700 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors"
+                >
+                  Edit
+                </button>
+                <button
+                  @click="deleteEvent(event.id)"
+                  class="px-3 py-1.5 text-sm text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -257,59 +265,141 @@ const formatDate = (date) => {
         <p class="text-gray-500">No events found</p>
         <button
           @click="createEvent"
-          class="mt-4 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium"
+          class="mt-4 px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium"
         >
-          Create First Event
+          Create Your First Event
         </button>
       </div>
 
-      <!-- Pagination -->
-      <div v-if="events.data && events.data.length > 0" class="mt-6 flex justify-between items-center bg-white rounded-lg shadow p-4">
-        <div class="text-sm text-gray-600">
-          Showing {{ events.from }} to {{ events.to }} of {{ events.total }} events
-        </div>
-        
-        <div class="flex gap-2">
-          <button
-            v-for="link in events.links"
-            :key="link.label"
-            @click="link.url ? changePage(new URL(link.url).searchParams.get('page')) : null"
-            :disabled="!link.url || link.active"
-            class="px-3 py-1 text-sm rounded"
-            :class="[
-              link.active 
-                ? 'bg-orange-600 text-white' 
-                : link.url 
-                  ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' 
-                  : 'bg-gray-50 text-gray-400 cursor-not-allowed'
-            ]"
-            v-html="link.label"
-          />
-        </div>
-      </div>
-    </div>
+      <!-- Delete Confirmation Modal -->
+      <div v-if="showDeleteModal" class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50" @click="showDeleteModal = false">
+        <div class="bg-white rounded-lg shadow-2xl p-6 max-w-md w-full mx-4" @click.stop>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Delete Event</h3>
+          </div>
 
-    <!-- Delete Confirmation Modal -->
-    <div v-if="showDeleteModal" class="fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50">
-      <div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full mx-4">
-        <h3 class="text-xl font-bold text-gray-900 mb-4">Delete Event</h3>
-        <p class="text-gray-600 mb-6">Are you sure you want to delete this event? This action cannot be undone.</p>
-        
-        <div class="flex gap-3">
-          <button
-            @click="showDeleteModal = false"
-            class="flex-1 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-medium"
-          >
-            Cancel
-          </button>
-          <button
-            @click="confirmDelete"
-            class="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium"
-          >
-            Delete Event
-          </button>
+          <p class="text-gray-600 mb-6">
+            Are you sure you want to delete this event? This action cannot be undone.
+          </p>
+
+          <div class="flex gap-3">
+            <button
+              @click="showDeleteModal = false"
+              class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              @click="confirmDelete"
+              class="flex-1 px-4 py-2 bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg hover:from-red-100 hover:to-red-50 font-medium transition-colors"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </AdminLayout>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+import { router } from '@inertiajs/vue3';
+import AdminLayout from '@/Layouts/AdminLayout.vue';
+
+const props = defineProps({
+  events: Object,
+  categories: Array,
+  filters: Object,
+  user: Object,
+});
+
+const searchQuery = ref(props.filters?.search || '');
+const statusFilter = ref(props.filters?.status || '');
+const categoryFilter = ref(props.filters?.category || '');
+const showDeleteModal = ref(false);
+const selectedEventId = ref(null);
+
+const applyFilters = () => {
+  router.get('/admin/events', {
+    search: searchQuery.value,
+    status: statusFilter.value,
+    category: categoryFilter.value,
+  }, {
+    preserveState: true,
+    preserveScroll: true,
+  });
+};
+
+let searchTimeout;
+const debouncedSearch = () => {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    applyFilters();
+  }, 500);
+};
+
+const createEvent = () => {
+  router.visit('/admin/events/create');
+};
+
+const viewEvent = (id) => {
+  router.visit(`/admin/events/${id}`);
+};
+
+const editEvent = (id) => {
+  router.visit(`/admin/events/${id}/edit`);
+};
+
+const deleteEvent = (id) => {
+  selectedEventId.value = id;
+  showDeleteModal.value = true;
+};
+
+const confirmDelete = () => {
+  if (!selectedEventId.value) return;
+  
+  router.delete(`/admin/events/${selectedEventId.value}`, {
+    preserveScroll: true,
+    onSuccess: () => {
+      showDeleteModal.value = false;
+      selectedEventId.value = null;
+    }
+  });
+};
+
+const changePage = (page) => {
+  router.get('/admin/events', {
+    page,
+    search: searchQuery.value,
+    status: statusFilter.value,
+    category: categoryFilter.value,
+  }, {
+    preserveState: true,
+    preserveScroll: true,
+  });
+};
+
+const getStatusClass = (status) => {
+  const classes = {
+    draft: 'bg-gray-100 text-gray-700 border border-gray-200',
+    published: 'bg-green-50 text-green-700 border border-green-200',
+    archived: 'bg-yellow-50 text-yellow-700 border border-yellow-200',
+  };
+  return classes[status] || 'bg-gray-100 text-gray-700';
+};
+
+const formatDate = (date) => {
+  if (!date) return 'N/A';
+  return new Date(date).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+};
+</script>
