@@ -60,6 +60,7 @@ class EventController extends Controller
         $categories = Category::all(['id', 'name', 'color']);
 
         return Inertia::render('Admin/Events/Index', [
+            'user' => $request->user(),
             'events' => $events,
             'categories' => $categories,
             'filters' => $request->only(['status', 'category', 'search', 'sort_by', 'sort_order']),
@@ -116,9 +117,10 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        $event->load(['category', 'featuredImage', 'creator', 'updater', 'donationAnalytics']);
+        $event->load(['category', 'featuredImage', 'creator', 'updater', 'donations']);
 
         return Inertia::render('Admin/Events/Show', [
+            'user' => request()->user(),
             'event' => [
                 'id' => $event->id,
                 'title' => $event->title,
@@ -138,12 +140,12 @@ class EventController extends Controller
                 'featured_image_url' => $event->featuredImage?->url,
                 'creator' => $event->creator,
                 'updater' => $event->updater,
-                'donations_count' => $event->donationAnalytics->count(),
-                'donations_total' => $event->donationAnalytics->sum('amount'),
+                'donations_count' => $event->donations->count(),
+                'donations_total' => $event->donations->sum('amount'),
                 'created_at' => $event->created_at,
                 'updated_at' => $event->updated_at,
             ],
-            'user' => auth()->user(),
+            'user' => request()->user(),
         ]);
     }
 

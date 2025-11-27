@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue';
 import { router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 
@@ -33,10 +34,14 @@ const formatDate = (date) => {
     day: 'numeric'
   });
 };
+
+const publicUrl = computed(() => {
+  return `${window.location.origin}/events/${props.event.slug}`;
+});
 </script>
 
 <template>
-  <AdminLayout>
+  <AdminLayout :user="user">
     <div class="max-w-4xl mx-auto">
           <!-- Header -->
           <div class="mb-8">
@@ -151,8 +156,8 @@ const formatDate = (date) => {
             <!-- Public URL -->
             <div class="bg-white rounded-lg shadow p-6">
               <h3 class="text-lg font-semibold text-gray-900 mb-4">Public URL</h3>
-              <a :href="`/events/${event.slug}`" target="_blank" class="text-orange-600 hover:text-orange-700 text-sm">
-                {{ window.location.origin }}/events/{{ event.slug }}
+              <a :href="`/events/${event.slug}`" target="_blank" class="text-orange-600 hover:text-orange-700 text-sm break-all">
+                {{ publicUrl }}
                 <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
