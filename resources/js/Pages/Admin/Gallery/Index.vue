@@ -49,10 +49,6 @@ const createAlbum = () => {
 const editAlbum = (id) => {
   router.visit(`/admin/gallery/${id}/edit`);
 };
-
-const logout = () => {
-  router.post('/logout');
-};
 </script>
 
 <template>

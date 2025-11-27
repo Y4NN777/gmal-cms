@@ -82,53 +82,10 @@ const confirmDelete = () => {
 const cancel = () => {
   router.visit('/admin/events');
 };
-
-const logout = () => {
-  router.post('/logout');
-};
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-100">
-    <!-- Top Navigation Bar -->
-    <nav class="bg-white shadow-sm border-b border-gray-200">
-      <div class="px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex items-center">
-            <h1 class="text-xl font-bold text-gray-900">GiveMeALift Admin</h1>
-          </div>
-          
-          <div class="flex items-center gap-4">
-            <span class="text-sm text-gray-700">{{ user?.name }}</span>
-            <button @click="logout" class="text-sm text-gray-600 hover:text-gray-900">
-              Logout
-            </button>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <div class="flex">
-      <!-- Sidebar -->
-      <aside class="w-64 bg-white shadow-sm min-h-screen">
-        <nav class="px-4 py-6 space-y-1">
-          <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50">
-            Dashboard
-          </a>
-          <a href="/admin/events" class="flex items-center px-4 py-3 text-sm font-medium rounded-lg bg-orange-50 text-orange-700">
-            Events
-          </a>
-          <a href="/admin/testimonials" class="flex items-center px-4 py-3 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50">
-            Testimonials
-          </a>
-          <a href="/admin/gallery" class="flex items-center px-4 py-3 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50">
-            Gallery
-          </a>
-        </nav>
-      </aside>
-
-      <!-- Main Content -->
-      <main class="flex-1 p-8">
+  <AdminLayout>
         <div class="max-w-4xl mx-auto">
           <!-- Header -->
           <div class="mb-8">
@@ -424,8 +381,6 @@ const logout = () => {
             </div>
           </form>
         </div>
-      </main>
-    </div>
 
     <!-- Image Picker Modal -->
     <ImagePicker
@@ -463,5 +418,5 @@ const logout = () => {
         </div>
       </div>
     </div>
-  </div>
+  </AdminLayout>
 </template>

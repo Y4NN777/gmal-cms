@@ -23,8 +23,8 @@ const logout = () => {
 </script>
 
 <template>
-  <aside class="w-64 bg-white shadow-sm min-h-screen flex flex-col relative">
-    <nav class="flex-1 px-4 py-6 space-y-1">
+  <aside class="w-64 bg-white shadow-sm flex flex-col flex-shrink-0">
+    <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto min-h-0">
       <a
         href="/admin/dashboard"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
@@ -88,17 +88,13 @@ const logout = () => {
       </div>
     </nav>
 
-    <!-- User & Logout - Fixed at bottom -->
-    <div class="border-t border-gray-200 bg-white p-4">
-      <div class="mb-3">
-        <p class="text-xs text-gray-500 mb-1">Logged in as</p>
-        <p class="text-sm font-medium text-gray-900">{{ user?.name }}</p>
-      </div>
+    <!-- Logout at bottom -->
+    <div class="border-t border-gray-200 px-6 pt-10 pb-10 flex-shrink-0">
       <button
         @click="logout"
-        class="w-full flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
+        class="w-full flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold text-gray-700 bg-gradient-to-r from-orange-50 to-white border-2 border-orange-200 rounded-xl hover:from-orange-100 hover:to-orange-50 hover:border-orange-300 hover:shadow-md transition-all duration-200"
       >
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
         </svg>
         Logout

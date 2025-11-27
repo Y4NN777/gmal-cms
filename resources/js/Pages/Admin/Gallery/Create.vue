@@ -35,10 +35,6 @@ const submitForm = async () => {
 const cancel = () => {
   router.visit('/admin/gallery');
 };
-
-const logout = () => {
-  router.post('/logout');
-};
 </script>
 
 <template>
