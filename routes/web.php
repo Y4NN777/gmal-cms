@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Models\Event;
 use Inertia\Inertia;
 
 // Home
@@ -10,6 +11,36 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Public Pages
 Route::get('/events', fn() => Inertia::render('Events/Index'))->name('events.index');
+Route::get('/events/{slug}', function (string $slug) {
+    $event = Event::with(['category', 'featuredImage', 'creator'])
+        ->where('slug', $slug)
+        ->where('status', 'published')
+        ->firstOrFail();
+
+    return Inertia::render('Events/Show', [
+        'event' => [
+            'id' => $event->id,
+            'title' => $event->title,
+            'slug' => $event->slug,
+            'description' => $event->description,
+            'event_date' => $event->event_date,
+            'event_time' => $event->event_time,
+            'location' => $event->location,
+            'donation_goal' => $event->donation_goal,
+            'is_featured' => $event->is_featured,
+            'featured_image' => $event->featuredImage?->url,
+            'category' => $event->category ? [
+                'id' => $event->category->id,
+                'name' => $event->category->name,
+                'slug' => $event->category->slug,
+            ] : null,
+            'creator' => $event->creator ? [
+                'name' => $event->creator->name,
+            ] : null,
+        ],
+    ]);
+})->name('events.show');
+
 Route::get('/about', fn() => Inertia::render('About/Index'))->name('about');
 Route::get('/contact', fn() => Inertia::render('Contact/Index'))->name('contact');
 
