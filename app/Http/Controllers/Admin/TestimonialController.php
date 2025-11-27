@@ -59,6 +59,7 @@ class TestimonialController extends Controller
         ];
 
         return Inertia::render('Admin/Testimonials/Index', [
+            'user' => $request->user(),
             'testimonials' => $testimonials,
             'stats' => $stats,
             'filters' => $request->only(['status', 'featured', 'search']),

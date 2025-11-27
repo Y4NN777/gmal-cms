@@ -112,6 +112,7 @@ class DashboardController extends Controller
             ]);
 
         return Inertia::render('Admin/Dashboard/Index', [
+            'user' => request()->user(),
             'stats' => $stats,
             'recentEvents' => $recentEvents,
             'pendingTestimonials' => $pendingTestimonials,
