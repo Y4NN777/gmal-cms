@@ -90,11 +90,11 @@ const changePage = (page) => {
 
 const getStatusColor = (status) => {
   const colors = {
-    pending: 'bg-yellow-100 text-yellow-800',
-    approved: 'bg-green-100 text-green-800',
-    rejected: 'bg-red-100 text-red-800',
+    pending: 'bg-yellow-50 text-yellow-700 border border-yellow-200',
+    approved: 'bg-green-50 text-green-700 border border-green-200',
+    rejected: 'bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200',
   };
-  return colors[status] || 'bg-gray-100 text-gray-800';
+  return colors[status] || 'bg-gray-50 text-gray-600 border border-gray-200';
 };
 
 const formatDate = (date) => {
@@ -189,9 +189,9 @@ const formatDate = (date) => {
           <button
             v-if="selectedTestimonials.length > 0"
             @click="bulkApprove"
-            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium"
+            class="px-4 py-2 bg-green-50 text-green-700 border border-green-200 rounded-lg hover:bg-green-100 font-medium transition-colors"
           >
-            Approve Selected ({{ selectedTestimonials.length }})
+            ✓ Approve Selected ({{ selectedTestimonials.length }})
           </button>
         </div>
       </div>
@@ -272,22 +272,22 @@ const formatDate = (date) => {
               <!-- Actions -->
               <div class="flex gap-2">
                 <button
-                  v-if="testimonial.status === 'pending'"
+                  v-if="testimonial.status !== 'approved'"
                   @click="approve(testimonial.id)"
-                  class="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg"
+                  class="px-4 py-2 text-sm font-medium text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg transition-colors"
                 >
                   ✓ Approve
                 </button>
                 <button
                   v-if="testimonial.status !== 'rejected'"
                   @click="reject(testimonial.id)"
-                  class="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg"
+                  class="px-4 py-2 text-sm font-medium text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors"
                 >
                   ✗ Reject
                 </button>
                 <button
                   @click="deleteTestimonial(testimonial.id)"
-                  class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg"
+                  class="px-4 py-2 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg transition-colors"
                 >
                   Delete
                 </button>

@@ -28,16 +28,22 @@ class MediaController extends Controller
             });
         }
 
-        // Filter by mime type
+        // Filter by mime type (images and videos only)
         if ($request->has('type') && $request->type) {
             switch ($request->type) {
                 case 'images':
                     $query->where('mime_type', 'like', 'image/%');
                     break;
-                case 'documents':
-                    $query->whereIn('mime_type', ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']);
+                case 'videos':
+                    $query->where('mime_type', 'like', 'video/%');
                     break;
             }
+        } else {
+            // By default, only show images and videos
+            $query->where(function ($q) {
+                $q->where('mime_type', 'like', 'image/%')
+                  ->orWhere('mime_type', 'like', 'video/%');
+            });
         }
 
         // Sort
