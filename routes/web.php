@@ -1,7 +1,60 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\LoginController;
+use Inertia\Inertia;
 
-Route::get('/', function () {
-    return view('welcome');
+// Home
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Public Pages
+Route::get('/events', fn() => Inertia::render('Events/Index'))->name('events.index');
+Route::get('/about', fn() => Inertia::render('About/Index'))->name('about');
+Route::get('/contact', fn() => Inertia::render('Contact/Index'))->name('contact');
+
+// Admin Authentication Routes
+Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
+Route::post('/admin/login', [LoginController::class, 'login'])->middleware('guest');
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
+
+// Admin Routes - Protected by authentication middleware
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+    
+    // Analytics - Protected Admin Only
+    Route::prefix('analytics')->name('analytics.')->group(function () {
+        Route::get('/visitors', [App\Http\Controllers\Api\AnalyticsController::class, 'visitors'])->name('visitors');
+        Route::get('/donors', [App\Http\Controllers\Api\AnalyticsController::class, 'donors'])->name('donors');
+        Route::get('/dashboard', [App\Http\Controllers\Api\AnalyticsController::class, 'dashboard'])->name('dashboard');
+        Route::get('/reports', [App\Http\Controllers\Api\AnalyticsController::class, 'reports'])->name('reports');
+    });
+    
+    // Events Management
+    Route::resource('events', App\Http\Controllers\Admin\EventController::class);
+    Route::post('events/bulk-status', [App\Http\Controllers\Admin\EventController::class, 'bulkUpdateStatus'])->name('events.bulk-status');
+    
+    // Testimonials Management
+    Route::resource('testimonials', App\Http\Controllers\Admin\TestimonialController::class);
+    Route::post('testimonials/{testimonial}/approve', [App\Http\Controllers\Admin\TestimonialController::class, 'approve'])->name('testimonials.approve');
+    Route::post('testimonials/{testimonial}/reject', [App\Http\Controllers\Admin\TestimonialController::class, 'reject'])->name('testimonials.reject');
+    Route::post('testimonials/bulk-approve', [App\Http\Controllers\Admin\TestimonialController::class, 'bulkApprove'])->name('testimonials.bulk-approve');
+    
+    // Media Library Management
+    Route::resource('media', App\Http\Controllers\Admin\MediaController::class);
+    Route::post('media/bulk-destroy', [App\Http\Controllers\Admin\MediaController::class, 'bulkDestroy'])->name('media.bulk-destroy');
+    
+    // Gallery Management
+    Route::resource('gallery', App\Http\Controllers\Admin\GalleryController::class);
+    Route::post('gallery/images/upload', [App\Http\Controllers\Admin\GalleryImageController::class, 'upload'])->name('gallery.images.upload');
+    Route::delete('gallery/images/{id}', [App\Http\Controllers\Admin\GalleryImageController::class, 'destroy'])->name('gallery.images.destroy');
+    Route::put('gallery/images/{id}', [App\Http\Controllers\Admin\GalleryImageController::class, 'update'])->name('gallery.images.update');
+    
+    // Contact Messages Management
+    Route::get('contact-messages', [App\Http\Controllers\Admin\ContactMessageController::class, 'index'])->name('contact-messages.index');
+    Route::post('contact-messages/{id}/mark-read', [App\Http\Controllers\Admin\ContactMessageController::class, 'markAsRead'])->name('contact-messages.mark-read');
+    Route::post('contact-messages/{id}/mark-unread', [App\Http\Controllers\Admin\ContactMessageController::class, 'markAsUnread'])->name('contact-messages.mark-unread');
+    Route::delete('contact-messages/{id}', [App\Http\Controllers\Admin\ContactMessageController::class, 'destroy'])->name('contact-messages.destroy');
+    Route::post('contact-messages/bulk-destroy', [App\Http\Controllers\Admin\ContactMessageController::class, 'bulkDestroy'])->name('contact-messages.bulk-destroy');
 });

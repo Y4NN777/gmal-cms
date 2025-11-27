@@ -22,10 +22,10 @@
               required
               autocomplete="email"
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              :class="{ 'border-red-500': errors.email }"
+              :class="{ 'border-red-500': form.errors.email }"
               placeholder="admin@givemealift.org"
             />
-            <p v-if="errors.email" class="mt-1 text-sm text-red-600">{{ errors.email }}</p>
+            <p v-if="form.errors.email" class="mt-1 text-sm text-red-600">{{ form.errors.email }}</p>
           </div>
 
           <!-- Password -->
@@ -40,10 +40,10 @@
               required
               autocomplete="current-password"
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              :class="{ 'border-red-500': errors.password }"
+              :class="{ 'border-red-500': form.errors.password }"
               placeholder="••••••••"
             />
-            <p v-if="errors.password" class="mt-1 text-sm text-red-600">{{ errors.password }}</p>
+            <p v-if="form.errors.password" class="mt-1 text-sm text-red-600">{{ form.errors.password }}</p>
           </div>
 
           <!-- Remember Me -->
@@ -60,17 +60,17 @@
           </div>
 
           <!-- Error Message -->
-          <div v-if="errors.general" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-            {{ errors.general }}
+          <div v-if="form.errors.email || form.errors.password" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+            {{ form.errors.email || form.errors.password }}
           </div>
 
           <!-- Submit Button -->
           <button
             type="submit"
-            :disabled="loading"
+            :disabled="form.processing"
             class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <span v-if="!loading">Sign In</span>
+            <span v-if="!form.processing">Sign In</span>
             <span v-else class="flex items-center">
               <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -98,62 +98,17 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
-import { router } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
 
-const form = reactive({
+const form = useForm({
   email: '',
   password: '',
   remember_me: false,
 });
 
-const errors = reactive({
-  email: '',
-  password: '',
-  general: '',
-});
-
-const loading = ref(false);
-
-const login = async () => {
-  // Clear previous errors
-  errors.email = '';
-  errors.password = '';
-  errors.general = '';
-  loading.value = true;
-
-  try {
-    const response = await fetch('/api/v1/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(form),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      if (data.errors) {
-        errors.email = data.errors.email?.[0] || '';
-        errors.password = data.errors.password?.[0] || '';
-      } else {
-        errors.general = data.message || 'Login failed. Please try again.';
-      }
-      loading.value = false;
-      return;
-    }
-
-    // Store token
-    localStorage.setItem('token', data.data.access_token);
-    localStorage.setItem('user', JSON.stringify(data.data.user));
-
-    // Redirect to admin dashboard
-    router.visit('/admin/dashboard');
-  } catch (error) {
-    errors.general = 'Network error. Please check your connection.';
-    loading.value = false;
-  }
+const login = () => {
+  form.post('/admin/login', {
+    preserveScroll: true,
+  });
 };
 </script>

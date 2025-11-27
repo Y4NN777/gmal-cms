@@ -21,4 +21,16 @@
 /vendor
 Homestead.json
 Homestead.yaml
-Thumbs.db
+AUTHENTICATION.md
+BACKEND_AUDIT.md
+boost.json
+GEMINI.md
+SECURITY.md
+TODO.md
+STATUS.md
+srs.md
+SETUP.md
+update-admin-layout.sh
+update-templates.py
+.github/copilot-instructions.
+AGENTS.md
