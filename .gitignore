@@ -34,3 +34,4 @@ update-admin-layout.sh
 update-templates.py
 .github/copilot-instructions.
 AGENTS.md
+PAYPAL_SETUP.md
