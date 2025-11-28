@@ -256,6 +256,36 @@ class MediaController extends Controller
     /**
      * Format bytes to human-readable size.
      */
+    /**
+     * Return a simple JSON list for ImagePicker component
+     */
+    public function list(Request $request)
+    {
+        $media = Media::where(function ($q) {
+                $q->where('mime_type', 'like', 'image/%')
+                  ->orWhere('mime_type', 'like', 'video/%');
+            })
+            ->orderBy('created_at', 'desc')
+            ->limit($request->get('per_page', 100))
+            ->get()
+            ->map(fn($item) => [
+                'id' => $item->id,
+                'filename' => $item->filename,
+                'original_name' => $item->original_name,
+                'mime_type' => $item->mime_type,
+                'size' => $item->size,
+                'url' => $item->url,
+                'thumbnail_url' => $item->thumbnail_url,
+                'alt_text' => $item->alt_text,
+                'is_image' => str_starts_with($item->mime_type, 'image/'),
+            ]);
+
+        return response()->json([
+            'success' => true,
+            'data' => $media,
+        ]);
+    }
+
     private function formatBytes(int $bytes, int $precision = 2): string
     {
         $units = ['B', 'KB', 'MB', 'GB', 'TB'];

@@ -4,13 +4,44 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Models\Event;
+use App\Models\Category;
 use Inertia\Inertia;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Public Pages
-Route::get('/events', fn() => Inertia::render('Events/Index'))->name('events.index');
+Route::get('/events', function () {
+    return Inertia::render('Events/Index', [
+        'events' => Event::with(['category', 'featuredImage'])
+            ->where('status', 'published')
+            ->orderBy('event_date', 'asc')
+            ->get()
+            ->map(fn($event) => [
+                'id' => $event->id,
+                'title' => $event->title,
+                'slug' => $event->slug,
+                'description' => $event->description,
+                'event_date' => $event->event_date,
+                'event_time' => $event->event_time,
+                'location' => $event->location,
+                'is_featured' => $event->is_featured,
+                'featured_image' => $event->featuredImage?->url,
+                'category' => $event->category ? [
+                    'id' => $event->category->id,
+                    'name' => $event->category->name,
+                    'slug' => $event->category->slug,
+                ] : null,
+            ]),
+        'categories' => Category::orderBy('name')
+            ->get()
+            ->map(fn($cat) => [
+                'id' => $cat->id,
+                'name' => $cat->name,
+                'slug' => $cat->slug,
+            ]),
+    ]);
+})->name('events.index');
 Route::get('/events/{slug}', function (string $slug) {
     $event = Event::with(['category', 'featuredImage', 'creator'])
         ->where('slug', $slug)
@@ -43,6 +74,7 @@ Route::get('/events/{slug}', function (string $slug) {
 
 Route::get('/about', fn() => Inertia::render('About/Index'))->name('about');
 Route::get('/contact', fn() => Inertia::render('Contact/Index'))->name('contact');
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store']);
 
 // Admin Authentication Routes
 Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
@@ -73,6 +105,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::post('testimonials/bulk-approve', [App\Http\Controllers\Admin\TestimonialController::class, 'bulkApprove'])->name('testimonials.bulk-approve');
     
     // Media Library Management
+    Route::get('media/list', [App\Http\Controllers\Admin\MediaController::class, 'list'])->name('media.list'); // For ImagePicker component
     Route::resource('media', App\Http\Controllers\Admin\MediaController::class);
     Route::post('media/bulk-destroy', [App\Http\Controllers\Admin\MediaController::class, 'bulkDestroy'])->name('media.bulk-destroy');
     

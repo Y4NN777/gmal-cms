@@ -39,12 +39,12 @@ const filteredMedia = computed(() => {
 const loadMedia = async () => {
   loading.value = true;
   try {
-    const token = localStorage.getItem('token');
-    const response = await fetch('/admin/media?per_page=100', {
+    const response = await fetch('/admin/media/list?per_page=100', {
       headers: {
-        'Authorization': `Bearer ${token}`,
         'Accept': 'application/json',
-      }
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+      credentials: 'same-origin', // Include session cookies
     });
     const data = await response.json();
     media.value = data.data || [];

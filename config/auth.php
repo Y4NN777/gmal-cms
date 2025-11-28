@@ -41,11 +41,8 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
-            'driver' => 'passport',
-            'provider' => 'users',
-            'hash' => false,
-        ],
+        // API guard removed - using Inertia monolith architecture
+        // All authentication is handled via web guard (sessions)
     ],
 
     /*

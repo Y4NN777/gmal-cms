@@ -33,14 +33,8 @@
           </button>
         </div>
 
-        <!-- Loading State -->
-        <div v-if="loading" class="text-center py-12">
-          <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
-          <p class="mt-4 text-gray-600">Loading events...</p>
-        </div>
-
         <!-- Events Grid -->
-        <div v-else-if="filteredEvents.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div v-if="filteredEvents.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div
             v-for="event in filteredEvents"
             :key="event.id"
@@ -92,48 +86,28 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { router } from '@inertiajs/vue3';
 import AppLayout from '../../Layouts/AppLayout.vue';
 
-const events = ref([]);
-const categories = ref([]);
+// Receive data from Inertia (Laravel)
+const props = defineProps({
+  events: {
+    type: Array,
+    required: true,
+  },
+  categories: {
+    type: Array,
+    required: true,
+  },
+});
+
 const selectedCategory = ref(null);
-const loading = ref(true);
 
 const filteredEvents = computed(() => {
-  if (!selectedCategory.value) return events.value;
-  return events.value.filter(event => event.category_id === selectedCategory.value);
+  if (!selectedCategory.value) return props.events;
+  return props.events.filter(event => event.category?.id === selectedCategory.value);
 });
-
-onMounted(async () => {
-  await Promise.all([loadEvents(), loadCategories()]);
-  loading.value = false;
-});
-
-const loadEvents = async () => {
-  try {
-    const response = await fetch('/api/v1/events?per_page=50');
-    const data = await response.json();
-    if (data.success) {
-      events.value = data.data;
-    }
-  } catch (error) {
-    console.error('Failed to load events:', error);
-  }
-};
-
-const loadCategories = async () => {
-  try {
-    const response = await fetch('/api/v1/events/categories');
-    const data = await response.json();
-    if (data.success) {
-      categories.value = data.data;
-    }
-  } catch (error) {
-    console.error('Failed to load categories:', error);
-  }
-};
 
 const formatDate = (date) => {
   if (!date) return 'Date TBD';

@@ -28,10 +28,10 @@
                   type="text"
                   required
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                  :class="{ 'border-red-500': errors.name }"
+                  :class="{ 'border-red-500': form.errors.name }"
                   placeholder="John Doe"
                 />
-                <p v-if="errors.name" class="mt-1 text-sm text-red-600">{{ errors.name }}</p>
+                <p v-if="form.errors.name" class="mt-1 text-sm text-red-600">{{ form.errors.name }}</p>
               </div>
 
               <!-- Email -->
@@ -45,10 +45,10 @@
                   type="email"
                   required
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                  :class="{ 'border-red-500': errors.email }"
+                  :class="{ 'border-red-500': form.errors.email }"
                   placeholder="john@example.com"
                 />
-                <p v-if="errors.email" class="mt-1 text-sm text-red-600">{{ errors.email }}</p>
+                <p v-if="form.errors.email" class="mt-1 text-sm text-red-600">{{ form.errors.email }}</p>
               </div>
 
               <!-- Phone -->
@@ -61,10 +61,10 @@
                   v-model="form.phone"
                   type="tel"
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                  :class="{ 'border-red-500': errors.phone }"
+                  :class="{ 'border-red-500': form.errors.phone }"
                   placeholder="+1 (555) 123-4567"
                 />
-                <p v-if="errors.phone" class="mt-1 text-sm text-red-600">{{ errors.phone }}</p>
+                <p v-if="form.errors.phone" class="mt-1 text-sm text-red-600">{{ form.errors.phone }}</p>
               </div>
 
               <!-- Subject -->
@@ -78,10 +78,10 @@
                   type="text"
                   required
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                  :class="{ 'border-red-500': errors.subject }"
+                  :class="{ 'border-red-500': form.errors.subject }"
                   placeholder="How can we help?"
                 />
-                <p v-if="errors.subject" class="mt-1 text-sm text-red-600">{{ errors.subject }}</p>
+                <p v-if="form.errors.subject" class="mt-1 text-sm text-red-600">{{ form.errors.subject }}</p>
               </div>
 
               <!-- Message -->
@@ -95,10 +95,10 @@
                   required
                   rows="5"
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                  :class="{ 'border-red-500': errors.message }"
+                  :class="{ 'border-red-500': form.errors.message }"
                   placeholder="Tell us more about your inquiry..."
                 ></textarea>
-                <p v-if="errors.message" class="mt-1 text-sm text-red-600">{{ errors.message }}</p>
+                <p v-if="form.errors.message" class="mt-1 text-sm text-red-600">{{ form.errors.message }}</p>
               </div>
 
               <!-- Success Message -->
@@ -107,14 +107,14 @@
               </div>
 
               <!-- Error Message -->
-              <div v-if="errors.general" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-                {{ errors.general }}
+              <div v-if="form.errors.general" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                {{ form.errors.general }}
               </div>
 
               <!-- Submit Button -->
               <button
                 type="submit"
-                :disabled="submitting"
+                :disabled="form.processing"
                 class="w-full py-3 px-6 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span v-if="!submitting">Send Message</span>
@@ -213,10 +213,11 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
+import { useForm } from '@inertiajs/vue3';
 import AppLayout from '../../Layouts/AppLayout.vue';
 
-const form = reactive({
+const form = useForm({
   name: '',
   email: '',
   phone: '',
@@ -224,66 +225,20 @@ const form = reactive({
   message: '',
 });
 
-const errors = reactive({
-  name: '',
-  email: '',
-  phone: '',
-  subject: '',
-  message: '',
-  general: '',
-});
-
-const submitting = ref(false);
 const successMessage = ref('');
 
-const submitForm = async () => {
-  // Clear previous errors and success
-  Object.keys(errors).forEach(key => errors[key] = '');
-  successMessage.value = '';
-  submitting.value = true;
-
-  try {
-    const response = await fetch('/api/v1/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(form),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      if (data.errors) {
-        Object.keys(data.errors).forEach(key => {
-          errors[key] = data.errors[key][0];
-        });
-      } else {
-        errors.general = data.message || 'Failed to send message. Please try again.';
-      }
-      submitting.value = false;
-      return;
-    }
-
-    // Success!
-    successMessage.value = 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.';
-    
-    // Reset form
-    form.name = '';
-    form.email = '';
-    form.phone = '';
-    form.subject = '';
-    form.message = '';
-    
-    // Auto-hide success message after 5 seconds
-    setTimeout(() => {
-      successMessage.value = '';
-    }, 5000);
-  } catch (error) {
-    errors.general = 'Network error. Please check your connection and try again.';
-  } finally {
-    submitting.value = false;
-  }
+const submitForm = () => {
+  form.post('/contact', {
+    preserveScroll: true,
+    onSuccess: () => {
+      successMessage.value = 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.';
+      form.reset();
+      
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        successMessage.value = '';
+      }, 5000);
+    },
+  });
 };
 </script>
