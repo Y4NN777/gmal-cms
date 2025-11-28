@@ -68,7 +68,7 @@ class HomeController extends Controller
         // Get recent gallery images (8 most recent)
         $recentGalleryImages = GalleryImage::with(['media', 'album'])
             ->whereHas('media')
-            ->ordered()
+            ->latest('created_at')
             ->take(8)
             ->get()
             ->map(function ($image) {
