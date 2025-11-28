@@ -76,6 +76,11 @@ Route::get('/about', fn() => Inertia::render('About/Index'))->name('about');
 Route::get('/contact', fn() => Inertia::render('Contact/Index'))->name('contact');
 Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store']);
 
+// Public Gallery Routes
+Route::get('/gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
+Route::get('/gallery/albums', [App\Http\Controllers\GalleryController::class, 'albums'])->name('gallery.albums');
+Route::get('/gallery/{slug}', [App\Http\Controllers\GalleryController::class, 'show'])->name('gallery.show');
+
 // Admin Authentication Routes
 Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/admin/login', [LoginController::class, 'login'])->middleware('guest');

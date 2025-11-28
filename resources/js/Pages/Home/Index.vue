@@ -181,6 +181,46 @@
       </div>
     </section>
 
+    <!-- Gallery Preview Section -->
+    <section v-if="recentGalleryImages.length > 0" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-display font-bold text-primary-dark mb-4">
+            Recent Moments
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            A glimpse into our community's journey through powerful visuals.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div
+            v-for="image in recentGalleryImages"
+            :key="image.id"
+            class="relative group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+          >
+            <img
+              :src="image.image_url"
+              :alt="image.alt_text || image.caption"
+              class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500"
+            />
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <p v-if="image.album" class="text-white text-sm font-medium">
+                {{ image.album.title }}
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-10">
+          <Button variant="outline" href="/gallery">
+            View Full Gallery
+          </Button>
+        </div>
+      </div>
+    </section>
+
     <!-- Call to Action Section -->
     <section class="py-20 bg-primary-orange text-white">
       <div class="container mx-auto px-4 text-center">
@@ -215,6 +255,10 @@ const props = defineProps({
     default: () => []
   },
   testimonials: {
+    type: Array,
+    default: () => []
+  },
+  recentGalleryImages: {
     type: Array,
     default: () => []
   },

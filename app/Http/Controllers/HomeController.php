@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Testimonial;
 use App\Models\DonationAnalytic;
 use App\Models\VisitorAnalytic;
+use App\Models\GalleryImage;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -64,6 +65,25 @@ class HomeController extends Controller
                 ];
             });
 
+        // Get recent gallery images (8 most recent)
+        $recentGalleryImages = GalleryImage::with(['media', 'album'])
+            ->whereHas('media')
+            ->ordered()
+            ->take(8)
+            ->get()
+            ->map(function ($image) {
+                return [
+                    'id' => $image->id,
+                    'image_url' => $image->image_url,
+                    'caption' => $image->caption,
+                    'alt_text' => $image->alt_text,
+                    'album' => $image->album ? [
+                        'title' => $image->album->title,
+                        'slug' => $image->album->slug
+                    ] : null
+                ];
+            });
+
         // Calculate statistics
         $stats = [
             'totalDonations' => DonationAnalytic::completed()->count(),
@@ -75,6 +95,7 @@ class HomeController extends Controller
         return Inertia::render('Home/Index', [
             'featuredEvents' => $featuredEvents,
             'testimonials' => $testimonials,
+            'recentGalleryImages' => $recentGalleryImages,
             'stats' => $stats
         ]);
     }
