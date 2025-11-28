@@ -76,6 +76,13 @@ Route::get('/about', fn() => Inertia::render('About/Index'))->name('about');
 Route::get('/contact', fn() => Inertia::render('Contact/Index'))->name('contact');
 Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store']);
 
+// Donation Pages
+Route::get('/donate', fn() => Inertia::render('Donate/Index'))->name('donate');
+Route::get('/donate/thank-you', fn() => Inertia::render('Donate/ThankYou'))->name('donate.thank-you');
+
+// PayPal IPN Webhook (must be publicly accessible, no auth middleware)
+Route::post('/webhooks/paypal-ipn', [App\Http\Controllers\DonationController::class, 'handlePayPalIPN'])->name('webhooks.paypal-ipn');
+
 // Public Gallery Routes
 Route::get('/gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
 Route::get('/gallery/albums', [App\Http\Controllers\GalleryController::class, 'albums'])->name('gallery.albums');
