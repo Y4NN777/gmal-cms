@@ -136,4 +136,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::post('contact-messages/{id}/mark-unread', [App\Http\Controllers\Admin\ContactMessageController::class, 'markAsUnread'])->name('contact-messages.mark-unread');
     Route::delete('contact-messages/{id}', [App\Http\Controllers\Admin\ContactMessageController::class, 'destroy'])->name('contact-messages.destroy');
     Route::post('contact-messages/bulk-destroy', [App\Http\Controllers\Admin\ContactMessageController::class, 'bulkDestroy'])->name('contact-messages.bulk-destroy');
+    
+    // Categories Management
+    Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class)->except(['show', 'create', 'edit']);
 });

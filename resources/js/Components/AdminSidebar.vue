@@ -61,6 +61,13 @@ const logout = () => {
         Gallery
       </a>
       <a
+        href="/admin/categories"
+        class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
+        :class="isActive('/admin/categories') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
+      >
+        Categories
+      </a>
+      <a
         href="/admin/media"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/media') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
