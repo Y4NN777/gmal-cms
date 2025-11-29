@@ -189,7 +189,7 @@
                   <svg class="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
-                  <span class="text-xs text-gray-500 font-medium">Video</span>
+                  <span class="text-xs text-gray-500 font-medium">{{ $t('mediaLibrary.video') }}</span>
                 </div>
               </div>
 
@@ -292,19 +292,19 @@
             <!-- Details -->
             <div class="grid grid-cols-2 gap-6">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">File Size</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('mediaLibrary.fileSize') }}</label>
                 <p class="text-gray-900">{{ viewingMedia.size_human }}</p>
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('mediaLibrary.type') }}</label>
                 <p class="text-gray-900">{{ viewingMedia.mime_type }}</p>
               </div>
               <div v-if="viewingMedia.dimensions" class="col-span-2">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Dimensions</label>
-                <p class="text-gray-900">{{ viewingMedia.dimensions.width }} × {{ viewingMedia.dimensions.height }} pixels</p>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('mediaLibrary.dimensions') }}</label>
+                <p class="text-gray-900">{{ viewingMedia.dimensions.width }} × {{ viewingMedia.dimensions.height }} {{ $t('mediaLibrary.pixels') }}</p>
               </div>
               <div class="col-span-2">
-                <label class="block text-sm font-medium text-gray-700 mb-1">URL</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('mediaLibrary.url') }}</label>
                 <div class="flex gap-2">
                   <input 
                     type="text" 
@@ -317,12 +317,12 @@
                     @click="copyUrl(viewingMedia.url)"
                     class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 text-sm font-medium"
                   >
-                    Copy
+                    {{ $t('mediaLibrary.copy') }}
                   </button>
                 </div>
               </div>
               <div class="col-span-2">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Uploaded</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('mediaLibrary.uploaded') }}</label>
                 <p class="text-gray-900">{{ formatDate(viewingMedia.created_at) }}</p>
               </div>
             </div>

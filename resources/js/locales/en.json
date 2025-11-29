@@ -567,7 +567,10 @@
     "editCategory": "Edit Category",
     "newCategory": "New Category",
     "save": "Save",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "iconHelp": "Emoji or icon class name",
+    "deleteCategory": "Delete Category",
+    "deleteConfirm": "Are you sure you want to delete \"{name}\"? This action cannot be undone."
   },
   "galleryManagement": {
     "title": "Gallery Management",
@@ -587,7 +590,12 @@
     "deleteImageTitle": "Delete Image",
     "deleteImageConfirm": "Are you sure you want to delete this image?",
     "deleteAlbumTitle": "Delete Album",
-    "deleteAlbumConfirm": "Are you sure you want to delete this album and all its images?"
+    "deleteAlbumConfirm": "Are you sure you want to delete this album and all its images?",
+    "clickToUpload": "Click to upload or drag and drop",
+    "uploadMultiple": "Upload multiple images at once",
+    "fileTypes": "PNG, JPG, GIF, WebP up to 10MB each",
+    "selectAll": "Select All",
+    "imageDetails": "Image Details"
   },
   "mediaLibrary": {
     "title": "Media Library",
@@ -625,6 +633,12 @@
     "of": "of",
     "mediaFiles": "files",
     "previous": "Previous",
+    "video": "Video",
+    "fileSize": "File Size",
+    "dimensions": "Dimensions",
+    "pixels": "pixels",
+    "url": "URL",
+    "copy": "Copy",
     "next": "Next"
   },
   "contactMessages": {

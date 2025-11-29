@@ -134,9 +134,9 @@
           <svg class="mx-auto h-16 w-16 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
             <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
-          <p class="mt-4 text-lg font-medium text-orange-600">Click to upload or drag and drop</p>
-          <p class="mt-1 text-sm text-gray-500">Upload multiple images at once</p>
-          <p class="text-xs text-gray-400 mt-2">PNG, JPG, GIF, WebP up to 10MB each</p>
+          <p class="mt-4 text-lg font-medium text-orange-600">{{ t('gallery.clickToUpload') }}</p>
+          <p class="mt-1 text-sm text-gray-500">{{ t('gallery.uploadMultiple') }}</p>
+          <p class="text-xs text-gray-400 mt-2">{{ t('gallery.fileTypes') }}</p>
         </div>
 
         <!-- Upload Progress -->
@@ -176,7 +176,7 @@
               @change="selectAll"
               class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
             />
-            <span class="text-sm text-gray-600">Select All</span>
+            <span class="text-sm text-gray-600">{{ t('gallery.selectAll') }}</span>
           </div>
 
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -235,7 +235,7 @@
       <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-auto" @click.stop>
         <div class="p-6">
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-bold text-gray-900">Image Details</h3>
+            <h3 class="text-xl font-bold text-gray-900">{{ t('gallery.imageDetails') }}</h3>
             <button @click="viewingImage = null" class="text-gray-400 hover:text-gray-600 transition-colors">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />

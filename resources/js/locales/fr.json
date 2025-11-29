@@ -567,7 +567,10 @@
     "editCategory": "Modifier la Catégorie",
     "newCategory": "Nouvelle Catégorie",
     "save": "Enregistrer",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "iconHelp": "Emoji ou nom de classe d'icône",
+    "deleteCategory": "Supprimer la Catégorie",
+    "deleteConfirm": "Êtes-vous sûr de vouloir supprimer \"{name}\" ? Cette action est irréversible."
   },
   "galleryManagement": {
     "title": "Gestion de la Galerie",
@@ -587,7 +590,12 @@
     "deleteImageTitle": "Supprimer l'Image",
     "deleteImageConfirm": "Êtes-vous sûr de vouloir supprimer cette image ?",
     "deleteAlbumTitle": "Supprimer l'Album",
-    "deleteAlbumConfirm": "Êtes-vous sûr de vouloir supprimer cet album et toutes ses images ?"
+    "deleteAlbumConfirm": "Êtes-vous sûr de vouloir supprimer cet album et toutes ses images ?",
+    "clickToUpload": "Cliquez pour télécharger ou glissez-déposez",
+    "uploadMultiple": "Téléchargez plusieurs images à la fois",
+    "fileTypes": "PNG, JPG, GIF, WebP jusqu'à 10 Mo chacun",
+    "selectAll": "Tout Sélectionner",
+    "imageDetails": "Détails de l'Image"
   },
   "mediaLibrary": {
     "title": "Bibliothèque Média",
@@ -625,6 +633,12 @@
     "of": "sur",
     "mediaFiles": "fichiers",
     "previous": "Précédent",
+    "video": "Vidéo",
+    "fileSize": "Taille du Fichier",
+    "dimensions": "Dimensions",
+    "pixels": "pixels",
+    "url": "URL",
+    "copy": "Copier",
     "next": "Suivant"
   },
   "contactMessages": {

@@ -267,7 +267,7 @@ const cancelDelete = () => {
               placeholder="e.g., 🎓 or icon-name"
               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
-            <p class="text-xs text-gray-500 mt-1">Emoji or icon class name</p>
+            <p class="text-xs text-gray-500 mt-1">{{ $t('categories.iconHelp') }}</p>
           </div>
 
           <!-- Actions -->
@@ -307,9 +307,9 @@ const cancelDelete = () => {
             </svg>
           </div>
           <div>
-            <h3 class="text-lg font-semibold text-gray-900">Delete Category</h3>
+            <h3 class="text-lg font-semibold text-gray-900">{{ $t('categories.deleteCategory') }}</h3>
             <p class="text-sm text-gray-600 mt-1">
-              Are you sure you want to delete "{{ categoryToDelete?.name }}"? This action cannot be undone.
+              {{ $t('categories.deleteConfirm', { name: categoryToDelete?.name }) }}
             </p>
           </div>
         </div>
