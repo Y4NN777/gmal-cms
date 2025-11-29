@@ -1,26 +1,23 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue'
+import { useCategory } from '@/composables/useCategory'
+import { useDate } from '@/composables/useDate'
+
+const { translateCategory } = useCategory()
+const { formatDate } = useDate()
 
 defineProps({
   event: {
     type: Object,
-    required: true,
-  },
+    required: true
+  }
 })
-
-const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-}
 
 const formatTime = (time) => {
   if (!time) return null
-  return new Date(`2000-01-01T${time}`).toLocaleTimeString('en-US', {
+  const locale = document.documentElement.lang || 'en'
+  return new Date(`2000-01-01T${time}`).toLocaleTimeString(locale, {
     hour: 'numeric',
     minute: '2-digit',
     hour12: true
@@ -50,10 +47,10 @@ const formatTime = (time) => {
         <div class="max-w-4xl">
           <div v-if="event.category" class="mb-4">
             <span class="inline-block bg-orange-500 text-white text-sm font-semibold px-4 py-2 rounded-full">
-              {{ event.category.name }}
+              {{ translateCategory(event.category) }}
             </span>
             <span v-if="event.is_featured" class="ml-2 inline-block bg-yellow-500 text-gray-900 text-sm font-semibold px-4 py-2 rounded-full">
-              Featured Event
+              {{ $t('events.featuredEvent') }}
             </span>
           </div>
           <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -94,7 +91,7 @@ const formatTime = (time) => {
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
-          Back to Events
+          {{ $t('events.details.backToEvents') }}
         </Link>
       </div>
     </section>
@@ -106,7 +103,7 @@ const formatTime = (time) => {
           <!-- Event Description -->
           <div class="prose prose-lg max-w-none mb-12">
             <div class="bg-gray-50 rounded-lg p-8">
-              <h2 class="text-2xl font-bold text-gray-900 mb-4">About This Event</h2>
+              <h2 class="text-2xl font-bold text-gray-900 mb-4">{{ $t('events.details.aboutThisEvent') }}</h2>
               <div class="text-gray-700 leading-relaxed whitespace-pre-wrap">
                 {{ event.description }}
               </div>
@@ -124,15 +121,15 @@ const formatTime = (time) => {
                 </div>
               </div>
               <div class="flex-1">
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">Support This Event</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">{{ $t('events.details.supportThisEvent') }}</h3>
                 <p class="text-gray-700 mb-4">
-                  Help us reach our donation goal of <span class="font-bold text-red-600">${{ event.donation_goal.toLocaleString() }}</span>
+                  {{ $t('events.details.helpUsReach') }} <span class="font-bold text-red-600">${{ event.donation_goal.toLocaleString() }}</span>
                 </p>
                 <a
                   href="/contact"
                   class="inline-block bg-gradient-to-r from-red-600 to-orange-600 text-white font-semibold px-8 py-3 rounded-lg hover:from-red-700 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl"
                 >
-                  Donate Now
+                  {{ $t('events.details.donateNow') }}
                 </a>
               </div>
             </div>
@@ -140,14 +137,14 @@ const formatTime = (time) => {
 
           <!-- Event Details Card -->
           <div class="bg-gray-50 rounded-lg p-8 border border-gray-200">
-            <h3 class="text-xl font-bold text-gray-900 mb-6">Event Details</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-6">{{ $t('events.details.eventDetails') }}</h3>
             <div class="space-y-4">
               <div class="flex items-start gap-4">
                 <svg class="w-6 h-6 text-red-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
                 <div>
-                  <div class="font-semibold text-gray-900">Date</div>
+                  <div class="font-semibold text-gray-900">{{ $t('events.details.date') }}</div>
                   <div class="text-gray-700">{{ formatDate(event.event_date) }}</div>
                 </div>
               </div>
@@ -157,7 +154,7 @@ const formatTime = (time) => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <div class="font-semibold text-gray-900">Time</div>
+                  <div class="font-semibold text-gray-900">{{ $t('events.details.time') }}</div>
                   <div class="text-gray-700">{{ formatTime(event.event_time) }}</div>
                 </div>
               </div>
@@ -168,7 +165,7 @@ const formatTime = (time) => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <div>
-                  <div class="font-semibold text-gray-900">Location</div>
+                  <div class="font-semibold text-gray-900">{{ $t('events.details.location') }}</div>
                   <div class="text-gray-700">{{ event.location }}</div>
                 </div>
               </div>
@@ -178,8 +175,8 @@ const formatTime = (time) => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                 </svg>
                 <div>
-                  <div class="font-semibold text-gray-900">Category</div>
-                  <div class="text-gray-700">{{ event.category.name }}</div>
+                  <div class="font-semibold text-gray-900">{{ $t('events.details.category') }}</div>
+                  <div class="text-gray-700">{{ translateCategory(event.category) }}</div>
                 </div>
               </div>
 
@@ -188,7 +185,7 @@ const formatTime = (time) => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 <div>
-                  <div class="font-semibold text-gray-900">Organized By</div>
+                  <div class="font-semibold text-gray-900">{{ $t('events.details.organizedBy') }}</div>
                   <div class="text-gray-700">{{ event.creator.name }}</div>
                 </div>
               </div>
@@ -197,23 +194,22 @@ const formatTime = (time) => {
 
           <!-- Call to Action -->
           <div class="mt-12 text-center">
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Get Involved</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ $t('events.details.getInvolved') }}</h3>
             <p class="text-gray-700 mb-6 max-w-2xl mx-auto">
-              Join us in making a difference. Whether through donations, volunteering, or spreading the word, 
-              your support helps us create lasting change in our community.
+              {{ $t('events.details.getInvolvedText') }}
             </p>
             <div class="flex flex-wrap justify-center gap-4">
               <a
                 href="/contact"
                 class="inline-block bg-gradient-to-r from-red-600 to-orange-600 text-white font-semibold px-8 py-3 rounded-lg hover:from-red-700 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl"
               >
-                Contact Us
+                {{ $t('events.details.contactUs') }}
               </a>
               <Link
                 href="/events"
                 class="inline-block bg-white text-red-600 font-semibold px-8 py-3 rounded-lg border-2 border-red-600 hover:bg-red-50 transition-all"
               >
-                View More Events
+                {{ $t('events.details.viewMoreEvents') }}
               </Link>
             </div>
           </div>

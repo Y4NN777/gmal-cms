@@ -2,6 +2,13 @@
 import { ref, computed } from 'vue';
 import { router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { useCategory } from '@/composables/useCategory';
+import { useDate } from '@/composables/useDate';
+import { useStatus } from '@/composables/useStatus';
+
+const { translateCategory } = useCategory();
+const { formatShortDate } = useDate();
+const { translateStatus } = useStatus();
 
 const props = defineProps({
   user: Object,
@@ -54,22 +61,9 @@ const confirmDelete = () => {
       selectedEventId.value = null;
     },
     onError: () => {
-      alert('Failed to delete event');
       showDeleteModal.value = false;
       selectedEventId.value = null;
     }
-  });
-};
-
-const changePage = (page) => {
-  router.get('/admin/events', {
-    page,
-    search: searchQuery.value,
-    status: statusFilter.value,
-    category: categoryFilter.value,
-  }, {
-    preserveState: true,
-    preserveScroll: true,
   });
 };
 
@@ -83,12 +77,8 @@ const getStatusClass = (status) => {
 };
 
 const formatDate = (date) => {
-  if (!date) return 'N/A';
-  return new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  });
+  if (!date) return '';
+  return formatShortDate(date);
 };
 </script>
 
@@ -98,14 +88,14 @@ const formatDate = (date) => {
       <!-- Header -->
       <div class="mb-8 flex justify-between items-center">
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">Events Management</h2>
-          <p class="text-gray-600 mt-1">Manage all events and campaigns</p>
+          <h2 class="text-2xl font-bold text-gray-900">{{ $t('admin.eventManagement.title') }}</h2>
+          <p class="text-gray-600 mt-1">{{ $t('admin.eventManagement.description') }}</p>
         </div>
         <button
           @click="createEvent"
           class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium"
         >
-          + Create Event
+          + {{ $t('admin.eventManagement.createEvent') }}
         </button>
       </div>
 
@@ -113,40 +103,40 @@ const formatDate = (date) => {
       <div class="bg-white rounded-lg shadow p-4 mb-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('admin.eventManagement.search') }}</label>
             <input
               v-model="searchQuery"
               type="text"
-              placeholder="Search events..."
+              :placeholder="$t('admin.eventManagement.searchEvents')"
               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @input="applyFilters"
             />
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('admin.eventManagement.status') }}</label>
             <select
               v-model="statusFilter"
               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @change="applyFilters"
             >
-              <option value="">All Status</option>
-              <option value="draft">Draft</option>
-              <option value="published">Published</option>
-              <option value="archived">Archived</option>
+              <option value="">{{ $t('admin.eventManagement.allStatus') }}</option>
+              <option value="draft">{{ $t('status.draft') }}</option>
+              <option value="published">{{ $t('status.published') }}</option>
+              <option value="archived">{{ $t('status.archived') }}</option>
             </select>
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('admin.eventManagement.category') }}</label>
             <select
               v-model="categoryFilter"
               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @change="applyFilters"
             >
-              <option value="">All Categories</option>
+              <option value="">{{ $t('admin.eventManagement.allCategories') }}</option>
               <option v-for="category in categories" :key="category.id" :value="category.id">
-                {{ category.name }}
+                {{ translateCategory(category) }}
               </option>
             </select>
           </div>
@@ -156,7 +146,7 @@ const formatDate = (date) => {
               @click="searchQuery = ''; statusFilter = ''; categoryFilter = ''; applyFilters()"
               class="w-full px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
             >
-              Clear Filters
+              {{ $t('admin.eventManagement.clearFilters') }}
             </button>
           </div>
         </div>
@@ -195,17 +185,17 @@ const formatDate = (date) => {
                   class="px-2 py-1 text-xs font-medium rounded"
                   :class="getStatusClass(event.status)"
                 >
-                  {{ event.status }}
+                  {{ translateStatus(event.status) }}
                 </span>
                 <span
                   v-if="event.is_featured"
                   class="px-2 py-1 text-xs font-medium bg-orange-100 text-orange-800 rounded"
                 >
-                  ⭐ Featured
+                  ⭐ {{ $t('admin.eventManagement.featured') }}
                 </span>
               </div>
 
-              <p class="text-gray-600 text-sm mb-3">{{ event.excerpt || 'No description' }}</p>
+              <p class="text-gray-600 text-sm mb-3">{{ event.excerpt || $t('admin.eventManagement.noDescription') }}</p>
 
               <div class="flex items-center gap-6 text-sm text-gray-500">
                 <div class="flex items-center gap-1">
@@ -228,7 +218,7 @@ const formatDate = (date) => {
                     class="w-3 h-3 rounded-full"
                     :style="{ backgroundColor: event.category.color }"
                   ></span>
-                  <span>{{ event.category.name }}</span>
+                  <span>{{ translateCategory(event.category) }}</span>
                 </div>
               </div>
 
@@ -237,23 +227,48 @@ const formatDate = (date) => {
                   @click="viewEvent(event.id)"
                   class="px-3 py-1.5 text-sm text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors"
                 >
-                  View
+                  {{ $t('admin.eventManagement.view') }}
                 </button>
                 <button
                   @click="editEvent(event.id)"
                   class="px-3 py-1.5 text-sm text-orange-700 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors"
                 >
-                  Edit
+                  {{ $t('admin.eventManagement.edit') }}
                 </button>
                 <button
                   @click="deleteEvent(event.id)"
                   class="px-3 py-1.5 text-sm text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors"
                 >
-                  Delete
+                  {{ $t('admin.eventManagement.delete') }}
                 </button>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div v-if="events.data && events.data.length > 0" class="flex justify-between items-center bg-white rounded-lg shadow p-4 mt-6">
+        <div class="text-sm text-gray-600">
+          Showing {{ events.from }} to {{ events.to }} of {{ events.total }} events
+        </div>
+        
+        <div class="flex gap-2">
+          <button
+            v-for="link in events.links"
+            :key="link.label"
+            @click="link.url ? router.get(link.url, {}, { preserveState: true, preserveScroll: true }) : null"
+            :disabled="!link.url || link.active"
+            class="px-3 py-1 text-sm rounded"
+            :class="[
+              link.active 
+                ? 'bg-orange-600 text-white' 
+                : link.url 
+                  ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' 
+                  : 'bg-gray-50 text-gray-400 cursor-not-allowed'
+            ]"
+            v-html="link.label"
+          />
         </div>
       </div>
 
@@ -262,12 +277,12 @@ const formatDate = (date) => {
         <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
-        <p class="text-gray-500">No events found</p>
+        <p class="text-gray-500">{{ $t('admin.eventManagement.noEventsFound') }}</p>
         <button
           @click="createEvent"
           class="mt-4 px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium"
         >
-          Create Your First Event
+          {{ $t('admin.eventManagement.createFirstEvent') }}
         </button>
       </div>
 
@@ -280,11 +295,11 @@ const formatDate = (date) => {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900">Delete Event</h3>
+            <h3 class="text-xl font-bold text-gray-900">{{ $t('admin.eventManagement.deleteEventTitle') }}</h3>
           </div>
 
           <p class="text-gray-600 mb-6">
-            Are you sure you want to delete this event? This action cannot be undone.
+            {{ $t('admin.eventManagement.deleteEventConfirm') }}
           </p>
 
           <div class="flex gap-3">
@@ -292,13 +307,13 @@ const formatDate = (date) => {
               @click="showDeleteModal = false"
               class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
             >
-              Cancel
+              {{ $t('admin.cancel') }}
             </button>
             <button
               @click="confirmDelete"
               class="flex-1 px-4 py-2 bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg hover:from-red-100 hover:to-red-50 font-medium transition-colors"
             >
-              Delete
+              {{ $t('admin.delete') }}
             </button>
           </div>
         </div>

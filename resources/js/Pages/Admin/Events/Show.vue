@@ -2,6 +2,13 @@
 import { computed } from 'vue';
 import { router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { useCategory } from '@/composables/useCategory';
+import { useDate } from '@/composables/useDate';
+import { useStatus } from '@/composables/useStatus';
+
+const { translateCategory } = useCategory();
+const { formatDate } = useDate();
+const { translateStatus } = useStatus();
 
 const props = defineProps({
   event: Object,
@@ -26,15 +33,6 @@ const getStatusColor = (status) => {
   return colors[status] || 'bg-gray-100 text-gray-700';
 };
 
-const formatDate = (date) => {
-  if (!date) return 'N/A';
-  return new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-};
-
 const publicUrl = computed(() => {
   return `${window.location.origin}/events/${props.event.slug}`;
 });
@@ -46,7 +44,7 @@ const publicUrl = computed(() => {
           <!-- Header -->
           <div class="mb-8">
             <div class="flex items-center gap-2 text-sm text-gray-600 mb-4">
-              <a href="/admin/events" class="hover:text-orange-600">Events</a>
+              <a href="/admin/events" class="hover:text-orange-600">{{ $t('admin.events') }}</a>
               <span>/</span>
               <span class="text-gray-900">{{ event.title }}</span>
             </div>
@@ -55,13 +53,13 @@ const publicUrl = computed(() => {
                 <h2 class="text-2xl font-bold text-gray-900">{{ event.title }}</h2>
                 <div class="flex items-center gap-3 mt-2">
                   <span :class="getStatusColor(event.status)" class="px-3 py-1 rounded-full text-xs font-medium">
-                    {{ event.status.toUpperCase() }}
+                    {{ translateStatus(event.status).toUpperCase() }}
                   </span>
                   <span v-if="event.is_featured" class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">
-                    FEATURED
+                    {{ $t('events.featured').toUpperCase() }}
                   </span>
                   <span v-if="event.category" class="text-sm text-gray-600">
-                    {{ event.category.name }}
+                    {{ translateCategory(event.category) }}
                   </span>
                 </div>
               </div>
@@ -70,13 +68,13 @@ const publicUrl = computed(() => {
                   @click="backToList"
                   class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
                 >
-                  Back to List
+                  {{ $t('admin.eventForm.backToList') }}
                 </button>
                 <button
                   @click="editEvent"
                   class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium"
                 >
-                  Edit Event
+                  {{ $t('admin.edit') }}
                 </button>
               </div>
             </div>
@@ -91,30 +89,30 @@ const publicUrl = computed(() => {
           <div class="space-y-6">
             <!-- Basic Info -->
             <div class="bg-white rounded-lg shadow p-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Event Information</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ $t('admin.eventForm.basicInfo') }}</h3>
               <dl class="grid grid-cols-2 gap-4">
                 <div>
-                  <dt class="text-sm font-medium text-gray-500">Event Date</dt>
+                  <dt class="text-sm font-medium text-gray-500">{{ $t('admin.eventForm.eventDateLabel') }}</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ formatDate(event.event_date) }}</dd>
                 </div>
                 <div>
-                  <dt class="text-sm font-medium text-gray-500">Start Date</dt>
+                  <dt class="text-sm font-medium text-gray-500">{{ $t('admin.eventForm.startDateLabel') }}</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ formatDate(event.start_date) }}</dd>
                 </div>
                 <div>
-                  <dt class="text-sm font-medium text-gray-500">End Date</dt>
+                  <dt class="text-sm font-medium text-gray-500">{{ $t('admin.eventForm.endDateLabel') }}</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ formatDate(event.end_date) }}</dd>
                 </div>
                 <div>
-                  <dt class="text-sm font-medium text-gray-500">Location</dt>
+                  <dt class="text-sm font-medium text-gray-500">{{ $t('admin.eventForm.locationLabel') }}</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ event.location || 'N/A' }}</dd>
                 </div>
                 <div>
-                  <dt class="text-sm font-medium text-gray-500">Created By</dt>
+                  <dt class="text-sm font-medium text-gray-500">{{ $t('admin.eventForm.createdBy') }}</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ event.creator?.name || 'Unknown' }}</dd>
                 </div>
                 <div>
-                  <dt class="text-sm font-medium text-gray-500">Last Updated By</dt>
+                  <dt class="text-sm font-medium text-gray-500">{{ $t('admin.eventForm.updatedBy') }}</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ event.updater?.name || 'Unknown' }}</dd>
                 </div>
               </dl>
@@ -122,32 +120,32 @@ const publicUrl = computed(() => {
 
             <!-- Short Description -->
             <div v-if="event.short_description" class="bg-white rounded-lg shadow p-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Short Description</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ $t('admin.eventForm.shortDescriptionLabel') }}</h3>
               <p class="text-gray-700">{{ event.short_description }}</p>
             </div>
 
             <!-- Excerpt -->
             <div v-if="event.excerpt" class="bg-white rounded-lg shadow p-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Excerpt</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ $t('admin.eventForm.excerptLabel') }}</h3>
               <p class="text-gray-700">{{ event.excerpt }}</p>
             </div>
 
             <!-- Full Description -->
             <div class="bg-white rounded-lg shadow p-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Full Description</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ $t('admin.eventForm.descriptionLabel') }}</h3>
               <div class="prose max-w-none text-gray-700 whitespace-pre-wrap">{{ event.description }}</div>
             </div>
 
             <!-- SEO Info -->
             <div v-if="event.meta_title || event.meta_description" class="bg-white rounded-lg shadow p-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">SEO Information</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ $t('admin.eventForm.seoMeta') }}</h3>
               <dl class="space-y-4">
                 <div v-if="event.meta_title">
-                  <dt class="text-sm font-medium text-gray-500">Meta Title</dt>
+                  <dt class="text-sm font-medium text-gray-500">{{ $t('admin.eventForm.metaTitleLabel') }}</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ event.meta_title }}</dd>
                 </div>
                 <div v-if="event.meta_description">
-                  <dt class="text-sm font-medium text-gray-500">Meta Description</dt>
+                  <dt class="text-sm font-medium text-gray-500">{{ $t('admin.eventForm.metaDescriptionLabel') }}</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ event.meta_description }}</dd>
                 </div>
               </dl>
@@ -155,7 +153,7 @@ const publicUrl = computed(() => {
 
             <!-- Public URL -->
             <div class="bg-white rounded-lg shadow p-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Public URL</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ $t('admin.eventForm.publicUrl') }}</h3>
               <a :href="`/events/${event.slug}`" target="_blank" class="text-orange-600 hover:text-orange-700 text-sm break-all">
                 {{ publicUrl }}
                 <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

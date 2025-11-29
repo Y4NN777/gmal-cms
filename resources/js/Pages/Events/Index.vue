@@ -1,3 +1,36 @@
+<script setup>
+import { ref, computed } from 'vue';
+import { router } from '@inertiajs/vue3';
+import AppLayout from '@/Layouts/AppLayout.vue';
+import { useCategory } from '@/composables/useCategory';
+import { useDate } from '@/composables/useDate';
+
+const { translateCategory } = useCategory();
+const { formatDate } = useDate();
+
+const props = defineProps({
+  events: {
+    type: Array,
+    required: true,
+  },
+  categories: {
+    type: Array,
+    required: true,
+  },
+});
+
+const selectedCategory = ref(null);
+
+const filteredEvents = computed(() => {
+  if (!selectedCategory.value) return props.events;
+  return props.events.filter(event => event.category?.id === selectedCategory.value);
+});
+
+const goToEvent = (slug) => {
+  router.visit(`/events/${slug}`);
+};
+</script>
+
 <template>
   <AppLayout>
     <!-- Hero Section -->
@@ -22,7 +55,7 @@
               ? 'bg-orange-600 text-white' 
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
           >
-            {{ category.name }}
+            {{ translateCategory(category) }}
           </button>
           <button
             v-if="selectedCategory"
@@ -53,7 +86,7 @@
                   class="px-2 py-1 text-xs font-medium rounded"
                   :style="{ backgroundColor: event.category?.color + '20', color: event.category?.color }"
                 >
-                  {{ event.category?.name }}
+                  {{ translateCategory(event.category) }}
                 </span>
                 <span v-if="event.is_featured" class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">
                   {{ $t('events.featured') }}
@@ -84,41 +117,3 @@
     </section>
   </AppLayout>
 </template>
-
-<script setup>
-import { ref, computed } from 'vue';
-import { router } from '@inertiajs/vue3';
-import AppLayout from '../../Layouts/AppLayout.vue';
-
-// Receive data from Inertia (Laravel)
-const props = defineProps({
-  events: {
-    type: Array,
-    required: true,
-  },
-  categories: {
-    type: Array,
-    required: true,
-  },
-});
-
-const selectedCategory = ref(null);
-
-const filteredEvents = computed(() => {
-  if (!selectedCategory.value) return props.events;
-  return props.events.filter(event => event.category?.id === selectedCategory.value);
-});
-
-const formatDate = (date) => {
-  if (!date) return 'Date TBD';
-  return new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-};
-
-const goToEvent = (slug) => {
-  router.visit(`/events/${slug}`);
-};
-</script>
