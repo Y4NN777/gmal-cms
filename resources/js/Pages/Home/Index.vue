@@ -105,8 +105,8 @@
             <template #header>
               <div class="flex items-center justify-between text-sm text-gray-500">
                 <span>{{ formatDate(event.event_date) }}</span>
-                <span class="px-3 py-1 bg-primary-green text-white rounded-full text-xs">
-                  {{ event.category?.name }}
+                <span v-if="event.category" class="px-3 py-1 bg-primary-green text-white rounded-full text-xs">
+                  {{ translateCategory(event.category) }}
                 </span>
               </div>
             </template>
@@ -245,6 +245,11 @@ import { computed } from 'vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Button from '@/Components/UI/Button.vue';
 import Card from '@/Components/UI/Card.vue';
+import { useCategory } from '@/composables/useCategory';
+import { useDate } from '@/composables/useDate';
+
+const { translateCategory } = useCategory();
+const { formatDate } = useDate();
 
 const props = defineProps({
   featuredEvents: {
@@ -269,14 +274,6 @@ const props = defineProps({
     })
   }
 });
-
-const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric'
-  });
-};
 </script>
 
 <style scoped>

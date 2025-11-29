@@ -3,8 +3,8 @@
     <!-- Hero Section -->
     <section class="bg-gradient-to-r from-orange-600 to-orange-700 text-white py-20">
       <div class="container mx-auto px-4">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-        <p class="text-xl text-orange-100">We'd love to hear from you</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $t('contact.title') }}</h1>
+        <p class="text-xl text-orange-100">{{ $t('contact.subtitle') }}</p>
       </div>
     </section>
 
@@ -14,13 +14,13 @@
         <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           <!-- Contact Form -->
           <div class="bg-white rounded-lg shadow-lg p-8">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Send us a message</h2>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ $t('contact.form.title') }}</h2>
             
             <form @submit.prevent="submitForm" class="space-y-6">
               <!-- Name -->
               <div>
                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                  Full Name *
+                  {{ $t('contact.form.name') }} *
                 </label>
                 <input
                   id="name"
@@ -37,7 +37,7 @@
               <!-- Email -->
               <div>
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address *
+                  {{ $t('contact.form.email') }} *
                 </label>
                 <input
                   id="email"
@@ -54,7 +54,7 @@
               <!-- Phone -->
               <div>
                 <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
-                  Phone Number
+                  {{ $t('contact.form.phone') }}
                 </label>
                 <input
                   id="phone"
@@ -70,7 +70,7 @@
               <!-- Subject -->
               <div>
                 <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
-                  Subject *
+                  {{ $t('contact.form.subject') }} *
                 </label>
                 <input
                   id="subject"
@@ -87,7 +87,7 @@
               <!-- Message -->
               <div>
                 <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
-                  Message *
+                  {{ $t('contact.form.message') }} *
                 </label>
                 <textarea
                   id="message"
@@ -117,13 +117,13 @@
                 :disabled="form.processing"
                 class="w-full py-3 px-6 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span v-if="!submitting">Send Message</span>
+                <span v-if="!submitting">{{ $t('contact.form.submit') }}</span>
                 <span v-else class="flex items-center justify-center">
                   <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  Sending...
+                  {{ $t('contact.form.sending') }}
                 </span>
               </button>
             </form>
@@ -132,10 +132,9 @@
           <!-- Contact Info -->
           <div class="space-y-8">
             <div>
-              <h2 class="text-2xl font-bold text-gray-900 mb-6">Get in touch</h2>
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ $t('contact.info.title') }}</h2>
               <p class="text-gray-600 mb-8">
-                Have questions? We're here to help. Reach out through any of these channels 
-                and we'll get back to you as soon as possible.
+                {{ $t('contact.info.description') }}
               </p>
             </div>
 
@@ -148,7 +147,7 @@
                   </svg>
                 </div>
                 <div>
-                  <h3 class="font-semibold text-gray-900 mb-1">Email</h3>
+                  <h3 class="font-semibold text-gray-900 mb-1">{{ $t('contact.info.email') }}</h3>
                   <a href="mailto:info@givemealift.org" class="text-orange-600 hover:text-orange-700">
                     info@givemealift.org
                   </a>
@@ -162,7 +161,7 @@
                   </svg>
                 </div>
                 <div>
-                  <h3 class="font-semibold text-gray-900 mb-1">Phone</h3>
+                  <h3 class="font-semibold text-gray-900 mb-1">{{ $t('contact.info.phone') }}</h3>
                   <a href="tel:+15551234567" class="text-green-600 hover:text-green-700">
                     +1 (555) 123-4567
                   </a>
@@ -177,11 +176,11 @@
                   </svg>
                 </div>
                 <div>
-                  <h3 class="font-semibold text-gray-900 mb-1">Office</h3>
+                  <h3 class="font-semibold text-gray-900 mb-1">{{ $t('contact.info.address') }}</h3>
                   <p class="text-gray-600">
-                    123 Community Street<br>
-                    Hope City, HC 12345<br>
-                    United States
+                    {{ $t('contact.address.street') }}<br>
+                    {{ $t('contact.address.city') }}<br>
+                    {{ $t('contact.address.country') }}
                   </p>
                 </div>
               </div>
@@ -189,19 +188,19 @@
 
             <!-- Office Hours -->
             <div class="bg-gradient-to-br from-orange-50 to-green-50 p-6 rounded-lg">
-              <h3 class="font-semibold text-gray-900 mb-4">Office Hours</h3>
+              <h3 class="font-semibold text-gray-900 mb-4">{{ $t('contact.info.hours') }}</h3>
               <div class="space-y-2 text-sm text-gray-600">
                 <div class="flex justify-between">
-                  <span>Monday - Friday:</span>
-                  <span class="font-medium text-gray-900">9:00 AM - 5:00 PM</span>
+                  <span>{{ $t('contact.hours.weekdays') }}:</span>
+                  <span class="font-medium text-gray-900">{{ $t('contact.hours.weekdaysTime') }}</span>
                 </div>
                 <div class="flex justify-between">
-                  <span>Saturday:</span>
-                  <span class="font-medium text-gray-900">10:00 AM - 2:00 PM</span>
+                  <span>{{ $t('contact.hours.saturday') }}:</span>
+                  <span class="font-medium text-gray-900">{{ $t('contact.hours.saturdayTime') }}</span>
                 </div>
                 <div class="flex justify-between">
-                  <span>Sunday:</span>
-                  <span class="font-medium text-gray-900">Closed</span>
+                  <span>{{ $t('contact.hours.sunday') }}:</span>
+                  <span class="font-medium text-gray-900">{{ $t('contact.hours.closed') }}</span>
                 </div>
               </div>
             </div>
@@ -231,7 +230,7 @@ const submitForm = () => {
   form.post('/contact', {
     preserveScroll: true,
     onSuccess: () => {
-      successMessage.value = 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.';
+      successMessage.value = '';
       form.reset();
       
       // Auto-hide success message after 5 seconds
