@@ -2,6 +2,9 @@
 import { ref, computed } from 'vue';
 import { router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
   albums: Array,
@@ -35,10 +38,6 @@ const confirmDelete = () => {
       showDeleteModal.value = false;
       selectedAlbumId.value = null;
     },
-    onError: () => {
-      showDeleteModal.value = false;
-      selectedAlbumId.value = null;
-    }
   });
 };
 
@@ -57,14 +56,14 @@ const editAlbum = (id) => {
       <!-- Header -->
           <div class="mb-8 flex justify-between items-center">
             <div>
-              <h2 class="text-2xl font-bold text-gray-900">Gallery Management</h2>
-              <p class="text-gray-600 mt-1">Manage photo albums and images</p>
+              <h2 class="text-2xl font-bold text-gray-900">{{ t('galleryManagement.title') }}</h2>
+              <p class="text-gray-600 mt-1">{{ t('galleryManagement.description') }}</p>
             </div>
             <button
               @click="createAlbum"
               class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium"
             >
-              + Create Album
+              + {{ t('galleryManagement.createAlbum') }}
             </button>
           </div>
 
@@ -75,7 +74,7 @@ const editAlbum = (id) => {
                 <input
                   v-model="searchQuery"
                   type="text"
-                  placeholder="Search albums..."
+                  :placeholder="t('common.search')"
                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 />
               </div>
@@ -97,7 +96,7 @@ const editAlbum = (id) => {
                   </svg>
                 </div>
                 <div class="absolute top-3 right-3 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">
-                  {{ album.images_count || 0 }} photos
+                  {{ album.images_count || 0 }} {{ t('galleryManagement.images') }}
                 </div>
               </div>
 
@@ -116,13 +115,13 @@ const editAlbum = (id) => {
                       @click="editAlbum(album.id)"
                       class="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded hover:bg-gray-200 font-medium"
                     >
-                      Edit
+                      {{ t('galleryManagement.edit') }}
                     </button>
                     <button
                       @click="deleteAlbum(album.id)"
                       class="px-3 py-1 text-xs bg-red-50 text-red-600 rounded hover:bg-red-100 font-medium"
                     >
-                      Delete
+                      {{ t('galleryManagement.delete') }}
                     </button>
                   </div>
                 </div>
@@ -135,13 +134,13 @@ const editAlbum = (id) => {
             <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">No albums yet</h3>
-            <p class="text-gray-600 mb-4">Create your first photo album to get started</p>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ t('galleryManagement.noAlbumsYet') }}</h3>
+            <p class="text-gray-600 mb-4">{{ t('galleryManagement.createFirstAlbum') }}</p>
             <button 
               @click="createAlbum"
               class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium"
             >
-              + Create Album
+              + {{ t('galleryManagement.createAlbum') }}
             </button>
           </div>
         </div>
@@ -154,22 +153,22 @@ const editAlbum = (id) => {
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
           </svg>
         </div>
-        <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Delete Album?</h3>
+        <h3 class="text-xl font-bold text-gray-900 text-center mb-2">{{ t('galleryManagement.deleteAlbumTitle') }}</h3>
         <p class="text-gray-600 text-center mb-6">
-          Are you sure you want to delete this album? All images in this album will also be deleted. This action cannot be undone.
+          {{ t('galleryManagement.deleteAlbumConfirm') }}
         </p>
         <div class="flex gap-3">
           <button
             @click="showDeleteModal = false"
             class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
           >
-            Cancel
+            {{ t('galleryManagement.cancel') }}
           </button>
           <button
             @click="confirmDelete"
             class="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors font-medium"
           >
-            Delete Album
+            {{ t('galleryManagement.delete') }} {{ t('galleryManagement.albumTitle') }}
           </button>
         </div>
       </div>

@@ -2,6 +2,9 @@
 import { ref } from 'vue';
 import { router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
   user: Object,
@@ -20,12 +23,6 @@ const submitForm = async () => {
   submitting.value = true;
   
   router.post('/admin/gallery', form.value, {
-    onSuccess: () => {
-      // Redirect handled by Inertia
-    },
-    onError: () => {
-      submitting.value = false;
-    },
     onFinish: () => {
       submitting.value = false;
     }
@@ -43,12 +40,12 @@ const cancel = () => {
       <!-- Header -->
           <div class="mb-8">
             <div class="flex items-center gap-2 text-sm text-gray-600 mb-4">
-              <a href="/admin/gallery" class="hover:text-orange-600">Gallery</a>
+              <a href="/admin/gallery" class="hover:text-orange-600">{{ t('galleryManagement.title') }}</a>
               <span>/</span>
-              <span class="text-gray-900">Create Album</span>
+              <span class="text-gray-900">{{ t('galleryManagement.createAlbum') }}</span>
             </div>
-            <h2 class="text-2xl font-bold text-gray-900">Create New Album</h2>
-            <p class="text-gray-600 mt-1">Create a new photo album</p>
+            <h2 class="text-2xl font-bold text-gray-900">{{ t('galleryManagement.createAlbum') }}</h2>
+            <p class="text-gray-600 mt-1">{{ t('galleryManagement.createFirstAlbum') }}</p>
           </div>
 
           <!-- Form -->
@@ -56,7 +53,7 @@ const cancel = () => {
             <!-- Title -->
             <div>
               <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
-                Album Title <span class="text-red-500">*</span>
+                {{ t('galleryManagement.albumTitle') }} <span class="text-red-500">*</span>
               </label>
               <input
                 id="title"
@@ -65,7 +62,7 @@ const cancel = () => {
                 required
                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 :class="{ 'border-red-500': errors?.title }"
-                placeholder="e.g., Summer 2025 Campaign"
+                :placeholder="t('common.title')"
               />
               <p v-if="errors?.title" class="text-red-500 text-sm mt-1">{{ errors.title }}</p>
             </div>
@@ -73,7 +70,7 @@ const cancel = () => {
             <!-- Description -->
             <div>
               <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
-                Description
+                {{ t('galleryManagement.albumDescription') }}
               </label>
               <textarea
                 id="description"
@@ -81,7 +78,7 @@ const cancel = () => {
                 rows="4"
                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 :class="{ 'border-red-500': errors?.description }"
-                placeholder="Brief description of this album..."
+                :placeholder="t('common.description')"
               ></textarea>
               <p v-if="errors?.description" class="text-red-500 text-sm mt-1">{{ errors.description }}</p>
             </div>
@@ -95,7 +92,7 @@ const cancel = () => {
                 class="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
               />
               <label for="is_featured" class="ml-2 text-sm text-gray-700">
-                Feature this album on the homepage
+                {{ t('common.featured') }}
               </label>
             </div>
 
@@ -107,14 +104,14 @@ const cancel = () => {
                 class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
                 :disabled="submitting"
               >
-                Cancel
+                {{ t('galleryManagement.cancel') }}
               </button>
               <button
                 type="submit"
                 class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                 :disabled="submitting"
               >
-                {{ submitting ? 'Creating...' : 'Create Album' }}
+                {{ submitting ? t('common.creating') : t('galleryManagement.createAlbum') }}
               </button>
             </div>
           </form>
