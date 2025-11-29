@@ -161,14 +161,25 @@ const cancelDelete = () => {
                   >
                     Edit
                   </button>
-                  <button
-                    @click="confirmDelete(category)"
-                    class="text-red-600 hover:text-red-900"
-                    :disabled="category.events_count > 0"
-                    :class="{ 'opacity-50 cursor-not-allowed': category.events_count > 0 }"
-                  >
-                    Delete
-                  </button>
+                  <div class="inline-block relative group">
+                    <button
+                      @click="confirmDelete(category)"
+                      class="text-red-600 hover:text-red-900"
+                      :disabled="category.events_count > 0"
+                      :class="{ 'opacity-50 cursor-not-allowed': category.events_count > 0 }"
+                    >
+                      Delete
+                    </button>
+                    <!-- Tooltip for disabled delete button -->
+                    <div 
+                      v-if="category.events_count > 0"
+                      class="absolute bottom-full right-0 mb-2 hidden group-hover:block w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 z-10"
+                    >
+                      Cannot delete: This category has {{ category.events_count }} associated event{{ category.events_count > 1 ? 's' : '' }}. 
+                      Please reassign or delete the events first.
+                      <div class="absolute top-full right-4 -mt-1 border-4 border-transparent border-t-gray-900"></div>
+                    </div>
+                  </div>
                 </td>
               </tr>
             </tbody>

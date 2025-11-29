@@ -1,5 +1,6 @@
 <script setup>
 import AdminSidebar from '@/Components/AdminSidebar.vue';
+import Toast from '@/Components/Toast.vue';
 
 defineProps({
   user: Object,
@@ -25,5 +26,8 @@ defineProps({
         <slot />
       </main>
     </div>
+
+    <!-- Toast Notifications -->
+    <Toast />
   </div>
 </template>
