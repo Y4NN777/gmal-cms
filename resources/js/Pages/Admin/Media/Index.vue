@@ -5,8 +5,8 @@
       <div class="mb-8">
         <div class="flex items-center justify-between">
           <div>
-            <h2 class="text-3xl font-bold text-gray-900">Media Library</h2>
-            <p class="mt-2 text-gray-600">Manage your images and videos</p>
+            <h2 class="text-3xl font-bold text-gray-900">{{ $t('mediaLibrary.title') }}</h2>
+            <p class="mt-2 text-gray-600">{{ $t('mediaLibrary.description') }}</p>
           </div>
           <button 
             @click="showUploadZone = !showUploadZone" 
@@ -16,7 +16,7 @@
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
               </svg>
-              Upload Media
+              {{ $t('mediaLibrary.uploadFiles') }}
             </span>
           </button>
         </div>
@@ -24,7 +24,7 @@
 
       <!-- Upload Zone -->
       <div v-if="showUploadZone" class="mb-6 bg-white rounded-xl shadow-sm p-6">
-        <h3 class="text-lg font-semibold text-gray-900 mb-4">Upload Files</h3>
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ $t('mediaLibrary.uploadHere') }}</h3>
         
         <!-- Drag & Drop Zone -->
         <div 
@@ -41,7 +41,7 @@
             <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           <div class="mt-4">
-            <span class="text-lg font-medium text-orange-600">Click to upload or drag and drop</span>
+            <span class="text-lg font-medium text-orange-600">{{ $t('mediaLibrary.dragAndDrop') }}</span>
             <input 
               type="file" 
               @change="handleFileSelect" 
@@ -59,7 +59,7 @@
         <!-- Upload Progress -->
         <div v-if="uploading" class="mt-6">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-sm font-medium text-gray-700">Uploading {{ uploadQueue.length }} file(s)...</span>
+            <span class="text-sm font-medium text-gray-700">{{ $t('mediaLibrary.uploading') }} {{ uploadQueue.length }} {{ $t('mediaLibrary.files') }}...</span>
             <span class="text-sm font-semibold text-orange-600">{{ uploadProgress }}%</span>
           </div>
           <div class="w-full bg-gray-200 rounded-full h-2.5">
@@ -76,41 +76,41 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
           <!-- Search -->
           <div class="md:col-span-2">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('mediaLibrary.search') }}</label>
             <input 
               v-model="searchQuery"
               @input="debouncedSearch"
               type="text" 
-              placeholder="Search by filename or description..." 
+              :placeholder="$t('mediaLibrary.searchPlaceholder')" 
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             >
           </div>
 
           <!-- Type Filter -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Type</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('mediaLibrary.type') }}</label>
             <select 
               v-model="typeFilter"
               @change="applyFilters"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             >
-              <option value="">All Media</option>
-              <option value="images">Images Only</option>
-              <option value="videos">Videos Only</option>
+              <option value="">{{ $t('mediaLibrary.allMedia') }}</option>
+              <option value="images">{{ $t('mediaLibrary.imagesOnly') }}</option>
+              <option value="videos">{{ $t('mediaLibrary.videosOnly') }}</option>
             </select>
           </div>
 
           <!-- Sort -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('mediaLibrary.sort') }}</label>
             <select 
               v-model="sortBy"
               @change="applyFilters"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             >
-              <option value="created_at">Most Recent</option>
-              <option value="filename">Filename</option>
-              <option value="size">File Size</option>
+              <option value="created_at">{{ $t('mediaLibrary.newest') }}</option>
+              <option value="filename">{{ $t('mediaLibrary.fileName') }}</option>
+              <option value="size">{{ $t('mediaLibrary.size') }}</option>
             </select>
           </div>
         </div>
@@ -118,13 +118,13 @@
         <!-- Bulk Actions -->
         <div v-if="selectedMedia.length > 0" class="mt-6 flex items-center justify-between p-4 bg-orange-50 border border-orange-200 rounded-xl">
           <span class="text-sm font-medium text-gray-700">
-            {{ selectedMedia.length }} file(s) selected
+            {{ selectedMedia.length }} {{ $t('mediaLibrary.selected') }}
           </span>
           <button 
             @click="bulkDelete"
             class="px-4 py-2 bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg hover:from-red-100 hover:to-red-50 text-sm font-medium transition-colors"
           >
-            Delete Selected
+            {{ $t('mediaLibrary.deleteSelected') }}
           </button>
         </div>
       </div>
@@ -136,13 +136,13 @@
           <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <h3 class="mt-4 text-xl font-semibold text-gray-900">No media files</h3>
-          <p class="mt-2 text-gray-500">Upload your first image or video to get started.</p>
+          <h3 class="mt-4 text-xl font-semibold text-gray-900">{{ $t('mediaLibrary.noFilesFound') }}</h3>
+          <p class="mt-2 text-gray-500">{{ $t('mediaLibrary.noMatchingFiles') }}</p>
           <button 
             @click="showUploadZone = true"
             class="mt-6 px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium"
           >
-            Upload Now
+            {{ $t('mediaLibrary.uploadFiles') }}
           </button>
         </div>
 
@@ -156,7 +156,7 @@
               @change="selectAll"
               class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
             />
-            <span class="text-sm text-gray-600">Select All</span>
+            <span class="text-sm text-gray-600">{{ $t('mediaLibrary.selectAll') }}</span>
           </div>
 
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -226,15 +226,15 @@
         <!-- Pagination -->
         <div v-if="media.last_page > 1" class="mt-8 flex items-center justify-between border-t border-gray-200 pt-6">
           <div class="text-sm text-gray-700">
-            Showing <span class="font-semibold">{{ media.from }}</span> to <span class="font-semibold">{{ media.to }}</span> of <span class="font-semibold">{{ media.total }}</span> files
+            {{ $t('mediaLibrary.showing') }} <span class="font-semibold">{{ media.from }}</span> {{ $t('mediaLibrary.to') }} <span class="font-semibold">{{ media.to }}</span> {{ $t('mediaLibrary.of') }} <span class="font-semibold">{{ media.total }}</span> {{ $t('mediaLibrary.mediaFiles') }}
           </div>
           <div class="flex gap-1">
             <button 
               v-if="media.current_page > 1"
               @click="changePage(media.current_page - 1)"
-              class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+              class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
             >
-              Previous
+              {{ $t('mediaLibrary.previous') }}
             </button>
             <button 
               v-for="page in paginationPages" 
@@ -254,7 +254,7 @@
               @click="changePage(media.current_page + 1)"
               class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
-              Next
+              {{ $t('mediaLibrary.next') }}
             </button>
           </div>
         </div>
@@ -339,11 +339,11 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900">Delete Media File</h3>
+            <h3 class="text-xl font-bold text-gray-900">{{ $t('mediaLibrary.deleteTitle') }}</h3>
           </div>
           
           <p class="text-gray-600 mb-6">
-            Are you sure you want to permanently delete this file? This action cannot be undone and may affect events or galleries using this media.
+            {{ $t('mediaLibrary.deleteConfirm') }}
           </p>
           
           <div class="flex gap-3">
@@ -351,13 +351,13 @@
               @click="showDeleteModal = false"
               class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
             >
-              Cancel
+              {{ $t('mediaLibrary.cancel') }}
             </button>
             <button
               @click="confirmDelete"
               class="flex-1 px-4 py-2 bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg hover:from-red-100 hover:to-red-50 font-medium transition-colors"
             >
-              Delete
+              {{ $t('mediaLibrary.delete') }}
             </button>
           </div>
         </div>
@@ -369,7 +369,10 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { router } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+
+const { t } = useI18n();
 
 const props = defineProps({
   media: Object,
