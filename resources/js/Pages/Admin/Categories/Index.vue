@@ -50,12 +50,16 @@ const saveCategory = () => {
   if (editingCategory.value) {
     router.put(`/admin/categories/${editingCategory.value.id}`, form.value, {
       preserveScroll: true,
-      onSuccess: () => closeModal(),
+      onSuccess: () => {
+        closeModal();
+      },
     });
   } else {
     router.post('/admin/categories', form.value, {
       preserveScroll: true,
-      onSuccess: () => closeModal(),
+      onSuccess: () => {
+        closeModal();
+      },
     });
   }
 };
@@ -89,8 +93,8 @@ const cancelDelete = () => {
       <!-- Header -->
       <div class="flex items-center justify-between">
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">Categories Management</h2>
-          <p class="text-gray-600 mt-1">Manage event categories</p>
+          <h2 class="text-2xl font-bold text-gray-900">{{ $t('admin.categoryManagement.title') }}</h2>
+          <p class="text-gray-600 mt-1">{{ $t('admin.categoryManagement.description') }}</p>
         </div>
         <button
           @click="openCreateModal"
@@ -99,7 +103,7 @@ const cancelDelete = () => {
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
           </svg>
-          New Category
+          {{ $t('admin.categoryManagement.createCategory') }}
         </button>
       </div>
 
@@ -109,12 +113,12 @@ const cancelDelete = () => {
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Color</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Icon</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Events</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.categoryManagement.categoryName') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.categoryManagement.categoryColor') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.categoryManagement.categoryIcon') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.categoryManagement.eventsCount') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.categoryManagement.categoryDescription') }}</th>
+                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.actions') }}</th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -123,8 +127,8 @@ const cancelDelete = () => {
                   <svg class="w-12 h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                   </svg>
-                  <p class="text-lg font-medium">No categories yet</p>
-                  <p class="text-sm mt-1">Create your first category to organize events</p>
+                  <p class="text-lg font-medium">{{ $t('categoryManagement.noCategoriesYet') }}</p>
+                  <p class="text-sm mt-1">{{ $t('categoryManagement.createFirstCategory') }}</p>
                 </td>
               </tr>
               <tr v-for="category in categories" :key="category.id" class="hover:bg-gray-50 transition-colors">
@@ -159,7 +163,7 @@ const cancelDelete = () => {
                     @click="openEditModal(category)"
                     class="text-orange-600 hover:text-orange-900 mr-3"
                   >
-                    Edit
+                    {{ $t('admin.edit') }}
                   </button>
                   <div class="inline-block relative group">
                     <button
@@ -168,7 +172,7 @@ const cancelDelete = () => {
                       :disabled="category.events_count > 0"
                       :class="{ 'opacity-50 cursor-not-allowed': category.events_count > 0 }"
                     >
-                      Delete
+                      {{ $t('admin.delete') }}
                     </button>
                     <!-- Tooltip for disabled delete button -->
                     <div 
@@ -200,7 +204,7 @@ const cancelDelete = () => {
       >
         <div class="px-6 py-4 border-b border-gray-200">
           <h3 class="text-lg font-semibold text-gray-900">
-            {{ editingCategory ? 'Edit Category' : 'Create New Category' }}
+            {{ editingCategory ? $t('categoryManagement.editCategory') : $t('categoryManagement.newCategory') }}
           </h3>
         </div>
 

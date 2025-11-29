@@ -20,7 +20,7 @@ const formatCurrency = (amount, currency = 'USD') => {
 };
 
 const formatDate = (date) => {
-  if (!date) return 'N/A';
+  if (!date) return '';
   return new Date(date).toLocaleString();
 };
 
@@ -63,8 +63,8 @@ const performSearch = () => {
     <div class="space-y-6">
       <!-- Header -->
       <div>
-        <h2 class="text-2xl font-bold text-gray-900">Donations Management</h2>
-        <p class="text-gray-600 mt-1">View and manage all donations received</p>
+        <h2 class="text-2xl font-bold text-gray-900">{{ $t('donationsManagement.title') }}</h2>
+        <p class="text-gray-600 mt-1">{{ $t('donationsManagement.description') }}</p>
       </div>
 
       <!-- Statistics Cards -->
@@ -72,9 +72,9 @@ const performSearch = () => {
         <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg shadow p-6 border border-green-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-green-600">This Month</p>
+              <p class="text-sm font-medium text-green-600">{{ $t('donationsManagement.thisMonth') }}</p>
               <p class="text-3xl font-bold text-green-900 mt-2">{{ stats.this_month_count }}</p>
-              <p class="text-xs text-green-600 mt-1">Donations</p>
+              <p class="text-xs text-green-600 mt-1">{{ $t('donationsManagement.donationsCount') }}</p>
             </div>
             <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
               <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,9 +87,9 @@ const performSearch = () => {
         <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow p-6 border border-blue-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-blue-600">Amount This Month</p>
+              <p class="text-sm font-medium text-blue-600">{{ $t('donationsManagement.thisMonth') }}</p>
               <p class="text-3xl font-bold text-blue-900 mt-2">{{ formatCurrency(stats.this_month_amount) }}</p>
-              <p class="text-xs text-blue-600 mt-1">Total received</p>
+              <p class="text-xs text-blue-600 mt-1">{{ $t('donationsManagement.totalRaised') }}</p>
             </div>
             <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
               <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,9 +102,9 @@ const performSearch = () => {
         <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg shadow p-6 border border-purple-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-purple-600">Average Donation</p>
+              <p class="text-sm font-medium text-purple-600">{{ $t('donationsManagement.averageDonation') }}</p>
               <p class="text-3xl font-bold text-purple-900 mt-2">{{ formatCurrency(stats.average_donation) }}</p>
-              <p class="text-xs text-purple-600 mt-1">Per donation</p>
+              <p class="text-xs text-purple-600 mt-1">{{ $t('donationsManagement.perDonation') }}</p>
             </div>
             <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
               <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,9 +117,9 @@ const performSearch = () => {
         <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg shadow p-6 border border-orange-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-orange-600">Total All Time</p>
+              <p class="text-sm font-medium text-orange-600">{{ $t('donationsManagement.totalAllTime') }}</p>
               <p class="text-3xl font-bold text-orange-900 mt-2">{{ formatCurrency(stats.total_all_time) }}</p>
-              <p class="text-xs text-orange-600 mt-1">Lifetime total</p>
+              <p class="text-xs text-orange-600 mt-1">{{ $t('donationsManagement.lifetimeTotal') }}</p>
             </div>
             <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
               <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -138,7 +138,7 @@ const performSearch = () => {
               v-model="searchQuery"
               @keyup.enter="performSearch"
               type="text"
-              placeholder="Search by donor name or email..."
+              :placeholder="$t('donationsManagement.searchPlaceholder')"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
           </div>
@@ -161,13 +161,13 @@ const performSearch = () => {
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Donor</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Campaign</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('donationsManagement.donor') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('donationsManagement.email') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('donationsManagement.amount') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('donationsManagement.campaign') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('donationsManagement.status') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('donationsManagement.date') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('donationsManagement.actions') }}</th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -176,8 +176,8 @@ const performSearch = () => {
                   <svg class="w-12 h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <p class="text-lg font-medium">No donations yet</p>
-                  <p class="text-sm mt-1">Donations will appear here once received</p>
+                  <p class="text-lg font-medium">{{ $t('donationsManagement.noDonationsYet') }}</p>
+                  <p class="text-sm mt-1">{{ $t('donationsManagement.donationsWillAppear') }}</p>
                 </td>
               </tr>
               <tr 
@@ -335,7 +335,7 @@ const performSearch = () => {
 
           <!-- Campaign Information -->
           <div v-if="selectedDonation.campaign">
-            <h4 class="text-sm font-semibold text-gray-700 mb-3">Campaign</h4>
+            <h4 class="text-sm font-semibold text-gray-700 mb-3">{{ $t('donationsManagement.campaign') }}</h4>
             <div class="bg-gray-50 rounded-lg p-4">
               <div class="flex justify-between">
                 <span class="text-sm text-gray-600">Campaign:</span>

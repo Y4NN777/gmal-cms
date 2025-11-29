@@ -1,7 +1,10 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { router } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
   users: Array,
@@ -22,11 +25,11 @@ const form = ref({
   is_active: true,
 });
 
-const roles = [
-  { value: 'admin', label: 'Admin', description: 'Full access to all features' },
-  { value: 'editor', label: 'Editor', description: 'Can create and edit content' },
-  { value: 'viewer', label: 'Viewer', description: 'Read-only access' },
-];
+const roles = computed(() => [
+  { value: 'admin', label: t('admin.userManagement.roles.admin'), description: t('admin.userManagement.roleDescriptions.admin') },
+  { value: 'editor', label: t('admin.userManagement.roles.editor'), description: t('admin.userManagement.roleDescriptions.editor') },
+  { value: 'viewer', label: t('admin.userManagement.roles.viewer'), description: t('admin.userManagement.roleDescriptions.viewer') },
+]);
 
 const getRoleBadgeColor = (role) => {
   const colors = {
@@ -124,8 +127,8 @@ const formatDate = (date) => {
       <!-- Header -->
       <div class="flex items-center justify-between">
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">User Management</h2>
-          <p class="text-gray-600 mt-1">Manage admin users and their roles</p>
+          <h2 class="text-2xl font-bold text-gray-900">{{ $t('admin.userManagement.title') }}</h2>
+          <p class="text-gray-600 mt-1">{{ $t('admin.userManagement.description') }}</p>
         </div>
         <button
           @click="openCreateModal"
@@ -134,7 +137,7 @@ const formatDate = (date) => {
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
           </svg>
-          New User
+          {{ $t('admin.userManagement.createUser') }}
         </button>
       </div>
 
@@ -144,11 +147,11 @@ const formatDate = (date) => {
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Login</th>
-                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.userManagement.userName') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.userManagement.userRole') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.userManagement.userStatus') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.userManagement.lastLogin') }}</th>
+                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.actions') }}</th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -157,7 +160,7 @@ const formatDate = (date) => {
                   <svg class="w-12 h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
-                  <p class="text-lg font-medium">No users yet</p>
+                  <p class="text-lg font-medium">{{ $t('admin.userManagement.noUsers') }}</p>
                 </td>
               </tr>
               <tr v-for="user in users" :key="user.id" class="hover:bg-gray-50 transition-colors">
@@ -198,7 +201,7 @@ const formatDate = (date) => {
                     />
                   </button>
                   <span class="ml-2 text-xs text-gray-500">
-                    {{ user.is_active ? 'Active' : 'Inactive' }}
+                    {{ user.is_active ? $t('admin.status.active') : $t('admin.status.inactive') }}
                   </span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -209,7 +212,7 @@ const formatDate = (date) => {
                     @click="openEditModal(user)"
                     class="text-orange-600 hover:text-orange-900 mr-3"
                   >
-                    Edit
+                    {{ $t('admin.edit') }}
                   </button>
                   <button
                     @click="confirmDelete(user)"
@@ -217,7 +220,7 @@ const formatDate = (date) => {
                     class="text-red-600 hover:text-red-900"
                     :class="{ 'opacity-50 cursor-not-allowed': user.id === currentUserId }"
                   >
-                    Delete
+                    {{ $t('admin.delete') }}
                   </button>
                 </td>
               </tr>
@@ -239,7 +242,7 @@ const formatDate = (date) => {
       >
         <div class="px-6 py-4 border-b border-gray-200">
           <h3 class="text-lg font-semibold text-gray-900">
-            {{ editingUser ? 'Edit User' : 'Create New User' }}
+            {{ editingUser ? $t('admin.userManagement.editUser') : $t('admin.userManagement.createUser') }}
           </h3>
         </div>
 
@@ -247,7 +250,7 @@ const formatDate = (date) => {
           <!-- Name -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Name <span class="text-red-500">*</span>
+              {{ $t('admin.userManagement.userName') }} <span class="text-red-500">*</span>
             </label>
             <input
               v-model="form.name"
@@ -261,7 +264,7 @@ const formatDate = (date) => {
           <!-- Email -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Email <span class="text-red-500">*</span>
+              {{ $t('admin.userManagement.userEmail') }} <span class="text-red-500">*</span>
             </label>
             <input
               v-model="form.email"
@@ -275,8 +278,8 @@ const formatDate = (date) => {
           <!-- Password -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Password <span v-if="!editingUser" class="text-red-500">*</span>
-              <span v-else class="text-xs text-gray-500">(leave blank to keep current)</span>
+              {{ $t('admin.userManagement.userPassword') }} <span v-if="!editingUser" class="text-red-500">*</span>
+              <span v-else class="text-xs text-gray-500">({{ $t('admin.userManagement.leaveBlankToKeep') }})</span>
             </label>
             <div class="relative">
               <input
@@ -300,13 +303,13 @@ const formatDate = (date) => {
                 </svg>
               </button>
             </div>
-            <p class="text-xs text-gray-500 mt-1">Minimum 8 characters</p>
+            <p class="text-xs text-gray-500 mt-1">{{ $t('admin.userManagement.minCharacters') }}</p>
           </div>
 
           <!-- Role -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Role <span class="text-red-500">*</span>
+              {{ $t('admin.userManagement.userRole') }} <span class="text-red-500">*</span>
             </label>
             <div class="space-y-2">
               <label
@@ -338,7 +341,7 @@ const formatDate = (date) => {
               class="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
             />
             <label for="is_active" class="ml-2 text-sm font-medium text-gray-700">
-              Active account
+              {{ $t('admin.userManagement.activeAccount') }}
             </label>
           </div>
 
@@ -349,13 +352,13 @@ const formatDate = (date) => {
               @click="closeModal"
               class="flex-1 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              Cancel
+              {{ $t('admin.cancel') }}
             </button>
             <button
               type="submit"
               class="flex-1 px-4 py-2 text-sm font-medium text-white bg-orange-600 rounded-lg hover:bg-orange-700 transition-colors"
             >
-              {{ editingUser ? 'Update' : 'Create' }}
+              {{ editingUser ? $t('admin.update') : $t('admin.create') }}
             </button>
           </div>
         </form>
@@ -379,9 +382,9 @@ const formatDate = (date) => {
             </svg>
           </div>
           <div>
-            <h3 class="text-lg font-semibold text-gray-900">Delete User</h3>
+            <h3 class="text-lg font-semibold text-gray-900">{{ $t('admin.userManagement.deleteUser') }}</h3>
             <p class="text-sm text-gray-600 mt-1">
-              Are you sure you want to delete "{{ userToDelete?.name }}"? This action cannot be undone.
+              {{ $t('admin.userManagement.deleteConfirm', { name: userToDelete?.name }) }}
             </p>
           </div>
         </div>
@@ -391,13 +394,13 @@ const formatDate = (date) => {
             @click="cancelDelete"
             class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
           >
-            Cancel
+            {{ $t('admin.cancel') }}
           </button>
           <button
             @click="deleteUser"
             class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
           >
-            Delete
+            {{ $t('admin.delete') }}
           </button>
         </div>
       </div>
