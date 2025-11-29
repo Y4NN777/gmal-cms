@@ -569,6 +569,7 @@
     "save": "Save",
     "cancel": "Cancel",
     "iconHelp": "Emoji or icon class name",
+    "selectIcon": "Select an icon for this category",
     "deleteCategory": "Delete Category",
     "deleteConfirm": "Are you sure you want to delete \"{name}\"? This action cannot be undone."
   },

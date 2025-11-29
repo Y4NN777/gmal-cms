@@ -569,6 +569,7 @@
     "save": "Enregistrer",
     "cancel": "Annuler",
     "iconHelp": "Emoji ou nom de classe d'icône",
+    "selectIcon": "Sélectionnez une icône pour cette catégorie",
     "deleteCategory": "Supprimer la Catégorie",
     "deleteConfirm": "Êtes-vous sûr de vouloir supprimer \"{name}\" ? Cette action est irréversible."
   },

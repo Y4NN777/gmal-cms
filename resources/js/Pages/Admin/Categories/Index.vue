@@ -2,6 +2,24 @@
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { router } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { 
+  GraduationCap, 
+  Heart, 
+  Users, 
+  Sparkles, 
+  TreePine, 
+  Building2,
+  Briefcase,
+  Music,
+  Book,
+  Home,
+  Utensils,
+  Dumbbell,
+  Palette,
+  Globe,
+  Lightbulb,
+  Shield
+} from 'lucide-vue-next';
 
 const props = defineProps({
   categories: Array,
@@ -16,8 +34,34 @@ const form = ref({
   name: '',
   description: '',
   color: '#3B82F6',
-  icon: '',
+  icon: 'GraduationCap',
 });
+
+// Available icons for selection
+const availableIcons = [
+  { name: 'GraduationCap', component: GraduationCap, label: 'Education' },
+  { name: 'Heart', component: Heart, label: 'Health' },
+  { name: 'Users', component: Users, label: 'Community' },
+  { name: 'Sparkles', component: Sparkles, label: 'Events' },
+  { name: 'TreePine', component: TreePine, label: 'Environment' },
+  { name: 'Building2', component: Building2, label: 'Infrastructure' },
+  { name: 'Briefcase', component: Briefcase, label: 'Business' },
+  { name: 'Music', component: Music, label: 'Arts' },
+  { name: 'Book', component: Book, label: 'Knowledge' },
+  { name: 'Home', component: Home, label: 'Housing' },
+  { name: 'Utensils', component: Utensils, label: 'Food' },
+  { name: 'Dumbbell', component: Dumbbell, label: 'Sports' },
+  { name: 'Palette', component: Palette, label: 'Culture' },
+  { name: 'Globe', component: Globe, label: 'Global' },
+  { name: 'Lightbulb', component: Lightbulb, label: 'Innovation' },
+  { name: 'Shield', component: Shield, label: 'Security' },
+];
+
+// Get icon component by name
+const getIconComponent = (iconName) => {
+  const icon = availableIcons.find(i => i.name === iconName);
+  return icon ? icon.component : GraduationCap;
+};
 
 const openCreateModal = () => {
   editingCategory.value = null;
@@ -25,7 +69,7 @@ const openCreateModal = () => {
     name: '',
     description: '',
     color: '#3B82F6',
-    icon: '',
+    icon: 'GraduationCap',
   };
   showModal.value = true;
 };
@@ -36,7 +80,7 @@ const openEditModal = (category) => {
     name: category.name,
     description: category.description || '',
     color: category.color || '#3B82F6',
-    icon: category.icon || '',
+    icon: category.icon || 'GraduationCap',
   };
   showModal.value = true;
 };
@@ -145,7 +189,12 @@ const cancelDelete = () => {
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <span v-if="category.icon" class="text-2xl">{{ category.icon }}</span>
+                  <component 
+                    v-if="category.icon" 
+                    :is="getIconComponent(category.icon)" 
+                    :size="24" 
+                    :style="{ color: category.color || '#3B82F6' }"
+                  />
                   <span v-else class="text-sm text-gray-400">-</span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
@@ -255,18 +304,31 @@ const cancelDelete = () => {
             </div>
           </div>
 
-          <!-- Icon (optional) -->
+          <!-- Icon Selector -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
+            <label class="block text-sm font-medium text-gray-700 mb-2">
               {{ $t('categoryManagement.icon') }}
             </label>
-            <input
-              v-model="form.icon"
-              type="text"
-              placeholder="e.g., 🎓 or icon-name"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-            />
-            <p class="text-xs text-gray-500 mt-1">{{ $t('categoryManagement.iconHelp') }}</p>
+            <div class="grid grid-cols-8 gap-2">
+              <button
+                v-for="icon in availableIcons"
+                :key="icon.name"
+                type="button"
+                @click="form.icon = icon.name"
+                class="flex items-center justify-center p-3 border-2 rounded-lg transition-all hover:border-orange-400 hover:bg-orange-50"
+                :class="form.icon === icon.name ? 'border-orange-500 bg-orange-50' : 'border-gray-200'"
+                :title="icon.label"
+              >
+                <component 
+                  :is="icon.component" 
+                  :size="20" 
+                  :style="{ color: form.icon === icon.name ? form.color : '#9CA3AF' }"
+                />
+              </button>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">
+              {{ $t('categoryManagement.selectIcon') }}
+            </p>
           </div>
 
           <!-- Actions -->
