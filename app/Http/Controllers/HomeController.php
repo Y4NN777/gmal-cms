@@ -38,7 +38,8 @@ class HomeController extends Controller
                     ] : null,
                     'category' => $event->category ? [
                         'name' => $event->category->name,
-                        'slug' => $event->category->slug
+                        'slug' => $event->category->slug,
+                        'color' => $event->category->color
                     ] : null
                 ];
             });

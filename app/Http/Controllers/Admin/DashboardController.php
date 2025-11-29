@@ -41,7 +41,12 @@ class DashboardController extends Controller
                 'title' => $event->title,
                 'status' => $event->status,
                 'event_date' => $event->event_date,
-                'category' => $event->category?->name,
+                'category' => $event->category ? [
+                    'id' => $event->category->id,
+                    'name' => $event->category->name,
+                    'slug' => $event->category->slug,
+                    'color' => $event->category->color,
+                ] : null,
             ]);
 
         // Pending Testimonials (last 5)
