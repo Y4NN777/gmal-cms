@@ -6,9 +6,11 @@ import { ref } from 'vue';
 const props = defineProps({
   donations: Object,
   stats: Object,
+  filters: Object,
 });
 
 const items = props.donations?.data ?? [];
+const searchQuery = ref(props.filters?.search || '');
 
 const selectedDonation = ref(null);
 const showModal = ref(false);
@@ -44,6 +46,15 @@ const closeModal = () => {
 const goToLink = (link) => {
   if (!link || !link.url) return;
   router.visit(link.url, { preserveState: true, replace: true });
+};
+
+const performSearch = () => {
+  router.get('/admin/donations', { 
+    search: searchQuery.value
+  }, {
+    preserveState: true,
+    preserveScroll: true,
+  });
 };
 </script>
 
@@ -116,6 +127,27 @@ const goToLink = (link) => {
               </svg>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="bg-white rounded-lg shadow p-4">
+        <div class="flex gap-4">
+          <div class="flex-1">
+            <input
+              v-model="searchQuery"
+              @keyup.enter="performSearch"
+              type="text"
+              placeholder="Search by donor name or email..."
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+            />
+          </div>
+          <button
+            @click="performSearch"
+            class="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-medium"
+          >
+            Search
+          </button>
         </div>
       </div>
 
@@ -233,7 +265,7 @@ const goToLink = (link) => {
     <!-- Details Modal -->
     <div
       v-if="showModal"
-      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      class="fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50 p-4"
       @click="closeModal"
     >
       <div
