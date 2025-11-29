@@ -2,6 +2,9 @@
 import { ref } from 'vue';
 import { router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { useDate } from '@/composables/useDate';
+
+const { formatShortDate } = useDate();
 
 const props = defineProps({
   user: Object,
@@ -47,7 +50,7 @@ const bulkApprove = () => {
     preserveScroll: true,
     onSuccess: () => {
       selectedTestimonials.value = [];
-    }
+    },
   });
 };
 
@@ -93,18 +96,6 @@ const selectAll = () => {
   }
 };
 
-const changePage = (page) => {
-  router.get('/admin/testimonials', {
-    page,
-    search: searchQuery.value,
-    status: statusFilter.value,
-    featured: featuredFilter.value,
-  }, {
-    preserveState: true,
-    preserveScroll: true,
-  });
-};
-
 const getStatusColor = (status) => {
   const colors = {
     pending: 'bg-yellow-50 text-yellow-700 border border-yellow-200',
@@ -115,12 +106,8 @@ const getStatusColor = (status) => {
 };
 
 const formatDate = (date) => {
-  if (!date) return 'N/A';
-  return new Date(date).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  });
+  if (!date) return '';
+  return formatShortDate(date);
 };
 </script>
 
@@ -130,23 +117,23 @@ const formatDate = (date) => {
       <!-- Header -->
       <div class="flex justify-between items-center">
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">Testimonials Management</h2>
-          <p class="text-gray-600 mt-1">Review and approve testimonials from the community</p>
+          <h2 class="text-2xl font-bold text-gray-900">{{ $t('testimonials.title') }}</h2>
+          <p class="text-gray-600 mt-1">{{ $t('testimonials.description') }}</p>
         </div>
         
         <!-- Stats -->
         <div class="flex gap-4">
           <div class="bg-yellow-50 px-4 py-2 rounded-lg">
             <div class="text-2xl font-bold text-yellow-800">{{ stats.pending }}</div>
-            <div class="text-xs text-yellow-600">Pending</div>
+            <div class="text-xs text-yellow-600">{{ $t('testimonials.pending') }}</div>
           </div>
           <div class="bg-green-50 px-4 py-2 rounded-lg">
             <div class="text-2xl font-bold text-green-800">{{ stats.approved }}</div>
-            <div class="text-xs text-green-600">Approved</div>
+            <div class="text-xs text-green-600">{{ $t('testimonials.approved') }}</div>
           </div>
           <div class="bg-red-50 px-4 py-2 rounded-lg">
             <div class="text-2xl font-bold text-red-800">{{ stats.rejected }}</div>
-            <div class="text-xs text-red-600">Rejected</div>
+            <div class="text-xs text-red-600">{{ $t('testimonials.rejected') }}</div>
           </div>
         </div>
       </div>
@@ -156,11 +143,11 @@ const formatDate = (date) => {
         <div class="flex gap-4 items-end">
           <!-- Search -->
           <div class="flex-1">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('testimonials.search') }}</label>
             <input
               v-model="searchQuery"
               type="text"
-              placeholder="Search by name, content, or organization..."
+              :placeholder="$t('testimonials.searchPlaceholder')"
               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @input="applyFilters"
             />
@@ -168,29 +155,29 @@ const formatDate = (date) => {
           
           <!-- Status Filter -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('testimonials.status') }}</label>
             <select
               v-model="statusFilter"
               class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @change="applyFilters"
             >
-              <option value="">All Status</option>
-              <option value="pending">Pending</option>
-              <option value="approved">Approved</option>
-              <option value="rejected">Rejected</option>
+              <option value="">{{ $t('testimonials.allStatus') }}</option>
+              <option value="pending">{{ $t('status.pending') }}</option>
+              <option value="approved">{{ $t('status.approved') }}</option>
+              <option value="rejected">{{ $t('status.rejected') }}</option>
             </select>
           </div>
 
           <!-- Featured Filter -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Featured</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('testimonials.featured') }}</label>
             <select
               v-model="featuredFilter"
               class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @change="applyFilters"
             >
-              <option value="">All</option>
-              <option value="true">Featured Only</option>
+              <option value="">{{ $t('testimonials.all') }}</option>
+              <option value="true">{{ $t('testimonials.featuredOnly') }}</option>
             </select>
           </div>
 
@@ -199,7 +186,7 @@ const formatDate = (date) => {
             @click="searchQuery = ''; statusFilter = ''; featuredFilter = ''; applyFilters()"
             class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
           >
-            Clear
+            {{ $t('testimonials.clear') }}
           </button>
 
           <!-- Bulk Approve -->
@@ -208,7 +195,7 @@ const formatDate = (date) => {
             @click="bulkApprove"
             class="px-4 py-2 bg-green-50 text-green-700 border border-green-200 rounded-lg hover:bg-green-100 font-medium transition-colors"
           >
-            ✓ Approve Selected ({{ selectedTestimonials.length }})
+            ✓ {{ $t('testimonials.approveSelected') }} ({{ selectedTestimonials.length }})
           </button>
         </div>
       </div>
@@ -223,7 +210,7 @@ const formatDate = (date) => {
             @change="selectAll"
             class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
           />
-          <span class="text-sm text-gray-600">Select All</span>
+          <span class="text-sm text-gray-600">{{ $t('testimonials.selectAll') }}</span>
         </div>
 
         <div
@@ -275,12 +262,12 @@ const formatDate = (date) => {
                   
                   <!-- Status -->
                   <span class="px-2 py-1 text-xs font-medium rounded" :class="getStatusColor(testimonial.status)">
-                    {{ testimonial.status }}
+                    {{ $t('status.' + testimonial.status) }}
                   </span>
 
                   <!-- Featured Badge -->
                   <span v-if="testimonial.is_featured" class="px-2 py-1 text-xs font-medium bg-orange-100 text-orange-800 rounded">
-                    ⭐ Featured
+                    ⭐ {{ $t('testimonials.featured') }}
                   </span>
                 </div>
               </div>
@@ -290,8 +277,8 @@ const formatDate = (date) => {
 
               <!-- Meta Info -->
               <div class="flex items-center gap-4 text-xs text-gray-500 mb-3">
-                <span>Submitted: {{ formatDate(testimonial.created_at) }}</span>
-                <span v-if="testimonial.approved_at">Approved: {{ formatDate(testimonial.approved_at) }}</span>
+                <span>{{ $t('testimonials.submitted') }}: {{ formatDate(testimonial.created_at) }}</span>
+                <span v-if="testimonial.approved_at">{{ $t('testimonials.approved') }}: {{ formatDate(testimonial.approved_at) }}</span>
                 <span v-if="testimonial.email">{{ testimonial.email }}</span>
               </div>
 
@@ -302,20 +289,20 @@ const formatDate = (date) => {
                   @click="approve(testimonial.id)"
                   class="px-4 py-2 text-sm font-medium text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg transition-colors"
                 >
-                  ✓ Approve
+                  ✓ {{ $t('testimonials.approve') }}
                 </button>
                 <button
                   v-if="testimonial.status !== 'rejected'"
                   @click="reject(testimonial.id)"
                   class="px-4 py-2 text-sm font-medium text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors"
                 >
-                  ✗ Reject
+                  ✗ {{ $t('testimonials.reject') }}
                 </button>
                 <button
                   @click="confirmDelete(testimonial.id)"
                   class="px-4 py-2 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg transition-colors"
                 >
-                  Delete
+                  {{ $t('testimonials.delete') }}
                 </button>
               </div>
             </div>
@@ -328,7 +315,7 @@ const formatDate = (date) => {
         <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
         </svg>
-        <p class="text-gray-500">No testimonials found</p>
+        <p class="text-gray-500">{{ $t('testimonials.noTestimonialsFound') }}</p>
       </div>
 
       <!-- Pagination -->
@@ -341,7 +328,7 @@ const formatDate = (date) => {
           <button
             v-for="link in testimonials.links"
             :key="link.label"
-            @click="link.url ? changePage(new URL(link.url).searchParams.get('page')) : null"
+            @click="link.url ? router.get(link.url, {}, { preserveState: true, preserveScroll: true }) : null"
             :disabled="!link.url || link.active"
             class="px-3 py-1 text-sm rounded"
             :class="[
@@ -374,8 +361,8 @@ const formatDate = (date) => {
             </svg>
           </div>
           <div>
-            <h3 class="text-lg font-semibold text-gray-900">Delete Testimonial</h3>
-            <p class="text-sm text-gray-600 mt-1">Are you sure you want to delete this testimonial? This action cannot be undone.</p>
+            <h3 class="text-lg font-semibold text-gray-900">{{ $t('testimonials.deleteTitle') }}</h3>
+            <p class="text-sm text-gray-600 mt-1">{{ $t('testimonials.deleteConfirm') }}</p>
           </div>
         </div>
 
@@ -384,13 +371,13 @@ const formatDate = (date) => {
             @click="cancelDelete"
             class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
           >
-            Cancel
+            {{ $t('testimonials.cancel') }}
           </button>
           <button
             @click="deleteTestimonial"
             class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
           >
-            Delete
+            {{ $t('testimonials.delete') }}
           </button>
         </div>
       </div>
