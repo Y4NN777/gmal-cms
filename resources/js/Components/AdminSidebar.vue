@@ -47,6 +47,13 @@ const logout = () => {
         Testimonials
       </a>
       <a
+        href="/admin/donations"
+        class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
+        :class="isActive('/admin/donations') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
+      >
+        Donations
+      </a>
+      <a
         href="/admin/gallery"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/gallery') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"

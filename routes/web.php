@@ -98,6 +98,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     // Dashboard
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     
+    // Donations
+    Route::get('/donations', [App\Http\Controllers\Admin\DonationController::class, 'index'])->name('donations.index');
+
     // Analytics - Protected Admin Only
     Route::prefix('analytics')->name('analytics.')->group(function () {
         Route::get('/visitors', [App\Http\Controllers\Api\AnalyticsController::class, 'visitors'])->name('visitors');
