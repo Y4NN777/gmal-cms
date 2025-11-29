@@ -1,7 +1,7 @@
 <template>
   <footer class="bg-primary-dark text-white">
     <div class="container mx-auto px-4 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- About Section -->
         <div>
           <h3 class="text-xl font-bold mb-4">GiveMeALift</h3>
@@ -29,18 +29,8 @@
             <li><Link href="/about" class="footer-link">{{ $t('nav.about') }}</Link></li>
             <li><Link href="/events" class="footer-link">{{ $t('nav.events') }}</Link></li>
             <li><Link href="/gallery" class="footer-link">{{ $t('nav.gallery') }}</Link></li>
-            <li><Link href="/contact" class="footer-link">{{ $t('nav.contact') }}</Link></li>
-          </ul>
-        </div>
-
-        <!-- Get Involved -->
-        <div>
-          <h3 class="text-xl font-bold mb-4">{{ $t('footer.getInvolved') }}</h3>
-          <ul class="space-y-2">
             <li><Link href="/donate" class="footer-link">{{ $t('nav.donate') }}</Link></li>
-            <li><Link href="/volunteer" class="footer-link">{{ $t('footer.volunteer') }}</Link></li>
-            <li><Link href="/partner" class="footer-link">{{ $t('footer.partner') }}</Link></li>
-            <li><Link href="/testimonials" class="footer-link">{{ $t('footer.testimonials') }}</Link></li>
+            <li><Link href="/contact" class="footer-link">{{ $t('nav.contact') }}</Link></li>
           </ul>
         </div>
 
@@ -74,11 +64,6 @@
       <!-- Bottom Bar -->
       <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
         <p>{{ $t('footer.copyright') }}</p>
-        <div class="mt-2 space-x-4">
-          <Link href="/privacy-policy" class="footer-link">{{ $t('footer.privacyPolicy') }}</Link>
-          <span>|</span>
-          <Link href="/terms" class="footer-link">{{ $t('footer.termsOfService') }}</Link>
-        </div>
       </div>
     </div>
   </footer>
