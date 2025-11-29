@@ -1,0 +1,185 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "events": "Events",
+    "gallery": "Gallery",
+    "donate": "Donate",
+    "contact": "Contact",
+    "admin": "Admin"
+  },
+  "footer": {
+    "about": "About Us",
+    "mission": "Our mission is to empower communities through compassionate action and sustainable programs.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact Us",
+    "followUs": "Follow Us",
+    "copyright": "© 2025 GiveMeALift. All rights reserved."
+  },
+  "home": {
+    "hero": {
+      "title": "Transforming Lives Together",
+      "subtitle": "Join us in making a difference in our community through compassion, action, and sustainable change.",
+      "cta": "Get Involved"
+    },
+    "stats": {
+      "volunteers": "Active Volunteers",
+      "events": "Events Hosted",
+      "beneficiaries": "Lives Impacted",
+      "raised": "Funds Raised"
+    },
+    "about": {
+      "title": "About Our Mission",
+      "description": "We are dedicated to creating positive change in our community through various programs and initiatives."
+    },
+    "events": {
+      "title": "Featured Events",
+      "viewAll": "View All Events"
+    },
+    "testimonials": {
+      "title": "What People Say"
+    },
+    "gallery": {
+      "title": "Our Impact in Pictures",
+      "viewGallery": "View Full Gallery"
+    },
+    "cta": {
+      "donate": {
+        "title": "Make a Donation",
+        "description": "Your contribution helps us continue our vital work in the community.",
+        "button": "Donate Now"
+      },
+      "volunteer": {
+        "title": "Become a Volunteer",
+        "description": "Join our team and make a direct impact in people's lives.",
+        "button": "Get Involved"
+      }
+    }
+  },
+  "events": {
+    "title": "Our Events",
+    "subtitle": "Discover our upcoming events and initiatives",
+    "search": "Search events...",
+    "filter": {
+      "all": "All Events",
+      "upcoming": "Upcoming",
+      "past": "Past"
+    },
+    "details": {
+      "date": "Date",
+      "time": "Time",
+      "location": "Location",
+      "category": "Category",
+      "register": "Register Now",
+      "share": "Share Event",
+      "relatedEvents": "Related Events"
+    }
+  },
+  "donate": {
+    "title": "Make a Difference Today",
+    "subtitle": "Your generous donation helps us transform lives and build stronger communities.",
+    "amount": {
+      "select": "Select Amount",
+      "custom": "Custom Amount",
+      "monthly": "Monthly",
+      "oneTime": "One-time"
+    },
+    "info": {
+      "title": "Your Information",
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "anonymous": "Make this donation anonymous"
+    },
+    "payment": "Payment Method",
+    "submit": "Complete Donation",
+    "why": {
+      "title": "Why Your Donation Matters",
+      "impact": "Every dollar you donate goes directly toward programs that transform lives."
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you",
+    "form": {
+      "title": "Send us a message",
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Thank you! Your message has been sent successfully. We'll get back to you soon."
+    },
+    "info": {
+      "title": "Get in Touch",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Office Hours"
+    },
+    "hours": {
+      "weekdays": "Monday - Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "closed": "Closed"
+    }
+  },
+  "gallery": {
+    "title": "Photo Gallery",
+    "subtitle": "Moments that define our journey",
+    "viewAlbum": "View Album",
+    "photos": "{count} photos"
+  },
+  "about": {
+    "title": "About Us",
+    "mission": {
+      "title": "Our Mission",
+      "description": "We are committed to creating lasting positive change in our community."
+    },
+    "values": {
+      "title": "Our Values",
+      "compassion": "Compassion",
+      "integrity": "Integrity",
+      "excellence": "Excellence",
+      "collaboration": "Collaboration"
+    },
+    "team": {
+      "title": "Our Team"
+    }
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "viewMore": "View More",
+    "backToHome": "Back to Home",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "required": "Required",
+    "optional": "Optional",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "events": "Events",
+    "gallery": "Gallery",
+    "categories": "Categories",
+    "testimonials": "Testimonials",
+    "donations": "Donations",
+    "contacts": "Messages",
+    "media": "Media Library",
+    "users": "Users",
+    "settings": "Settings",
+    "logout": "Logout"
+  }
+}

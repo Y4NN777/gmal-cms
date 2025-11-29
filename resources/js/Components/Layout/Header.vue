@@ -19,43 +19,46 @@
             class="nav-link"
             :class="{ 'active': $page.component === 'Home/Index' }"
           >
-            Home
+            {{ $t('nav.home') }}
           </Link>
           <Link 
             href="/about" 
             class="nav-link"
             :class="{ 'active': $page.component === 'About/Index' }"
           >
-            About Us
+            {{ $t('nav.about') }}
           </Link>
           <Link 
             href="/events" 
             class="nav-link"
             :class="{ 'active': $page.component.startsWith('Events') }"
           >
-            Events
+            {{ $t('nav.events') }}
           </Link>
           <Link 
             href="/gallery" 
             class="nav-link"
             :class="{ 'active': $page.component.startsWith('Gallery') }"
           >
-            Gallery
+            {{ $t('nav.gallery') }}
           </Link>
           <Link 
             href="/contact" 
             class="nav-link"
             :class="{ 'active': $page.component === 'Contact/Index' }"
           >
-            Contact
+            {{ $t('nav.contact') }}
           </Link>
+          
+          <!-- Language Switcher -->
+          <LanguageSwitcher />
           
           <!-- Donate Button -->
           <Link 
             href="/donate" 
             class="btn-primary"
           >
-            Donate Now
+            {{ $t('nav.donate') }}
           </Link>
         </div>
 
@@ -89,12 +92,15 @@
         class="md:hidden mt-4 pb-4 border-t pt-4"
       >
         <div class="flex flex-col space-y-4">
-          <Link href="/" class="mobile-nav-link">Home</Link>
-          <Link href="/about" class="mobile-nav-link">About Us</Link>
-          <Link href="/events" class="mobile-nav-link">Events</Link>
-          <Link href="/gallery" class="mobile-nav-link">Gallery</Link>
-          <Link href="/contact" class="mobile-nav-link">Contact</Link>
-          <Link href="/donate" class="btn-primary w-full text-center">Donate Now</Link>
+          <Link href="/" class="mobile-nav-link">{{ $t('nav.home') }}</Link>
+          <Link href="/about" class="mobile-nav-link">{{ $t('nav.about') }}</Link>
+          <Link href="/events" class="mobile-nav-link">{{ $t('nav.events') }}</Link>
+          <Link href="/gallery" class="mobile-nav-link">{{ $t('nav.gallery') }}</Link>
+          <Link href="/contact" class="mobile-nav-link">{{ $t('nav.contact') }}</Link>
+          <div class="pt-2 border-t">
+            <LanguageSwitcher />
+          </div>
+          <Link href="/donate" class="btn-primary w-full text-center">{{ $t('nav.donate') }}</Link>
         </div>
       </div>
     </nav>
@@ -104,6 +110,7 @@
 <script setup>
 import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
+import LanguageSwitcher from '@/Components/LanguageSwitcher.vue';
 
 const mobileMenuOpen = ref(false);
 </script>

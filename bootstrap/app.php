@@ -12,7 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->web(\App\Http\Middleware\HandleInertiaRequests::class);
+        $middleware->web([
+            \App\Http\Middleware\HandleInertiaRequests::class,
+            \App\Http\Middleware\SetLocale::class,
+        ]);
         
         // Register middleware aliases
         $middleware->alias([

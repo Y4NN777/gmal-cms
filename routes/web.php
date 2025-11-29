@@ -10,6 +10,17 @@ use Inertia\Inertia;
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Locale Switcher
+Route::post('/locale', function (\Illuminate\Http\Request $request) {
+    $locale = $request->input('locale', 'en');
+    
+    if (in_array($locale, ['en', 'fr'])) {
+        session(['locale' => $locale]);
+    }
+    
+    return back();
+});
+
 // Public Pages
 Route::get('/events', function () {
     return Inertia::render('Events/Index', [

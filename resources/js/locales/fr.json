@@ -1,0 +1,185 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "events": "Événements",
+    "gallery": "Galerie",
+    "donate": "Faire un Don",
+    "contact": "Contact",
+    "admin": "Administration"
+  },
+  "footer": {
+    "about": "À Propos",
+    "mission": "Notre mission est d'autonomiser les communautés par l'action compassionnelle et les programmes durables.",
+    "quickLinks": "Liens Rapides",
+    "contact": "Contactez-nous",
+    "followUs": "Suivez-nous",
+    "copyright": "© 2025 GiveMeALift. Tous droits réservés."
+  },
+  "home": {
+    "hero": {
+      "title": "Transformer des Vies Ensemble",
+      "subtitle": "Rejoignez-nous pour faire une différence dans notre communauté par la compassion, l'action et le changement durable.",
+      "cta": "Impliquez-vous"
+    },
+    "stats": {
+      "volunteers": "Bénévoles Actifs",
+      "events": "Événements Organisés",
+      "beneficiaries": "Vies Touchées",
+      "raised": "Fonds Collectés"
+    },
+    "about": {
+      "title": "Notre Mission",
+      "description": "Nous nous engageons à créer un changement positif dans notre communauté à travers divers programmes et initiatives."
+    },
+    "events": {
+      "title": "Événements en Vedette",
+      "viewAll": "Voir Tous les Événements"
+    },
+    "testimonials": {
+      "title": "Ce Que Disent les Gens"
+    },
+    "gallery": {
+      "title": "Notre Impact en Images",
+      "viewGallery": "Voir la Galerie Complète"
+    },
+    "cta": {
+      "donate": {
+        "title": "Faire un Don",
+        "description": "Votre contribution nous aide à poursuivre notre travail vital dans la communauté.",
+        "button": "Donner Maintenant"
+      },
+      "volunteer": {
+        "title": "Devenir Bénévole",
+        "description": "Rejoignez notre équipe et ayez un impact direct sur la vie des gens.",
+        "button": "Impliquez-vous"
+      }
+    }
+  },
+  "events": {
+    "title": "Nos Événements",
+    "subtitle": "Découvrez nos événements et initiatives à venir",
+    "search": "Rechercher des événements...",
+    "filter": {
+      "all": "Tous les Événements",
+      "upcoming": "À Venir",
+      "past": "Passés"
+    },
+    "details": {
+      "date": "Date",
+      "time": "Heure",
+      "location": "Lieu",
+      "category": "Catégorie",
+      "register": "S'inscrire",
+      "share": "Partager",
+      "relatedEvents": "Événements Connexes"
+    }
+  },
+  "donate": {
+    "title": "Faire la Différence Aujourd'hui",
+    "subtitle": "Votre don généreux nous aide à transformer des vies et à construire des communautés plus fortes.",
+    "amount": {
+      "select": "Choisir le Montant",
+      "custom": "Montant Personnalisé",
+      "monthly": "Mensuel",
+      "oneTime": "Ponctuel"
+    },
+    "info": {
+      "title": "Vos Informations",
+      "name": "Nom Complet",
+      "email": "Adresse E-mail",
+      "phone": "Numéro de Téléphone",
+      "anonymous": "Rendre ce don anonyme"
+    },
+    "payment": "Méthode de Paiement",
+    "submit": "Finaliser le Don",
+    "why": {
+      "title": "Pourquoi Votre Don Compte",
+      "impact": "Chaque dollar que vous donnez va directement aux programmes qui transforment des vies."
+    }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous aimerions avoir de vos nouvelles",
+    "form": {
+      "title": "Envoyez-nous un message",
+      "name": "Nom Complet",
+      "email": "Adresse E-mail",
+      "phone": "Numéro de Téléphone",
+      "subject": "Sujet",
+      "message": "Message",
+      "submit": "Envoyer le Message",
+      "sending": "Envoi en cours...",
+      "success": "Merci ! Votre message a été envoyé avec succès. Nous vous répondrons bientôt."
+    },
+    "info": {
+      "title": "Nous Contacter",
+      "address": "Adresse",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "hours": "Heures d'Ouverture"
+    },
+    "hours": {
+      "weekdays": "Lundi - Vendredi",
+      "saturday": "Samedi",
+      "sunday": "Dimanche",
+      "closed": "Fermé"
+    }
+  },
+  "gallery": {
+    "title": "Galerie Photo",
+    "subtitle": "Les moments qui définissent notre parcours",
+    "viewAlbum": "Voir l'Album",
+    "photos": "{count} photos"
+  },
+  "about": {
+    "title": "À Propos de Nous",
+    "mission": {
+      "title": "Notre Mission",
+      "description": "Nous nous engageons à créer un changement positif durable dans notre communauté."
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "compassion": "Compassion",
+      "integrity": "Intégrité",
+      "excellence": "Excellence",
+      "collaboration": "Collaboration"
+    },
+    "team": {
+      "title": "Notre Équipe"
+    }
+  },
+  "common": {
+    "learnMore": "En Savoir Plus",
+    "readMore": "Lire Plus",
+    "viewMore": "Voir Plus",
+    "backToHome": "Retour à l'Accueil",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "required": "Requis",
+    "optional": "Optionnel",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "close": "Fermer",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "admin": {
+    "dashboard": "Tableau de Bord",
+    "events": "Événements",
+    "gallery": "Galerie",
+    "categories": "Catégories",
+    "testimonials": "Témoignages",
+    "donations": "Dons",
+    "contacts": "Messages",
+    "media": "Bibliothèque Média",
+    "users": "Utilisateurs",
+    "settings": "Paramètres",
+    "logout": "Déconnexion"
+  }
+}
