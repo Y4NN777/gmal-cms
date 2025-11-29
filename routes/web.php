@@ -139,4 +139,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     
     // Categories Management
     Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class)->except(['show', 'create', 'edit']);
+    
+    // User Management
+    Route::resource('users', App\Http\Controllers\Admin\UserController::class)->except(['show', 'create', 'edit']);
 });
