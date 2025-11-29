@@ -203,7 +203,9 @@
     "close": "Fermer",
     "yes": "Oui",
     "no": "Non",
-    "help": "Aide"
+    "help": "Aide",
+    "title": "Titre",
+    "description": "Description"
   },
   "help": {
     "center": "Centre d'Aide",
@@ -689,6 +691,18 @@
     "showing": "Affichage",
     "to": "à",
     "of": "sur",
-    "donationsCount": "dons"
+    "donationsCount": "dons",
+    "donationDetails": "Détails du Don",
+    "donorInformation": "Informations du Donateur",
+    "name": "Nom",
+    "phone": "Téléphone",
+    "paymentInformation": "Informations de Paiement",
+    "transactionId": "ID Transaction",
+    "type": "Type",
+    "campaignName": "Campagne",
+    "additionalInformation": "Informations Supplémentaires",
+    "dateTime": "Date & Heure",
+    "received": "Reçu",
+    "close": "Fermer"
   }
 }

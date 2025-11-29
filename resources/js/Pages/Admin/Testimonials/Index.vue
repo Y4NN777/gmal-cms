@@ -279,7 +279,6 @@ const formatDate = (date) => {
               <div class="flex items-center gap-4 text-xs text-gray-500 mb-3">
                 <span>{{ $t('testimonials.submitted') }}: {{ formatDate(testimonial.created_at) }}</span>
                 <span v-if="testimonial.approved_at">{{ $t('testimonials.approved') }}: {{ formatDate(testimonial.approved_at) }}</span>
-                <span v-if="testimonial.email">{{ testimonial.email }}</span>
               </div>
 
               <!-- Actions -->

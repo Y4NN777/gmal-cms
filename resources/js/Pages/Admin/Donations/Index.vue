@@ -2,6 +2,9 @@
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { router } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
   donations: Object,
@@ -31,6 +34,15 @@ const getStatusColor = (status) => {
     failed: 'bg-red-100 text-red-800',
   };
   return colors[status] || 'bg-gray-100 text-gray-800';
+};
+
+const translateStatus = (status) => {
+  const statusMap = {
+    completed: t('status.completed'),
+    pending: t('status.pending'),
+    failed: t('status.failed'),
+  };
+  return statusMap[status] || status;
 };
 
 const viewDetails = (donation) => {
@@ -146,7 +158,7 @@ const performSearch = () => {
             @click="performSearch"
             class="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-medium"
           >
-            Search
+            {{ $t('donationsManagement.search') }}
           </button>
         </div>
       </div>
@@ -154,7 +166,7 @@ const performSearch = () => {
       <!-- Donations Table -->
       <div class="bg-white rounded-lg shadow overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-200">
-          <h3 class="text-lg font-semibold text-gray-900">All Donations</h3>
+          <h3 class="text-lg font-semibold text-gray-900">{{ $t('donationsManagement.title') }}</h3>
         </div>
 
         <div class="overflow-x-auto">
@@ -192,7 +204,7 @@ const performSearch = () => {
                       <div class="text-sm font-medium text-gray-900 flex items-center gap-2">
                         {{ donation.donor_name }}
                         <span v-if="donation.is_new" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-800">
-                          New
+                          {{ $t('common.new') }}
                         </span>
                       </div>
                       <div v-if="donation.phone" class="text-xs text-gray-500">{{ donation.phone }}</div>
@@ -200,7 +212,7 @@ const performSearch = () => {
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{ donation.email || 'N/A' }}</div>
+                  <div class="text-sm text-gray-900">{{ donation.email || $t('common.na') }}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm font-semibold text-green-600">
@@ -210,12 +222,12 @@ const performSearch = () => {
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">
-                    {{ donation.campaign?.title || 'General' }}
+                    {{ donation.campaign?.title || $t('common.general') }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full" :class="getStatusColor(donation.status)">
-                    {{ donation.status }}
+                    {{ translateStatus(donation.status) }}
                   </span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -226,7 +238,7 @@ const performSearch = () => {
                     @click.stop="viewDetails(donation)"
                     class="text-orange-600 hover:text-orange-900 font-medium"
                   >
-                    View
+                    {{ $t('common.view') }}
                   </button>
                 </td>
               </tr>
@@ -238,7 +250,7 @@ const performSearch = () => {
         <div v-if="props.donations?.links?.length" class="bg-white px-6 py-4 border-t border-gray-200">
           <div class="flex items-center justify-between">
             <div class="text-sm text-gray-700">
-              Showing {{ props.donations.from }} to {{ props.donations.to }} of {{ props.donations.total }} donations
+              {{ $t('donationsManagement.showing') }} {{ props.donations.from }} {{ $t('donationsManagement.to') }} {{ props.donations.to }} {{ $t('donationsManagement.of') }} {{ props.donations.total }} {{ $t('donationsManagement.donationsCount') }}
             </div>
             <div class="flex gap-2">
               <button
@@ -273,7 +285,7 @@ const performSearch = () => {
         @click.stop
       >
         <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white">
-          <h3 class="text-lg font-semibold text-gray-900">Donation Details</h3>
+          <h3 class="text-lg font-semibold text-gray-900">{{ $t('donationsManagement.donationDetails') }}</h3>
           <button
             @click="closeModal"
             class="text-gray-400 hover:text-gray-600 transition-colors"
@@ -287,18 +299,18 @@ const performSearch = () => {
         <div v-if="selectedDonation" class="p-6 space-y-4">
           <!-- Donor Information -->
           <div>
-            <h4 class="text-sm font-semibold text-gray-700 mb-3">Donor Information</h4>
+            <h4 class="text-sm font-semibold text-gray-700 mb-3">{{ $t('donationsManagement.donorInformation') }}</h4>
             <div class="bg-gray-50 rounded-lg p-4 space-y-2">
               <div class="flex justify-between">
-                <span class="text-sm text-gray-600">Name:</span>
+                <span class="text-sm text-gray-600">{{ $t('donationsManagement.name') }}:</span>
                 <span class="text-sm font-medium text-gray-900">{{ selectedDonation.donor_name }}</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-sm text-gray-600">Email:</span>
-                <span class="text-sm font-medium text-gray-900">{{ selectedDonation.email || 'N/A' }}</span>
+                <span class="text-sm text-gray-600">{{ $t('donationsManagement.email') }}:</span>
+                <span class="text-sm font-medium text-gray-900">{{ selectedDonation.email || $t('common.na') }}</span>
               </div>
               <div v-if="selectedDonation.phone" class="flex justify-between">
-                <span class="text-sm text-gray-600">Phone:</span>
+                <span class="text-sm text-gray-600">{{ $t('donationsManagement.phone') }}:</span>
                 <span class="text-sm font-medium text-gray-900">{{ selectedDonation.phone }}</span>
               </div>
             </div>
@@ -306,28 +318,28 @@ const performSearch = () => {
 
           <!-- Payment Information -->
           <div>
-            <h4 class="text-sm font-semibold text-gray-700 mb-3">Payment Information</h4>
+            <h4 class="text-sm font-semibold text-gray-700 mb-3">{{ $t('donationsManagement.paymentInformation') }}</h4>
             <div class="bg-gray-50 rounded-lg p-4 space-y-2">
               <div class="flex justify-between">
-                <span class="text-sm text-gray-600">Amount:</span>
+                <span class="text-sm text-gray-600">{{ $t('donationsManagement.amount') }}:</span>
                 <span class="text-sm font-bold text-green-600">{{ formatCurrency(selectedDonation.amount, selectedDonation.currency) }}</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-sm text-gray-600">Payment Method:</span>
+                <span class="text-sm text-gray-600">{{ $t('donationsManagement.paymentMethod') }}:</span>
                 <span class="text-sm font-medium text-gray-900">{{ selectedDonation.payment_method }}</span>
               </div>
               <div v-if="selectedDonation.payment_reference" class="flex justify-between">
-                <span class="text-sm text-gray-600">Transaction ID:</span>
+                <span class="text-sm text-gray-600">{{ $t('donationsManagement.transactionId') }}:</span>
                 <span class="text-sm font-mono text-gray-900 text-xs">{{ selectedDonation.payment_reference }}</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-sm text-gray-600">Status:</span>
+                <span class="text-sm text-gray-600">{{ $t('donationsManagement.status') }}:</span>
                 <span class="px-2 py-1 text-xs font-semibold rounded-full" :class="getStatusColor(selectedDonation.status)">
-                  {{ selectedDonation.status }}
+                  {{ translateStatus(selectedDonation.status) }}
                 </span>
               </div>
               <div class="flex justify-between">
-                <span class="text-sm text-gray-600">Type:</span>
+                <span class="text-sm text-gray-600">{{ $t('donationsManagement.type') }}:</span>
                 <span class="text-sm font-medium text-gray-900">{{ selectedDonation.donation_type }}</span>
               </div>
             </div>
@@ -338,7 +350,7 @@ const performSearch = () => {
             <h4 class="text-sm font-semibold text-gray-700 mb-3">{{ $t('donationsManagement.campaign') }}</h4>
             <div class="bg-gray-50 rounded-lg p-4">
               <div class="flex justify-between">
-                <span class="text-sm text-gray-600">Campaign:</span>
+                <span class="text-sm text-gray-600">{{ $t('donationsManagement.campaignName') }}:</span>
                 <span class="text-sm font-medium text-gray-900">{{ selectedDonation.campaign.title }}</span>
               </div>
             </div>
@@ -346,7 +358,7 @@ const performSearch = () => {
 
           <!-- Additional Metadata -->
           <div v-if="selectedDonation.donor_metadata">
-            <h4 class="text-sm font-semibold text-gray-700 mb-3">Additional Information</h4>
+            <h4 class="text-sm font-semibold text-gray-700 mb-3">{{ $t('donationsManagement.additionalInformation') }}</h4>
             <div class="bg-gray-50 rounded-lg p-4">
               <pre class="text-xs text-gray-700 whitespace-pre-wrap">{{ JSON.stringify(selectedDonation.donor_metadata, null, 2) }}</pre>
             </div>
@@ -354,10 +366,10 @@ const performSearch = () => {
 
           <!-- Date -->
           <div>
-            <h4 class="text-sm font-semibold text-gray-700 mb-3">Date & Time</h4>
+            <h4 class="text-sm font-semibold text-gray-700 mb-3">{{ $t('donationsManagement.dateTime') }}</h4>
             <div class="bg-gray-50 rounded-lg p-4">
               <div class="flex justify-between">
-                <span class="text-sm text-gray-600">Received:</span>
+                <span class="text-sm text-gray-600">{{ $t('donationsManagement.received') }}:</span>
                 <span class="text-sm font-medium text-gray-900">{{ formatDate(selectedDonation.created_at) }}</span>
               </div>
             </div>
@@ -369,7 +381,7 @@ const performSearch = () => {
             @click="closeModal"
             class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
           >
-            Close
+            {{ $t('donationsManagement.close') }}
           </button>
         </div>
       </div>

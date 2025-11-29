@@ -201,7 +201,7 @@ const formatDate = (date) => {
                     />
                   </button>
                   <span class="ml-2 text-xs text-gray-500">
-                    {{ user.is_active ? $t('admin.status.active') : $t('admin.status.inactive') }}
+                    {{ user.is_active ? $t('status.active') : $t('status.inactive') }}
                   </span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
