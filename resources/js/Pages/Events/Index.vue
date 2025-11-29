@@ -3,8 +3,8 @@
     <!-- Hero Section -->
     <section class="bg-gradient-to-r from-orange-600 to-orange-700 text-white py-20">
       <div class="container mx-auto px-4">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Events</h1>
-        <p class="text-xl text-orange-100">Join us in making a difference in our community</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $t('events.title') }}</h1>
+        <p class="text-xl text-orange-100">{{ $t('events.subtitle') }}</p>
       </div>
     </section>
 
@@ -29,7 +29,7 @@
             @click="selectedCategory = null"
             class="px-4 py-2 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200"
           >
-            Clear Filter
+            {{ $t('events.clearFilter') }}
           </button>
         </div>
 
@@ -56,7 +56,7 @@
                   {{ event.category?.name }}
                 </span>
                 <span v-if="event.is_featured" class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">
-                  Featured
+                  {{ $t('events.featured') }}
                 </span>
               </div>
               
@@ -78,7 +78,7 @@
           <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <p class="text-gray-600">No events found</p>
+          <p class="text-gray-600">{{ $t('events.noEvents') }}</p>
         </div>
       </div>
     </section>

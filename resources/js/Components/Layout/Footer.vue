@@ -6,8 +6,7 @@
         <div>
           <h3 class="text-xl font-bold mb-4">GiveMeALift</h3>
           <p class="text-gray-300 text-sm leading-relaxed">
-            Supporting communities through compassion, action, and sustainable change. 
-            Together, we can make a difference.
+            {{ $t('footer.mission') }}
           </p>
           <div class="flex space-x-4 mt-6">
             <a href="#" class="social-link" aria-label="Facebook">
@@ -24,30 +23,30 @@
 
         <!-- Quick Links -->
         <div>
-          <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+          <h3 class="text-xl font-bold mb-4">{{ $t('footer.quickLinks') }}</h3>
           <ul class="space-y-2">
-            <li><Link href="/" class="footer-link">Home</Link></li>
-            <li><Link href="/about" class="footer-link">About Us</Link></li>
-            <li><Link href="/events" class="footer-link">Events</Link></li>
-            <li><Link href="/gallery" class="footer-link">Gallery</Link></li>
-            <li><Link href="/contact" class="footer-link">Contact</Link></li>
+            <li><Link href="/" class="footer-link">{{ $t('nav.home') }}</Link></li>
+            <li><Link href="/about" class="footer-link">{{ $t('nav.about') }}</Link></li>
+            <li><Link href="/events" class="footer-link">{{ $t('nav.events') }}</Link></li>
+            <li><Link href="/gallery" class="footer-link">{{ $t('nav.gallery') }}</Link></li>
+            <li><Link href="/contact" class="footer-link">{{ $t('nav.contact') }}</Link></li>
           </ul>
         </div>
 
         <!-- Get Involved -->
         <div>
-          <h3 class="text-xl font-bold mb-4">Get Involved</h3>
+          <h3 class="text-xl font-bold mb-4">{{ $t('footer.getInvolved') }}</h3>
           <ul class="space-y-2">
-            <li><Link href="/donate" class="footer-link">Donate</Link></li>
-            <li><Link href="/volunteer" class="footer-link">Volunteer</Link></li>
-            <li><Link href="/partner" class="footer-link">Partner With Us</Link></li>
-            <li><Link href="/testimonials" class="footer-link">Testimonials</Link></li>
+            <li><Link href="/donate" class="footer-link">{{ $t('nav.donate') }}</Link></li>
+            <li><Link href="/volunteer" class="footer-link">{{ $t('footer.volunteer') }}</Link></li>
+            <li><Link href="/partner" class="footer-link">{{ $t('footer.partner') }}</Link></li>
+            <li><Link href="/testimonials" class="footer-link">{{ $t('footer.testimonials') }}</Link></li>
           </ul>
         </div>
 
         <!-- Contact Info -->
         <div>
-          <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+          <h3 class="text-xl font-bold mb-4">{{ $t('footer.contact') }}</h3>
           <ul class="space-y-3 text-gray-300 text-sm">
             <li class="flex items-start">
               <svg class="w-5 h-5 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,11 +73,11 @@
 
       <!-- Bottom Bar -->
       <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
-        <p>&copy; {{ new Date().getFullYear() }} GiveMeALift. All rights reserved.</p>
+        <p>{{ $t('footer.copyright') }}</p>
         <div class="mt-2 space-x-4">
-          <Link href="/privacy-policy" class="footer-link">Privacy Policy</Link>
+          <Link href="/privacy-policy" class="footer-link">{{ $t('footer.privacyPolicy') }}</Link>
           <span>|</span>
-          <Link href="/terms" class="footer-link">Terms of Service</Link>
+          <Link href="/terms" class="footer-link">{{ $t('footer.termsOfService') }}</Link>
         </div>
       </div>
     </div>

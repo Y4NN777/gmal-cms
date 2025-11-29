@@ -5,17 +5,17 @@
       <div class="absolute inset-0 bg-primary-dark opacity-60"></div>
       <div class="container mx-auto px-4 z-10 text-center">
         <h1 class="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 animate-fade-in">
-          Supporting Communities Through Compassion
+          {{ $t('home.hero.title') }}
         </h1>
         <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-          Join us in making a difference. Every contribution helps build a better tomorrow.
+          {{ $t('home.hero.subtitle') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <Button variant="primary" size="lg" href="/donate">
-            Donate Now
+            {{ $t('nav.donate') }}
           </Button>
           <Button variant="outline" size="lg" href="/events">
-            View Events
+            {{ $t('home.hero.viewEvents') }}
           </Button>
         </div>
       </div>
@@ -27,19 +27,19 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
           <div class="stat-card">
             <div class="text-4xl font-bold text-primary-orange mb-2">{{ stats.totalDonations }}+</div>
-            <div class="text-gray-600">Donations Received</div>
+            <div class="text-gray-600">{{ $t('home.stats.donations') }}</div>
           </div>
           <div class="stat-card">
             <div class="text-4xl font-bold text-primary-orange mb-2">{{ stats.eventsHosted }}+</div>
-            <div class="text-gray-600">Events Hosted</div>
+            <div class="text-gray-600">{{ $t('home.stats.events') }}</div>
           </div>
           <div class="stat-card">
             <div class="text-4xl font-bold text-primary-orange mb-2">{{ stats.volunteersEngaged }}+</div>
-            <div class="text-gray-600">Volunteers Engaged</div>
+            <div class="text-gray-600">{{ $t('home.stats.volunteers') }}</div>
           </div>
           <div class="stat-card">
             <div class="text-4xl font-bold text-primary-orange mb-2">{{ stats.communitiesReached }}+</div>
-            <div class="text-gray-600">Communities Reached</div>
+            <div class="text-gray-600">{{ $t('home.stats.communities') }}</div>
           </div>
         </div>
       </div>
@@ -51,19 +51,16 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="text-4xl font-display font-bold text-primary-dark mb-6">
-              Who We Are
+              {{ $t('home.about.title') }}
             </h2>
             <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-              GiveMeALift is a nonprofit organization dedicated to supporting communities through 
-              compassionate action and sustainable change. We believe in the power of collective 
-              effort to transform lives and create lasting impact.
+              {{ $t('home.about.description1') }}
             </p>
             <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-              Our mission is to empower individuals and communities by providing resources, 
-              organizing impactful events, and fostering a spirit of giving that transcends boundaries.
+              {{ $t('home.about.description2') }}
             </p>
             <Button variant="secondary" href="/about">
-              Learn More About Us
+              {{ $t('home.about.learnMore') }}
             </Button>
           </div>
           <div class="relative h-96 lg:h-full bg-gray-200 rounded-lg shadow-xl flex items-center justify-center">
@@ -80,10 +77,10 @@
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-4xl font-display font-bold text-primary-dark mb-4">
-            Upcoming Events
+            {{ $t('home.events.title') }}
           </h2>
           <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-            Join us in our upcoming events and be part of the change you want to see in the world.
+            {{ $t('home.events.description') }}
           </p>
         </div>
         
@@ -119,7 +116,7 @@
             
             <template #footer>
               <Button variant="ghost" :href="`/events/${event.slug}`" fullWidth>
-                Learn More
+                {{ $t('common.learnMore') }}
               </Button>
             </template>
           </Card>
@@ -127,7 +124,7 @@
         
         <div class="text-center">
           <Button variant="outline" href="/events">
-            View All Events
+            {{ $t('home.events.viewAll') }}
           </Button>
         </div>
       </div>
@@ -138,10 +135,10 @@
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-4xl font-display font-bold text-primary-dark mb-4">
-            What People Say
+            {{ $t('home.testimonials.title') }}
           </h2>
           <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-            Hear from those who have experienced the impact of our work firsthand.
+            {{ $t('home.testimonials.description') }}
           </p>
         </div>
         
@@ -186,10 +183,10 @@
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-4xl font-display font-bold text-primary-dark mb-4">
-            Recent Moments
+            {{ $t('home.gallery.title') }}
           </h2>
           <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-            A glimpse into our community's journey through powerful visuals.
+            {{ $t('home.gallery.description') }}
           </p>
         </div>
         

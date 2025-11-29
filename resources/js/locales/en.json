@@ -10,37 +10,49 @@
   },
   "footer": {
     "about": "About Us",
-    "mission": "Our mission is to empower communities through compassionate action and sustainable programs.",
+    "mission": "Supporting communities through compassion, action, and sustainable change. Together, we can make a difference.",
     "quickLinks": "Quick Links",
+    "getInvolved": "Get Involved",
+    "volunteer": "Volunteer",
+    "partner": "Partner With Us",
+    "testimonials": "Testimonials",
     "contact": "Contact Us",
     "followUs": "Follow Us",
-    "copyright": "© 2025 GiveMeALift. All rights reserved."
+    "copyright": "© 2025 GiveMeALift. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
   },
   "home": {
     "hero": {
-      "title": "Transforming Lives Together",
-      "subtitle": "Join us in making a difference in our community through compassion, action, and sustainable change.",
-      "cta": "Get Involved"
+      "title": "Supporting Communities Through Compassion",
+      "subtitle": "Join us in making a difference. Every contribution helps build a better tomorrow.",
+      "cta": "Get Involved",
+      "viewEvents": "View Events"
     },
     "stats": {
-      "volunteers": "Active Volunteers",
+      "donations": "Donations Received",
       "events": "Events Hosted",
-      "beneficiaries": "Lives Impacted",
-      "raised": "Funds Raised"
+      "volunteers": "Volunteers Engaged",
+      "communities": "Communities Reached"
     },
     "about": {
-      "title": "About Our Mission",
-      "description": "We are dedicated to creating positive change in our community through various programs and initiatives."
+      "title": "Who We Are",
+      "description1": "GiveMeALift is a nonprofit organization dedicated to supporting communities through compassionate action and sustainable change. We believe in the power of collective effort to transform lives and create lasting impact.",
+      "description2": "Our mission is to empower individuals and communities by providing resources, organizing impactful events, and fostering a spirit of giving that transcends boundaries.",
+      "learnMore": "Learn More About Us"
     },
     "events": {
-      "title": "Featured Events",
+      "title": "Upcoming Events",
+      "description": "Join us in our upcoming events and be part of the change you want to see in the world.",
       "viewAll": "View All Events"
     },
     "testimonials": {
-      "title": "What People Say"
+      "title": "What People Say",
+      "description": "Hear from those who have experienced the impact of our work firsthand."
     },
     "gallery": {
-      "title": "Our Impact in Pictures",
+      "title": "Recent Moments",
+      "description": "A glimpse into our community's journey through powerful visuals.",
       "viewGallery": "View Full Gallery"
     },
     "cta": {
@@ -58,8 +70,11 @@
   },
   "events": {
     "title": "Our Events",
-    "subtitle": "Discover our upcoming events and initiatives",
+    "subtitle": "Join us in making a difference in our community",
     "search": "Search events...",
+    "clearFilter": "Clear Filter",
+    "featured": "Featured",
+    "noEvents": "No events found",
     "filter": {
       "all": "All Events",
       "upcoming": "Upcoming",

@@ -10,37 +10,49 @@
   },
   "footer": {
     "about": "À Propos",
-    "mission": "Notre mission est d'autonomiser les communautés par l'action compassionnelle et les programmes durables.",
+    "mission": "Soutenir les communautés par la compassion, l'action et le changement durable. Ensemble, nous pouvons faire la différence.",
     "quickLinks": "Liens Rapides",
+    "getInvolved": "S'Impliquer",
+    "volunteer": "Devenir Bénévole",
+    "partner": "Devenir Partenaire",
+    "testimonials": "Témoignages",
     "contact": "Contactez-nous",
     "followUs": "Suivez-nous",
-    "copyright": "© 2025 GiveMeALift. Tous droits réservés."
+    "copyright": "© 2025 GiveMeALift. Tous droits réservés.",
+    "privacyPolicy": "Politique de Confidentialité",
+    "termsOfService": "Conditions d'Utilisation"
   },
   "home": {
     "hero": {
-      "title": "Transformer des Vies Ensemble",
-      "subtitle": "Rejoignez-nous pour faire une différence dans notre communauté par la compassion, l'action et le changement durable.",
-      "cta": "Impliquez-vous"
+      "title": "Soutenir les Communautés par la Compassion",
+      "subtitle": "Rejoignez-nous pour faire une différence. Chaque contribution aide à construire un meilleur demain.",
+      "cta": "Impliquez-vous",
+      "viewEvents": "Voir les Événements"
     },
     "stats": {
-      "volunteers": "Bénévoles Actifs",
+      "donations": "Dons Reçus",
       "events": "Événements Organisés",
-      "beneficiaries": "Vies Touchées",
-      "raised": "Fonds Collectés"
+      "volunteers": "Bénévoles Engagés",
+      "communities": "Communautés Atteintes"
     },
     "about": {
-      "title": "Notre Mission",
-      "description": "Nous nous engageons à créer un changement positif dans notre communauté à travers divers programmes et initiatives."
+      "title": "Qui Nous Sommes",
+      "description1": "GiveMeALift est une organisation à but non lucratif dédiée au soutien des communautés par l'action compassionnelle et le changement durable. Nous croyons au pouvoir de l'effort collectif pour transformer des vies et créer un impact durable.",
+      "description2": "Notre mission est d'autonomiser les individus et les communautés en fournissant des ressources, en organisant des événements impactants et en favorisant un esprit de don qui transcende les frontières.",
+      "learnMore": "En Savoir Plus sur Nous"
     },
     "events": {
-      "title": "Événements en Vedette",
+      "title": "Événements à Venir",
+      "description": "Rejoignez-nous lors de nos événements à venir et faites partie du changement que vous voulez voir dans le monde.",
       "viewAll": "Voir Tous les Événements"
     },
     "testimonials": {
-      "title": "Ce Que Disent les Gens"
+      "title": "Ce Que Disent les Gens",
+      "description": "Écoutez ceux qui ont vécu l'impact de notre travail de première main."
     },
     "gallery": {
-      "title": "Notre Impact en Images",
+      "title": "Moments Récents",
+      "description": "Un aperçu du parcours de notre communauté à travers des visuels puissants.",
       "viewGallery": "Voir la Galerie Complète"
     },
     "cta": {
@@ -58,8 +70,11 @@
   },
   "events": {
     "title": "Nos Événements",
-    "subtitle": "Découvrez nos événements et initiatives à venir",
+    "subtitle": "Rejoignez-nous pour faire une différence dans notre communauté",
     "search": "Rechercher des événements...",
+    "clearFilter": "Effacer le Filtre",
+    "featured": "En Vedette",
+    "noEvents": "Aucun événement trouvé",
     "filter": {
       "all": "Tous les Événements",
       "upcoming": "À Venir",
