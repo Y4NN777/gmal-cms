@@ -16,8 +16,8 @@ const changeLanguage = (langCode) => {
   router.post('/locale', { locale: langCode }, {
     preserveScroll: true,
     onSuccess: () => {
-      locale.value = langCode;
-      document.documentElement.lang = langCode;
+      // Force full page reload to reinitialize vue-i18n with new locale
+      window.location.reload();
     },
   });
 };
