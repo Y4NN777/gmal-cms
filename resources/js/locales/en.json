@@ -205,7 +205,8 @@
     "no": "No",
     "help": "Help",
     "title": "Title",
-    "description": "Description"
+    "description": "Description",
+    "featured": "Featured"
   },
   "help": {
     "center": "Help Center",

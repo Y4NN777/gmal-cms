@@ -205,7 +205,8 @@
     "no": "Non",
     "help": "Aide",
     "title": "Titre",
-    "description": "Description"
+    "description": "Description",
+    "featured": "En Vedette"
   },
   "help": {
     "center": "Centre d'Aide",
