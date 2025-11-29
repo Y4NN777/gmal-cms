@@ -93,8 +93,8 @@ const cancelDelete = () => {
       <!-- Header -->
       <div class="flex items-center justify-between">
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">{{ $t('admin.categoryManagement.title') }}</h2>
-          <p class="text-gray-600 mt-1">{{ $t('admin.categoryManagement.description') }}</p>
+          <h2 class="text-2xl font-bold text-gray-900">{{ $t('categoryManagement.title') }}</h2>
+          <p class="text-gray-600 mt-1">{{ $t('categoryManagement.description') }}</p>
         </div>
         <button
           @click="openCreateModal"
@@ -103,7 +103,7 @@ const cancelDelete = () => {
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
           </svg>
-          {{ $t('admin.categoryManagement.createCategory') }}
+          {{ $t('categoryManagement.createCategory') }}
         </button>
       </div>
 
@@ -113,15 +113,14 @@ const cancelDelete = () => {
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.categoryManagement.categoryName') }}</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.categoryManagement.categoryColor') }}</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.categoryManagement.categoryIcon') }}</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.categoryManagement.eventsCount') }}</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.categoryManagement.categoryDescription') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('categoryManagement.name') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('categoryManagement.color') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('categoryManagement.icon') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('categoryManagement.eventsCount') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('categoryManagement.descriptionLabel') }}</th>
                 <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.actions') }}</th>
               </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
+            </thead>            <tbody class="bg-white divide-y divide-gray-200">
               <tr v-if="categories.length === 0">
                 <td colspan="6" class="px-6 py-12 text-center text-gray-500">
                   <svg class="w-12 h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,11 +145,12 @@ const cancelDelete = () => {
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <span class="text-sm text-gray-900">{{ category.icon || '-' }}</span>
+                  <span v-if="category.icon" class="text-2xl">{{ category.icon }}</span>
+                  <span v-else class="text-sm text-gray-400">-</span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <span class="px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-700 rounded">
-                    {{ category.events_count }} events
+                    {{ category.events_count }} {{ $t('categoryManagement.eventsCount') }}
                   </span>
                 </td>
                 <td class="px-6 py-4">
@@ -179,8 +179,7 @@ const cancelDelete = () => {
                       v-if="category.events_count > 0"
                       class="absolute bottom-full right-0 mb-2 hidden group-hover:block w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 z-10"
                     >
-                      Cannot delete: This category has {{ category.events_count }} associated event{{ category.events_count > 1 ? 's' : '' }}. 
-                      Please reassign or delete the events first.
+                      {{ $t('categoryManagement.deleteWarning') }}
                       <div class="absolute top-full right-4 -mt-1 border-4 border-transparent border-t-gray-900"></div>
                     </div>
                   </div>
@@ -212,7 +211,7 @@ const cancelDelete = () => {
           <!-- Name -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Name <span class="text-red-500">*</span>
+              {{ $t('categoryManagement.name') }} <span class="text-red-500">*</span>
             </label>
             <input
               v-model="form.name"
@@ -226,7 +225,7 @@ const cancelDelete = () => {
           <!-- Description -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Description
+              {{ $t('categoryManagement.descriptionLabel') }}
             </label>
             <textarea
               v-model="form.description"
@@ -239,7 +238,7 @@ const cancelDelete = () => {
           <!-- Color -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Color
+              {{ $t('categoryManagement.color') }}
             </label>
             <div class="flex items-center gap-2">
               <input
@@ -259,7 +258,7 @@ const cancelDelete = () => {
           <!-- Icon (optional) -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Icon Name (optional)
+              {{ $t('categoryManagement.icon') }}
             </label>
             <input
               v-model="form.icon"
@@ -267,7 +266,7 @@ const cancelDelete = () => {
               placeholder="e.g., 🎓 or icon-name"
               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
-            <p class="text-xs text-gray-500 mt-1">{{ $t('categories.iconHelp') }}</p>
+            <p class="text-xs text-gray-500 mt-1">{{ $t('categoryManagement.iconHelp') }}</p>
           </div>
 
           <!-- Actions -->
@@ -277,13 +276,13 @@ const cancelDelete = () => {
               @click="closeModal"
               class="flex-1 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              Cancel
+              {{ $t('categoryManagement.cancel') }}
             </button>
             <button
               type="submit"
               class="flex-1 px-4 py-2 text-sm font-medium text-white bg-orange-600 rounded-lg hover:bg-orange-700 transition-colors"
             >
-              {{ editingCategory ? 'Update' : 'Create' }}
+              {{ $t('categoryManagement.save') }}
             </button>
           </div>
         </form>
@@ -307,9 +306,9 @@ const cancelDelete = () => {
             </svg>
           </div>
           <div>
-            <h3 class="text-lg font-semibold text-gray-900">{{ $t('categories.deleteCategory') }}</h3>
+            <h3 class="text-lg font-semibold text-gray-900">{{ $t('categoryManagement.deleteCategory') }}</h3>
             <p class="text-sm text-gray-600 mt-1">
-              {{ $t('categories.deleteConfirm', { name: categoryToDelete?.name }) }}
+              {{ $t('categoryManagement.deleteConfirm', { name: categoryToDelete?.name }) }}
             </p>
           </div>
         </div>
@@ -319,13 +318,13 @@ const cancelDelete = () => {
             @click="cancelDelete"
             class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
           >
-            Cancel
+            {{ $t('categoryManagement.cancel') }}
           </button>
           <button
             @click="deleteCategory"
             class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
           >
-            Delete
+            {{ $t('categoryManagement.delete') }}
           </button>
         </div>
       </div>
