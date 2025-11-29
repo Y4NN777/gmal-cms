@@ -3,8 +3,8 @@
     <div class="max-w-7xl mx-auto">
       <!-- Header -->
       <div class="mb-8">
-        <h2 class="text-3xl font-bold text-gray-900">Contact Messages</h2>
-        <p class="mt-2 text-gray-600">Manage and respond to contact form submissions</p>
+        <h2 class="text-3xl font-bold text-gray-900">{{ $t('contactMessages.title') }}</h2>
+        <p class="mt-2 text-gray-600">{{ $t('contactMessages.description') }}</p>
       </div>
 
       <!-- Stats Cards -->
@@ -12,7 +12,7 @@
         <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">Total Messages</p>
+              <p class="text-sm font-medium text-gray-600">{{ $t('contactMessages.totalMessages') }}</p>
               <p class="text-3xl font-bold text-gray-900 mt-2">{{ stats.total }}</p>
             </div>
             <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center">
@@ -26,7 +26,7 @@
         <div class="bg-white rounded-xl shadow-sm p-6 border border-orange-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">Unread</p>
+              <p class="text-sm font-medium text-gray-600">{{ $t('contactMessages.unread') }}</p>
               <p class="text-3xl font-bold text-orange-600 mt-2">{{ stats.unread }}</p>
             </div>
             <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center">
@@ -40,7 +40,7 @@
         <div class="bg-white rounded-xl shadow-sm p-6 border border-green-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">Read</p>
+              <p class="text-sm font-medium text-gray-600">{{ $t('contactMessages.read') }}</p>
               <p class="text-3xl font-bold text-green-600 mt-2">{{ stats.read }}</p>
             </div>
             <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center">
@@ -57,27 +57,27 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <!-- Search -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('contactMessages.search') }}</label>
             <input
               v-model="searchQuery"
               @input="debouncedSearch"
               type="text"
-              placeholder="Search by name, email, subject, or message..."
+              :placeholder="$t('contactMessages.searchPlaceholder')"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
           </div>
 
           <!-- Status Filter -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('contactMessages.status') }}</label>
             <select
               v-model="statusFilter"
               @change="applyFilters"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             >
-              <option value="">All Messages</option>
-              <option value="unread">Unread Only</option>
-              <option value="read">Read Only</option>
+              <option value="">{{ $t('contactMessages.allMessages') }}</option>
+              <option value="unread">{{ $t('contactMessages.unreadOnly') }}</option>
+              <option value="read">{{ $t('contactMessages.readOnly') }}</option>
             </select>
           </div>
         </div>
@@ -85,13 +85,13 @@
         <!-- Bulk Actions -->
         <div v-if="selectedMessages.length > 0" class="mt-6 flex items-center justify-between p-4 bg-orange-50 border border-orange-200 rounded-xl">
           <span class="text-sm font-medium text-gray-700">
-            {{ selectedMessages.length }} message(s) selected
+            {{ selectedMessages.length }} {{ $t('contactMessages.messagesSelected') }}
           </span>
           <button
             @click="bulkDelete"
             class="px-4 py-2 bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg hover:from-red-100 hover:to-red-50 text-sm font-medium transition-colors"
           >
-            Delete Selected
+            {{ $t('contactMessages.deleteSelected') }}
           </button>
         </div>
       </div>
@@ -103,8 +103,8 @@
           <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
-          <h3 class="mt-4 text-xl font-semibold text-gray-900">No messages found</h3>
-          <p class="mt-2 text-gray-500">There are no contact messages matching your filters.</p>
+          <h3 class="mt-4 text-xl font-semibold text-gray-900">{{ $t('contactMessages.noMessagesFound') }}</h3>
+          <p class="mt-2 text-gray-500">{{ $t('contactMessages.noMatchingMessages') }}</p>
         </div>
 
         <!-- Messages -->
@@ -117,7 +117,7 @@
               @change="selectAll"
               class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
             />
-            <span class="text-sm text-gray-600">Select All</span>
+            <span class="text-sm text-gray-600">{{ $t('contactMessages.selectAll') }}</span>
           </div>
 
           <!-- Message Items -->
@@ -147,7 +147,7 @@
                     <div class="flex items-center gap-3 mb-1">
                       <h3 class="font-semibold text-gray-900">{{ message.name }}</h3>
                       <span v-if="!message.read_at" class="px-2 py-0.5 bg-orange-100 text-orange-700 text-xs font-medium rounded-full border border-orange-200">
-                        New
+                        {{ $t('contactMessages.new') }}
                       </span>
                       <span v-if="message.priority" class="px-2 py-0.5 text-xs font-medium rounded-full border" :class="getPriorityColor(message.priority)">
                         {{ message.priority }}
@@ -163,7 +163,7 @@
                 </div>
 
                 <div class="mb-2">
-                  <p class="font-medium text-gray-900">{{ message.subject || 'No subject' }}</p>
+                  <p class="font-medium text-gray-900">{{ message.subject || $t('contactMessages.noSubject') }}</p>
                   <p class="text-sm text-gray-600 line-clamp-2 mt-1">{{ message.message }}</p>
                 </div>
 
@@ -174,20 +174,20 @@
                     @click.stop="markAsRead(message.id)"
                     class="px-3 py-1.5 bg-green-50 text-green-700 border border-green-200 rounded-lg text-sm font-medium hover:bg-green-100 transition-colors"
                   >
-                    ✓ Mark as Read
+                    {{ $t('contactMessages.markAsRead') }}
                   </button>
                   <button
                     v-else
                     @click.stop="markAsUnread(message.id)"
                     class="px-3 py-1.5 bg-gray-50 text-gray-700 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-100 transition-colors"
                   >
-                    Mark as Unread
+                    {{ $t('contactMessages.markAsUnread') }}
                   </button>
                   <button
                     @click.stop="deleteMessage(message.id)"
                     class="px-3 py-1.5 bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg text-sm font-medium hover:from-red-100 hover:to-red-50 transition-colors"
                   >
-                    Delete
+                    {{ $t('contactMessages.delete') }}
                   </button>
                 </div>
               </div>
@@ -196,13 +196,13 @@
             <!-- Expanded Message Content -->
             <div v-if="expandedMessage === message.id" class="px-6 py-6 bg-gray-50 border-t">
               <div class="max-w-4xl">
-                <h4 class="text-sm font-semibold text-gray-900 mb-3">Full Message:</h4>
+                <h4 class="text-sm font-semibold text-gray-900 mb-3">{{ $t('contactMessages.fullMessage') }}</h4>
                 <div class="bg-white rounded-lg p-4 border border-gray-200">
                   <p class="text-gray-700 whitespace-pre-wrap leading-relaxed">{{ message.message }}</p>
                 </div>
                 
                 <div v-if="message.internal_notes" class="mt-4">
-                  <h4 class="text-sm font-semibold text-gray-900 mb-2">Internal Notes:</h4>
+                  <h4 class="text-sm font-semibold text-gray-900 mb-2">{{ $t('contactMessages.internalNotes') }}</h4>
                   <div class="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
                     <p class="text-gray-700 text-sm">{{ message.internal_notes }}</p>
                   </div>
@@ -215,7 +215,7 @@
         <!-- Pagination -->
         <div v-if="messages.last_page > 1" class="px-6 py-4 border-t bg-gray-50 flex items-center justify-between">
           <div class="text-sm text-gray-700">
-            Showing <span class="font-semibold">{{ messages.from }}</span> to <span class="font-semibold">{{ messages.to }}</span> of <span class="font-semibold">{{ messages.total }}</span> messages
+            {{ $t('contactMessages.showing') }} <span class="font-semibold">{{ messages.from }}</span> {{ $t('contactMessages.to') }} <span class="font-semibold">{{ messages.to }}</span> {{ $t('contactMessages.of') }} <span class="font-semibold">{{ messages.total }}</span> {{ $t('contactMessages.messages') }}
           </div>
           <div class="flex gap-1">
             <button
@@ -223,7 +223,7 @@
               @click="changePage(messages.current_page - 1)"
               class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-white transition-colors"
             >
-              Previous
+              {{ $t('contactMessages.previous') }}
             </button>
             <button
               v-for="page in paginationPages"
@@ -243,7 +243,7 @@
               @click="changePage(messages.current_page + 1)"
               class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-white transition-colors"
             >
-              Next
+              {{ $t('contactMessages.next') }}
             </button>
           </div>
         </div>
@@ -259,11 +259,11 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900">Delete Message?</h3>
+          <h3 class="text-xl font-bold text-gray-900">{{ $t('contactMessages.deleteTitle') }}</h3>
         </div>
 
         <p class="text-gray-600 mb-6">
-          Are you sure you want to permanently delete this message? This action cannot be undone.
+          {{ $t('contactMessages.deleteConfirm') }}
         </p>
 
         <div class="flex gap-3">
@@ -271,13 +271,13 @@
             @click="showDeleteModal = false"
             class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
           >
-            Cancel
+            {{ $t('contactMessages.cancel') }}
           </button>
           <button
             @click="confirmDelete"
             class="flex-1 px-4 py-2 bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg hover:from-red-100 hover:to-red-50 font-medium transition-colors"
           >
-            Delete
+            {{ $t('contactMessages.delete') }}
           </button>
         </div>
       </div>
@@ -288,7 +288,10 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { router } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+
+const { t } = useI18n();
 
 const props = defineProps({
   messages: Object,
@@ -413,7 +416,7 @@ const selectAll = () => {
 const bulkDelete = () => {
   if (selectedMessages.value.length === 0) return;
 
-  if (confirm(`Delete ${selectedMessages.value.length} message(s)? This action cannot be undone.`)) {
+  if (confirm(t('contactMessages.bulkDeleteConfirm', { count: selectedMessages.value.length }))) {
     router.post('/admin/contact-messages/bulk-destroy', {
       ids: selectedMessages.value,
     }, {
