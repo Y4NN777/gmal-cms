@@ -21,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Set application locale from session
+        if (session()->has('locale')) {
+            $locale = session('locale');
+            if (in_array($locale, ['en', 'fr'])) {
+                app()->setLocale($locale);
+            }
+        }
+
         // Share unread contact messages count with all Inertia views
         Inertia::share([
             'unreadContactsCount' => function () {
