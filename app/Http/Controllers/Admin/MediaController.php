@@ -197,7 +197,7 @@ class MediaController extends Controller
 
         $media->update($validated);
 
-        return back()->with('message', 'Media updated successfully!');
+        return back()->with('success', 'Media updated successfully!');
     }
 
     /**
@@ -220,7 +220,7 @@ class MediaController extends Controller
         // Delete database record
         $media->delete();
 
-        return back()->with('message', 'Media deleted successfully!');
+        return back()->with('success', 'Media deleted successfully!');
     }
 
     /**
@@ -250,7 +250,7 @@ class MediaController extends Controller
             $media->delete();
         }
 
-        return back()->with('message', count($mediaItems) . ' media files deleted successfully!');
+        return back()->with('success', count($mediaItems) . ' media files deleted successfully!');
     }
 
     /**

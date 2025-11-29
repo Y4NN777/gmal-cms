@@ -109,7 +109,7 @@ class EventController extends Controller
 
         return redirect()
             ->route('admin.events.index')
-            ->with('message', 'Event created successfully!');
+            ->with('success', 'Event created successfully!');
     }
 
     /**
@@ -212,7 +212,7 @@ class EventController extends Controller
 
         return redirect()
             ->route('admin.events.index')
-            ->with('message', 'Event updated successfully!');
+            ->with('success', 'Event updated successfully!');
     }
 
     /**
@@ -224,7 +224,7 @@ class EventController extends Controller
 
         return redirect()
             ->route('admin.events.index')
-            ->with('message', 'Event deleted successfully!');
+            ->with('success', 'Event deleted successfully!');
     }
 
     /**
@@ -244,6 +244,6 @@ class EventController extends Controller
                 'updated_by' => auth()->id() ?? 1,
             ]);
 
-        return back()->with('message', 'Events updated successfully!');
+        return back()->with('success', 'Events updated successfully!');
     }
 }

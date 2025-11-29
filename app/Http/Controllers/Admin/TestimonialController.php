@@ -94,7 +94,7 @@ class TestimonialController extends Controller
 
         return redirect()
             ->route('admin.testimonials.index')
-            ->with('message', 'Testimonial created successfully!');
+            ->with('success', 'Testimonial created successfully!');
     }
 
     /**
@@ -140,7 +140,7 @@ class TestimonialController extends Controller
 
         return redirect()
             ->route('admin.testimonials.index')
-            ->with('message', 'Testimonial updated successfully!');
+            ->with('success', 'Testimonial updated successfully!');
     }
 
     /**
@@ -152,7 +152,7 @@ class TestimonialController extends Controller
 
         return redirect()
             ->route('admin.testimonials.index')
-            ->with('message', 'Testimonial deleted successfully!');
+            ->with('success', 'Testimonial deleted successfully!');
     }
 
     /**
@@ -165,7 +165,7 @@ class TestimonialController extends Controller
             'approved_by' => auth()->id() ?? 1,
         ]);
 
-        return back()->with('message', 'Testimonial approved successfully!');
+        return back()->with('success', 'Testimonial approved successfully!');
     }
 
     /**
@@ -177,7 +177,7 @@ class TestimonialController extends Controller
             'status' => 'rejected',
         ]);
 
-        return back()->with('message', 'Testimonial rejected!');
+        return back()->with('success', 'Testimonial rejected!');
     }
 
     /**
@@ -196,6 +196,6 @@ class TestimonialController extends Controller
                 'approved_by' => auth()->id() ?? 1,
             ]);
 
-        return back()->with('message', 'Testimonials approved successfully!');
+        return back()->with('success', 'Testimonials approved successfully!');
     }
 }
