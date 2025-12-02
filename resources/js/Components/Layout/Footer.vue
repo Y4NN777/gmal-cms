@@ -4,7 +4,12 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- About Section -->
         <div>
-          <h3 class="text-xl font-bold mb-4">GiveMeALift</h3>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="h-8 w-8 rounded-lg overflow-hidden flex-shrink-0">
+              <img :src="logoImg" alt="GiveMeALift" class="h-full w-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold">GiveMeALift</h3>
+          </div>
           <p class="text-gray-300 text-sm leading-relaxed">
             {{ $t('footer.mission') }}
           </p>
@@ -71,6 +76,7 @@
 
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import logoImg from '@/assets/favicon.png';
 </script>
 
 <style scoped>

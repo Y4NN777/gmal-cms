@@ -317,6 +317,8 @@
     "deleteSuccess": "Élément supprimé avec succès",
     "createSuccess": "Élément créé avec succès",
     "updateSuccess": "Élément mis à jour avec succès",
+    "cannotModifyOwnStatus": "Vous ne pouvez pas modifier votre propre statut. Demandez à un autre admin.",
+    "cannotDeleteOwnAccount": "Vous ne pouvez pas supprimer votre propre compte. Demandez à un autre admin.",
     "eventForm": {
       "createTitle": "Créer un Nouvel Événement",
       "createBreadcrumb": "Créer un Événement",
@@ -563,7 +565,7 @@
     "delete": "Supprimer",
     "noCategoriesYet": "Aucune catégorie pour le moment",
     "createFirstCategory": "Créez votre première catégorie pour organiser les événements",
-    "deleteWarning": "Impossible de supprimer une catégorie avec des événements",
+    "deleteWarning": "Impossible de supprimer une catégorie avec des événements. Réassignez d'abord.",
     "editCategory": "Modifier la Catégorie",
     "newCategory": "Nouvelle Catégorie",
     "save": "Enregistrer",

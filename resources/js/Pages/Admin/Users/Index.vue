@@ -1,5 +1,6 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import Tooltip from '@/Components/Tooltip.vue';
 import { router } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -186,14 +187,27 @@ const formatDate = (date) => {
                   </span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
+                  <Tooltip 
+                    v-if="user.id === currentUserId"
+                    :content="$t('admin.cannotModifyOwnStatus')"
+                    position="top"
+                  >
+                    <button
+                      disabled
+                      class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors opacity-50 cursor-not-allowed"
+                      :class="user.is_active ? 'bg-green-600' : 'bg-gray-200'"
+                    >
+                      <span
+                        class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform"
+                        :class="user.is_active ? 'translate-x-6' : 'translate-x-1'"
+                      />
+                    </button>
+                  </Tooltip>
                   <button
+                    v-else
                     @click="toggleUserStatus(user)"
-                    :disabled="user.id === currentUserId"
-                    class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
-                    :class="[
-                      user.is_active ? 'bg-green-600' : 'bg-gray-200',
-                      user.id === currentUserId ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-                    ]"
+                    class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 cursor-pointer"
+                    :class="user.is_active ? 'bg-green-600' : 'bg-gray-200'"
                   >
                     <span
                       class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform"
@@ -214,11 +228,22 @@ const formatDate = (date) => {
                   >
                     {{ $t('admin.edit') }}
                   </button>
+                  <Tooltip 
+                    v-if="user.id === currentUserId"
+                    :content="$t('admin.cannotDeleteOwnAccount')"
+                    position="top"
+                  >
+                    <button
+                      disabled
+                      class="text-red-600 opacity-50 cursor-not-allowed"
+                    >
+                      {{ $t('admin.delete') }}
+                    </button>
+                  </Tooltip>
                   <button
+                    v-else
                     @click="confirmDelete(user)"
-                    :disabled="user.id === currentUserId"
                     class="text-red-600 hover:text-red-900"
-                    :class="{ 'opacity-50 cursor-not-allowed': user.id === currentUserId }"
                   >
                     {{ $t('admin.delete') }}
                   </button>

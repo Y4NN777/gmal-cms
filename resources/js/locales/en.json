@@ -317,6 +317,8 @@
     "deleteSuccess": "Item deleted successfully",
     "createSuccess": "Item created successfully",
     "updateSuccess": "Item updated successfully",
+    "cannotModifyOwnStatus": "You cannot modify your own status. Ask another admin.",
+    "cannotDeleteOwnAccount": "You cannot delete your own account. Ask another admin.",
     "eventForm": {
       "createTitle": "Create New Event",
       "createBreadcrumb": "Create Event",
@@ -563,7 +565,7 @@
     "delete": "Delete",
     "noCategoriesYet": "No categories yet",
     "createFirstCategory": "Create your first category to organize events",
-    "deleteWarning": "Cannot delete category with events",
+    "deleteWarning": "Cannot delete category with active events. Reassign events first.",
     "editCategory": "Edit Category",
     "newCategory": "New Category",
     "save": "Save",

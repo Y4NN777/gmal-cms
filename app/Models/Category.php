@@ -15,7 +15,24 @@ class Category extends Model
         'description',
         'color',
         'icon',
+        'name_en',
+        'name_fr',
+        'description_en',
+        'description_fr',
     ];
+
+    // Accessors for translated content
+    public function getTranslatedNameAttribute(): string
+    {
+        $locale = app()->getLocale();
+        return $this->{"name_$locale"} ?? $this->name_en;
+    }
+
+    public function getTranslatedDescriptionAttribute(): ?string
+    {
+        $locale = app()->getLocale();
+        return $this->{"description_$locale"} ?? $this->description_en;
+    }
 
     // Relationships
     public function events(): HasMany

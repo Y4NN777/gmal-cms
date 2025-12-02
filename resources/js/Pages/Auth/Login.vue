@@ -3,6 +3,11 @@
     <div class="max-w-md w-full space-y-8">
       <!-- Logo & Title -->
       <div class="text-center">
+        <div class="flex justify-center mb-4">
+          <div class="h-16 w-16 rounded-lg overflow-hidden flex-shrink-0">
+            <img :src="logoImg" alt="GiveMeALift" class="h-full w-full object-cover" />
+          </div>
+        </div>
         <h1 class="text-4xl font-bold text-white mb-2">GiveMeALift</h1>
         <p class="text-gray-400">Admin Panel Login</p>
       </div>
@@ -99,6 +104,7 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3';
+import logoImg from '@/assets/favicon.png';
 
 const form = useForm({
   email: '',

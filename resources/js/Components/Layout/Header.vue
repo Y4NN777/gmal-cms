@@ -5,8 +5,8 @@
         <!-- Logo -->
         <div class="flex items-center">
           <Link href="/" class="flex items-center space-x-2">
-            <div class="h-10 w-10 bg-primary-orange rounded-full flex items-center justify-center">
-              <span class="text-white font-bold text-xl">G</span>
+            <div class="h-10 w-10 rounded-lg overflow-hidden flex-shrink-0">
+              <img :src="logoImg" alt="GiveMeALift" class="h-full w-full object-cover">
             </div>
             <span class="text-2xl font-bold text-primary-dark">GiveMeALift</span>
           </Link>
@@ -111,6 +111,7 @@
 import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import LanguageSwitcher from '@/Components/LanguageSwitcher.vue';
+import logoImg from '@/assets/favicon.png';
 
 const mobileMenuOpen = ref(false);
 </script>

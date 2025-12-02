@@ -1,5 +1,6 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import Tooltip from '@/Components/Tooltip.vue';
 import { router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { 
@@ -29,10 +30,13 @@ const showModal = ref(false);
 const editingCategory = ref(null);
 const showDeleteModal = ref(false);
 const categoryToDelete = ref(null);
+const activeTab = ref('en');
 
 const form = ref({
-  name: '',
-  description: '',
+  name_en: '',
+  name_fr: '',
+  description_en: '',
+  description_fr: '',
   color: '#3B82F6',
   icon: 'GraduationCap',
 });
@@ -65,9 +69,12 @@ const getIconComponent = (iconName) => {
 
 const openCreateModal = () => {
   editingCategory.value = null;
+  activeTab.value = 'en';
   form.value = {
-    name: '',
-    description: '',
+    name_en: '',
+    name_fr: '',
+    description_en: '',
+    description_fr: '',
     color: '#3B82F6',
     icon: 'GraduationCap',
   };
@@ -76,9 +83,12 @@ const openCreateModal = () => {
 
 const openEditModal = (category) => {
   editingCategory.value = category;
+  activeTab.value = 'en';
   form.value = {
-    name: category.name,
-    description: category.description || '',
+    name_en: category.name_en,
+    name_fr: category.name_fr,
+    description_en: category.description_en,
+    description_fr: category.description_fr,
     color: category.color || '#3B82F6',
     icon: category.icon || 'GraduationCap',
   };
@@ -214,24 +224,25 @@ const cancelDelete = () => {
                   >
                     {{ $t('admin.edit') }}
                   </button>
-                  <div class="inline-block relative group">
+                  <Tooltip 
+                    v-if="category.events_count > 0"
+                    :content="$t('categoryManagement.deleteWarning')"
+                    position="top"
+                  >
                     <button
-                      @click="confirmDelete(category)"
-                      class="text-red-600 hover:text-red-900"
-                      :disabled="category.events_count > 0"
-                      :class="{ 'opacity-50 cursor-not-allowed': category.events_count > 0 }"
+                      class="text-red-600 opacity-50 cursor-not-allowed"
+                      disabled
                     >
                       {{ $t('admin.delete') }}
                     </button>
-                    <!-- Tooltip for disabled delete button -->
-                    <div 
-                      v-if="category.events_count > 0"
-                      class="absolute bottom-full right-0 mb-2 hidden group-hover:block w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 z-10"
-                    >
-                      {{ $t('categoryManagement.deleteWarning') }}
-                      <div class="absolute top-full right-4 -mt-1 border-4 border-transparent border-t-gray-900"></div>
-                    </div>
-                  </div>
+                  </Tooltip>
+                  <button
+                    v-else
+                    @click="confirmDelete(category)"
+                    class="text-red-600 hover:text-red-900"
+                  >
+                    {{ $t('admin.delete') }}
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -257,31 +268,88 @@ const cancelDelete = () => {
         </div>
 
         <form @submit.prevent="saveCategory" class="p-6 space-y-4">
-          <!-- Name -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              {{ $t('categoryManagement.name') }} <span class="text-red-500">*</span>
-            </label>
-            <input
-              v-model="form.name"
-              type="text"
-              required
-              placeholder="e.g., Education, Health, Community"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-            />
+          <!-- Language Tabs -->
+          <div class="border-b border-gray-200">
+            <div class="flex gap-4">
+              <button
+                type="button"
+                @click="activeTab = 'en'"
+                :class="[
+                  'pb-2 px-1 text-sm font-medium border-b-2 transition-colors',
+                  activeTab === 'en' 
+                    ? 'border-blue-500 text-blue-600' 
+                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                ]"
+              >
+                🇬🇧 English
+              </button>
+              <button
+                type="button"
+                @click="activeTab = 'fr'"
+                :class="[
+                  'pb-2 px-1 text-sm font-medium border-b-2 transition-colors',
+                  activeTab === 'fr' 
+                    ? 'border-orange-500 text-orange-600' 
+                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                ]"
+              >
+                🇫🇷 Français
+              </button>
+            </div>
           </div>
 
-          <!-- Description -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              {{ $t('categoryManagement.descriptionLabel') }}
-            </label>
-            <textarea
-              v-model="form.description"
-              rows="3"
-              placeholder="Brief description of this category"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-            ></textarea>
+          <!-- English Fields -->
+          <div v-show="activeTab === 'en'" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                Name (English) <span class="text-red-500">*</span>
+              </label>
+              <input
+                v-model="form.name_en"
+                type="text"
+                required
+                placeholder="e.g., Education, Health, Community"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                Description (English)
+              </label>
+              <textarea
+                v-model="form.description_en"
+                rows="3"
+                placeholder="Brief description of this category"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- French Fields -->
+          <div v-show="activeTab === 'fr'" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                Nom (Français) <span class="text-red-500">*</span>
+              </label>
+              <input
+                v-model="form.name_fr"
+                type="text"
+                required
+                placeholder="ex: Éducation, Santé, Communauté"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                Description (Français)
+              </label>
+              <textarea
+                v-model="form.description_fr"
+                rows="3"
+                placeholder="Brève description de cette catégorie"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              ></textarea>
+            </div>
           </div>
 
           <!-- Color -->
