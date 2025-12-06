@@ -12,7 +12,7 @@
           <!-- Main Image -->
           <div class="relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-[1.01] transition-transform duration-500">
             <img 
-              :src="`${$page.props.assetUrl || ''}/images/about_left.jpg`" 
+              :src="`${$page.props.assetUrl || ''}/images/home_image3.jpeg`" 
               alt="About Give Me A Lift" 
               class="w-full h-[600px] object-cover"
               @error="$event.target.style.display='none'"
@@ -98,7 +98,7 @@
           <!-- CTA Button -->
           <Link 
             href="/about" 
-            class="inline-flex items-center gap-3 px-8 py-4 bg-[#EE9446] hover:bg-[#E17111] text-white rounded-sm font-sans font-bold uppercase tracking-widest shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-[#EE9446] hover:bg-[#E17111] text-white rounded-full font-sans font-bold uppercase tracking-widest shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
           >
             Learn More About Us
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
