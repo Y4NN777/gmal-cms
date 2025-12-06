@@ -1,227 +1,233 @@
 <template>
   <AppLayout>
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-primary-orange to-red-600 text-white py-20">
-      <div class="container mx-auto px-4 text-center">
-        <h1 class="text-5xl md:text-6xl font-display font-bold mb-6 animate-fade-in">
-          Make a Difference Today
-        </h1>
-        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white/90">
-          Your generous donation helps us transform lives and build stronger communities.
-          Every contribution, no matter the size, creates lasting impact.
-        </p>
+    <section class="relative h-[60vh] min-h-[500px] overflow-hidden bg-[#252A34]">
+      <div class="absolute inset-0">
+        <img 
+          :src="`${$page.props.assetUrl || ''}/images/home/hero-background.png`" 
+          alt="Donate Hero" 
+          class="w-full h-full object-cover opacity-40"
+          @error="$event.target.style.display='none'"
+        />
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#EE9446]/90 to-[#E17111]/80 mix-blend-multiply"></div>
+      
+      <div class="relative z-10 container mx-auto px-4 h-full flex items-center justify-center text-center">
+        <div class="max-w-4xl">
+          <div class="inline-block mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+            <span class="px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-sans text-sm font-bold uppercase tracking-widest">
+              Your Support Matters
+            </span>
+          </div>
+          <h1 
+            class="text-white font-display font-bold text-5xl md:text-7xl leading-tight mb-8 opacity-0 animate-fade-in-up"
+            style="animation-delay: 0.4s; animation-fill-mode: forwards;"
+          >
+            Make a Difference <span class="text-white border-b-4 border-white/30">Today</span>
+          </h1>
+          <p 
+            class="text-white/90 font-sans text-lg md:text-2xl leading-relaxed max-w-2xl mx-auto opacity-0 animate-fade-in-up"
+            style="animation-delay: 0.6s; animation-fill-mode: forwards;"
+          >
+            Your generous donation helps us transform lives and build stronger communities. Every contribution creates lasting impact.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- Donation Form Section -->
-    <section class="py-16 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <!-- Amount Selection -->
-          <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
-              Choose Your Donation Amount
-            </h2>
-
-            <!-- Suggested Amounts -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <button
-                v-for="amount in suggestedAmounts"
-                :key="amount.value"
-                @click="selectedAmount = amount.value"
-                :class="[
-                  'p-6 rounded-xl border-2 transition-all duration-200 text-center',
-                  selectedAmount === amount.value
-                    ? 'border-primary-orange bg-primary-orange text-white shadow-lg scale-105'
-                    : 'border-gray-200 hover:border-primary-orange hover:shadow-md'
-                ]"
-              >
-                <div class="text-3xl font-bold mb-2">${{ amount.value }}</div>
-                <div class="text-sm opacity-80">{{ amount.impact }}</div>
-              </button>
-            </div>
-
-            <!-- Custom Amount -->
-            <div class="mb-8">
-              <label class="block text-gray-700 font-semibold mb-3">
-                Or enter a custom amount:
-              </label>
-              <div class="relative">
-                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl">
-                  $
-                </span>
-                <input
-                  v-model.number="customAmount"
-                  type="number"
-                  min="1"
-                  step="1"
-                  placeholder="Enter amount"
-                  class="w-full pl-10 pr-4 py-4 text-xl border-2 border-gray-300 rounded-lg focus:border-primary-orange focus:outline-none transition-colors"
-                  @input="selectedAmount = null"
-                />
+    <section class="relative py-24 bg-[#F8F9FA] -mt-20">
+      <div class="container mx-auto px-4 relative z-20">
+        <div class="max-w-5xl mx-auto">
+          <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+            <div class="grid lg:grid-cols-3">
+              <!-- Sidebar Info -->
+              <div class="bg-[#252A34] p-10 text-white lg:col-span-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="font-display font-bold text-2xl mb-6">Why Donate?</h3>
+                  <ul class="space-y-6">
+                    <li class="flex items-start gap-4">
+                      <div class="w-10 h-10 rounded-full bg-[#EE9446]/20 flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5 text-[#EE9446]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-lg mb-1">100% Direct Impact</h4>
+                        <p class="text-gray-400 text-sm">Every dollar goes directly to our programs.</p>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                      <div class="w-10 h-10 rounded-full bg-[#219D80]/20 flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5 text-[#219D80]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-lg mb-1">Tax Deductible</h4>
+                        <p class="text-gray-400 text-sm">We are a registered 501(c)(3) nonprofit.</p>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                      <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-lg mb-1">Secure Payment</h4>
+                        <p class="text-gray-400 text-sm">Processed securely via PayPal.</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mt-10 pt-10 border-t border-white/10">
+                  <p class="text-sm text-gray-400 italic">"The best way to find yourself is to lose yourself in the service of others."</p>
+                </div>
               </div>
-            </div>
 
-            <!-- Donor Information (Optional) -->
-            <div class="mb-8 p-6 bg-gray-50 rounded-lg">
-              <h3 class="text-lg font-semibold mb-4 text-gray-900">
-                Donor Information (Optional)
-              </h3>
-              <div class="grid md:grid-cols-2 gap-4">
-                <input
-                  v-model="donorInfo.name"
-                  type="text"
-                  placeholder="Your Name"
-                  class="px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-orange focus:outline-none"
-                />
-                <input
-                  v-model="donorInfo.email"
-                  type="email"
-                  placeholder="Email Address"
-                  class="px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-orange focus:outline-none"
-                />
+              <!-- Main Form -->
+              <div class="p-10 lg:col-span-2">
+                <h2 class="font-display font-bold text-3xl text-[#252A34] mb-8 text-center">Choose Your Donation Amount</h2>
+
+                <!-- Suggested Amounts -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                  <button
+                    v-for="amount in suggestedAmounts"
+                    :key="amount.value"
+                    @click="selectedAmount = amount.value; customAmount = null"
+                    class="relative p-6 rounded-xl border-2 transition-all duration-300 text-center group overflow-hidden"
+                    :class="[
+                      selectedAmount === amount.value
+                        ? 'border-[#EE9446] bg-[#EE9446] text-white shadow-lg scale-105'
+                        : 'border-gray-100 bg-white hover:border-[#EE9446] hover:shadow-md'
+                    ]"
+                  >
+                    <div class="text-3xl font-bold mb-1 font-display">${{ amount.value }}</div>
+                    <div class="text-xs font-sans uppercase tracking-wide" :class="selectedAmount === amount.value ? 'text-white/90' : 'text-gray-400'">{{ amount.label }}</div>
+                  </button>
+                </div>
+
+                <!-- Custom Amount -->
+                <div class="mb-10">
+                  <label class="block text-[#555555] font-sans font-semibold mb-3 text-sm uppercase tracking-wide">
+                    Or enter a custom amount
+                  </label>
+                  <div class="relative">
+                    <span class="absolute left-6 top-1/2 transform -translate-y-1/2 text-[#252A34] text-2xl font-bold font-display">$</span>
+                    <input
+                      v-model.number="customAmount"
+                      type="number"
+                      min="1"
+                      step="1"
+                      placeholder="Other Amount"
+                      class="w-full pl-12 pr-6 py-4 text-xl font-bold text-[#252A34] bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-[#EE9446] focus:bg-white focus:outline-none transition-all"
+                      @input="selectedAmount = null"
+                    />
+                  </div>
+                </div>
+
+                <!-- Donor Info -->
+                <div class="mb-10">
+                  <h3 class="font-display font-bold text-xl text-[#252A34] mb-4">Your Information (Optional)</h3>
+                  <div class="grid md:grid-cols-2 gap-4">
+                    <input
+                      v-model="donorInfo.name"
+                      type="text"
+                      placeholder="Full Name"
+                      class="px-6 py-4 bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-[#EE9446] focus:bg-white focus:outline-none transition-all"
+                    />
+                    <input
+                      v-model="donorInfo.email"
+                      type="email"
+                      placeholder="Email Address"
+                      class="px-6 py-4 bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-[#EE9446] focus:bg-white focus:outline-none transition-all"
+                    />
+                  </div>
+                </div>
+
+                <!-- PayPal Button -->
+                <div class="text-center">
+                  <button
+                    @click="proceedToPayPal"
+                    class="w-full md:w-auto px-12 py-5 bg-[#EE9446] hover:bg-[#E17111] text-white rounded-xl font-sans font-bold text-lg uppercase tracking-widest shadow-xl hover:shadow-2xl hover:shadow-[#EE9446]/30 transition-all duration-300 transform hover:-translate-y-1"
+                  >
+                    <span v-if="finalAmount > 0">
+                      Donate ${{ finalAmount }} via PayPal
+                    </span>
+                    <span v-else>
+                      Donate via PayPal
+                    </span>
+                  </button>
+                  <p class="text-xs text-gray-400 mt-4 flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    Secure SSL Encrypted Transaction
+                  </p>
+                </div>
               </div>
-              <p class="text-sm text-gray-500 mt-2">
-                Provide your details to receive a tax receipt and stay updated on our impact.
-              </p>
-            </div>
-
-            <!-- PayPal Button -->
-            <div class="text-center">
-              <button
-                @click="proceedToPayPal"
-                class="px-12 py-4 rounded-lg text-lg font-semibold transition-all duration-200 transform bg-gradient-to-r from-primary-orange to-red-600 text-white hover:from-red-600 hover:to-primary-orange shadow-lg hover:shadow-xl hover:scale-105"
-              >
-                <span v-if="finalAmount > 0">
-                  Proceed to PayPal (${{ finalAmount }} suggested)
-                </span>
-                <span v-else>
-                  Donate via PayPal
-                </span>
-              </button>
-              
-              <p class="text-sm text-gray-500 mt-4">
-                Secure payment powered by PayPal · You'll choose the final amount on PayPal
-              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Impact Section -->
-    <section class="py-16 bg-gray-50">
+    <!-- Impact Examples -->
+    <section class="py-24 bg-white">
       <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
-            Your Impact in Action
-          </h2>
-          
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
-              <div class="w-16 h-16 bg-primary-orange rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-3">Feed Families</h3>
-              <p class="text-gray-600">
-                $50 provides nutritious meals for 10 families in need
-              </p>
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="font-display font-bold text-4xl text-[#252A34] mb-4">Your Impact in Action</h2>
+          <p class="text-[#555555] text-lg">See exactly what your donation can achieve.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 text-center group">
+            <div class="w-20 h-20 bg-[#EE9446]/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#EE9446] transition-colors duration-300">
+              <svg class="w-10 h-10 text-[#EE9446] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
             </div>
+            <h3 class="font-display font-bold text-2xl text-[#252A34] mb-2">$50</h3>
+            <p class="text-[#555555] font-sans">Provides nutritious meals for 10 families in need for a week.</p>
+          </div>
 
-            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
-              <div class="w-16 h-16 bg-primary-green rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-3">Educate Children</h3>
-              <p class="text-gray-600">
-                $100 provides school supplies for 20 students for a year
-              </p>
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 text-center group">
+            <div class="w-20 h-20 bg-[#219D80]/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#219D80] transition-colors duration-300">
+              <svg class="w-10 h-10 text-[#219D80] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
             </div>
+            <h3 class="font-display font-bold text-2xl text-[#252A34] mb-2">$100</h3>
+            <p class="text-[#555555] font-sans">Provides essential school supplies for 20 students for a full year.</p>
+          </div>
 
-            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
-              <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-3">Support Health</h3>
-              <p class="text-gray-600">
-                $200 provides medical care for families without insurance
-              </p>
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 text-center group">
+            <div class="w-20 h-20 bg-[#252A34]/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#252A34] transition-colors duration-300">
+              <svg class="w-10 h-10 text-[#252A34] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
             </div>
+            <h3 class="font-display font-bold text-2xl text-[#252A34] mb-2">$200</h3>
+            <p class="text-[#555555] font-sans">Provides basic medical care and checkups for families without insurance.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="py-16 bg-white">
+    <section class="py-24 bg-[#F8F9FA]">
       <div class="container mx-auto px-4">
         <div class="max-w-3xl mx-auto">
-          <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
-            Frequently Asked Questions
-          </h2>
+          <h2 class="font-display font-bold text-3xl text-center text-[#252A34] mb-12">Frequently Asked Questions</h2>
           
-          <div class="space-y-6">
-            <div class="border-b border-gray-200 pb-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                Is my donation tax-deductible?
-              </h3>
-              <p class="text-gray-600">
-                Yes! GiveMeALift is a registered 501(c)(3) nonprofit organization. 
-                You will receive a tax receipt via email after your donation.
-              </p>
+          <div class="space-y-4">
+            <div class="bg-white rounded-xl shadow-sm p-6">
+              <h3 class="font-bold text-lg text-[#252A34] mb-2">Is my donation tax-deductible?</h3>
+              <p class="text-[#555555]">Yes! GiveMeALift is a registered 501(c)(3) nonprofit organization. You will receive a tax receipt via email after your donation.</p>
             </div>
-
-            <div class="border-b border-gray-200 pb-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                How is my donation used?
-              </h3>
-              <p class="text-gray-600">
-                100% of your donation goes directly to our programs. Administrative costs 
-                are covered by separate grants and fundraising efforts.
-              </p>
+            <div class="bg-white rounded-xl shadow-sm p-6">
+              <h3 class="font-bold text-lg text-[#252A34] mb-2">How is my donation used?</h3>
+              <p class="text-[#555555]">100% of your donation goes directly to our programs. Administrative costs are covered by separate grants and fundraising efforts.</p>
             </div>
-
-            <div class="border-b border-gray-200 pb-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                Is my payment secure?
-              </h3>
-              <p class="text-gray-600">
-                Absolutely. All transactions are processed securely through PayPal, 
-                and we never store your payment information.
-              </p>
-            </div>
-
-            <div class="border-b border-gray-200 pb-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                Can I make a recurring donation?
-              </h3>
-              <p class="text-gray-600">
-                Yes! During the PayPal checkout, you can choose to make your donation 
-                monthly to provide sustained support.
-              </p>
+            <div class="bg-white rounded-xl shadow-sm p-6">
+              <h3 class="font-bold text-lg text-[#252A34] mb-2">Is my payment secure?</h3>
+              <p class="text-[#555555]">Absolutely. All transactions are processed securely through PayPal, and we never store your payment information.</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Contact CTA -->
-    <section class="py-16 bg-gradient-to-r from-primary-green to-primary-dark text-white">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-4">Have Questions?</h2>
-        <p class="text-xl mb-8 max-w-2xl mx-auto text-white/90">
-          Our team is here to help. Contact us for more information about donations, 
-          partnerships, or volunteering opportunities.
-        </p>
-        <Button variant="secondary" size="lg" href="/contact">
-          Contact Us
-        </Button>
       </div>
     </section>
   </AppLayout>
@@ -230,16 +236,15 @@
 <script setup>
 import { ref, computed } from 'vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Button from '@/Components/UI/Button.vue';
 
 const suggestedAmounts = [
-  { value: 10, impact: 'Feeds 2 families' },
-  { value: 25, impact: 'Feeds 5 families' },
-  { value: 50, impact: 'Feeds 10 families' },
-  { value: 100, impact: 'School supplies' }
+  { value: 10, label: 'Feed' },
+  { value: 25, label: 'Support' },
+  { value: 50, label: 'Empower' },
+  { value: 100, label: 'Transform' }
 ];
 
-const selectedAmount = ref(null);
+const selectedAmount = ref(50);
 const customAmount = ref(null);
 const donorInfo = ref({
   name: '',
@@ -247,27 +252,23 @@ const donorInfo = ref({
 });
 
 const finalAmount = computed(() => {
-  return selectedAmount.value || customAmount.value || 0;
+  return customAmount.value || selectedAmount.value || 0;
 });
 
 const proceedToPayPal = () => {
   if (finalAmount.value === 0) return;
 
-  // Store donor info in sessionStorage for return URL
   if (donorInfo.value.name || donorInfo.value.email) {
     sessionStorage.setItem('donor_info', JSON.stringify(donorInfo.value));
   }
   
-  // Store amount for potential tracking
   sessionStorage.setItem('donation_amount', finalAmount.value.toString());
 
-  // Use your hosted PayPal button with custom return URLs
   const paypalParams = new URLSearchParams({
     cmd: '_s-xclick',
     hosted_button_id: '7BDJM7FP95CMC',
     return: `${window.location.origin}/donate/thank-you`,
     cancel_return: `${window.location.origin}/donate`,
-    // Pass custom data (donor info + amount for reference)
     custom: JSON.stringify({
       donor_name: donorInfo.value.name,
       donor_email: donorInfo.value.email,
@@ -276,24 +277,6 @@ const proceedToPayPal = () => {
     })
   });
 
-  // Redirect to PayPal (your hosted button is already on live)
   window.location.href = `https://www.paypal.com/cgi-bin/webscr?${paypalParams.toString()}`;
 };
 </script>
-
-<style scoped>
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 1s ease-out;
-}
-</style>

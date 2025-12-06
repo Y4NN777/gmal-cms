@@ -1,62 +1,51 @@
 <template>
-  <header class="sticky top-0 z-50 bg-white shadow-md">
-    <nav class="container mx-auto px-4 py-4">
+  <header 
+    class="sticky top-0 z-50 transition-all duration-300"
+    :class="[
+      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-3' : 'bg-white py-5'
+    ]"
+  >
+    <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center">
-          <Link href="/" class="flex items-center space-x-2">
-            <div class="h-10 w-10 rounded-lg overflow-hidden flex-shrink-0">
+          <Link href="/" class="flex items-center gap-3 group">
+            <div class="h-12 w-12 rounded-xl overflow-hidden flex-shrink-0 shadow-sm group-hover:shadow-md transition-all duration-300">
               <img :src="logoImg" alt="GiveMeALift" class="h-full w-full object-cover">
             </div>
-            <span class="text-2xl font-bold text-primary-dark">GiveMeALift</span>
+            <span class="text-2xl font-display font-bold text-[#252A34] tracking-tight group-hover:text-[#EE9446] transition-colors">
+              GiveMeALift
+            </span>
           </Link>
         </div>
 
         <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-          <Link 
-            href="/" 
-            class="nav-link"
-            :class="{ 'active': $page.component === 'Home/Index' }"
-          >
-            {{ $t('nav.home') }}
-          </Link>
-          <Link 
-            href="/about" 
-            class="nav-link"
-            :class="{ 'active': $page.component === 'About/Index' }"
-          >
-            {{ $t('nav.about') }}
-          </Link>
-          <Link 
-            href="/events" 
-            class="nav-link"
-            :class="{ 'active': $page.component.startsWith('Events') }"
-          >
-            {{ $t('nav.events') }}
-          </Link>
-          <Link 
-            href="/gallery" 
-            class="nav-link"
-            :class="{ 'active': $page.component.startsWith('Gallery') }"
-          >
-            {{ $t('nav.gallery') }}
-          </Link>
-          <Link 
-            href="/contact" 
-            class="nav-link"
-            :class="{ 'active': $page.component === 'Contact/Index' }"
-          >
-            {{ $t('nav.contact') }}
-          </Link>
+        <div class="hidden lg:flex items-center gap-8">
+          <div class="flex items-center gap-6">
+            <Link 
+              v-for="item in navItems" 
+              :key="item.href"
+              :href="item.href" 
+              class="relative font-sans font-semibold text-sm uppercase tracking-wider text-[#555555] hover:text-[#EE9446] transition-colors py-2 group"
+              :class="{ 'text-[#EE9446]': isActive(item.href) }"
+            >
+              {{ $t(item.label) }}
+              <span 
+                class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#EE9446] transition-all duration-300 group-hover:w-full"
+                :class="{ 'w-full': isActive(item.href) }"
+              ></span>
+            </Link>
+          </div>
           
+          <div class="h-6 w-px bg-gray-200 mx-2"></div>
+
           <!-- Language Switcher -->
           <LanguageSwitcher />
           
           <!-- Donate Button -->
           <Link 
             href="/donate" 
-            class="btn-primary"
+            class="px-8 py-3 bg-[#EE9446] hover:bg-[#E17111] text-white rounded-full font-sans font-bold text-sm uppercase tracking-widest shadow-lg hover:shadow-xl hover:shadow-[#EE9446]/30 transition-all duration-300 transform hover:-translate-y-0.5"
           >
             {{ $t('nav.donate') }}
           </Link>
@@ -65,94 +54,103 @@
         <!-- Mobile Menu Button -->
         <button 
           @click="mobileMenuOpen = !mobileMenuOpen"
-          class="md:hidden p-2 rounded-lg hover:bg-gray-100"
+          class="lg:hidden p-2 rounded-lg text-[#252A34] hover:bg-gray-100 transition-colors focus:outline-none"
+          aria-label="Toggle menu"
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path 
-              v-if="!mobileMenuOpen"
-              stroke-linecap="round" 
-              stroke-linejoin="round" 
-              stroke-width="2" 
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-            <path 
-              v-else
-              stroke-linecap="round" 
-              stroke-linejoin="round" 
-              stroke-width="2" 
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <div class="w-6 h-5 relative flex flex-col justify-between">
+            <span 
+              class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left"
+              :class="{ 'rotate-45 translate-x-px': mobileMenuOpen }"
+            ></span>
+            <span 
+              class="w-full h-0.5 bg-current rounded-full transition-all duration-300"
+              :class="{ 'opacity-0': mobileMenuOpen }"
+            ></span>
+            <span 
+              class="w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left"
+              :class="{ '-rotate-45 translate-x-px': mobileMenuOpen }"
+            ></span>
+          </div>
         </button>
       </div>
 
       <!-- Mobile Menu -->
-      <div 
-        v-show="mobileMenuOpen"
-        class="md:hidden mt-4 pb-4 border-t pt-4"
+      <transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="transform -translate-y-4 opacity-0"
+        enter-to-class="transform translate-y-0 opacity-100"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="transform translate-y-0 opacity-100"
+        leave-to-class="transform -translate-y-4 opacity-0"
       >
-        <div class="flex flex-col space-y-4">
-          <Link href="/" class="mobile-nav-link">{{ $t('nav.home') }}</Link>
-          <Link href="/about" class="mobile-nav-link">{{ $t('nav.about') }}</Link>
-          <Link href="/events" class="mobile-nav-link">{{ $t('nav.events') }}</Link>
-          <Link href="/gallery" class="mobile-nav-link">{{ $t('nav.gallery') }}</Link>
-          <Link href="/contact" class="mobile-nav-link">{{ $t('nav.contact') }}</Link>
-          <div class="pt-2 border-t">
-            <LanguageSwitcher />
+        <div 
+          v-show="mobileMenuOpen"
+          class="lg:hidden mt-4 py-4 border-t border-gray-100 bg-white absolute left-0 right-0 px-4 shadow-lg z-40"
+        >
+          <div class="flex flex-col space-y-2">
+            <Link 
+              v-for="item in navItems" 
+              :key="item.href"
+              :href="item.href" 
+              class="px-4 py-3 rounded-lg font-sans font-semibold text-[#555555] hover:bg-[#FEF5EE] hover:text-[#EE9446] transition-colors"
+              :class="{ 'bg-[#FEF5EE] text-[#EE9446]': isActive(item.href) }"
+              @click="mobileMenuOpen = false"
+            >
+              {{ $t(item.label) }}
+            </Link>
+            
+            <div class="px-4 py-3 border-t border-gray-100 mt-2">
+              <LanguageSwitcher />
+            </div>
+            
+            <Link 
+              href="/donate" 
+              class="mt-4 w-full block text-center px-6 py-3 bg-[#EE9446] text-white rounded-lg font-sans font-bold uppercase tracking-wide shadow-md"
+              @click="mobileMenuOpen = false"
+            >
+              {{ $t('nav.donate') }}
+            </Link>
           </div>
-          <Link href="/donate" class="btn-primary w-full text-center">{{ $t('nav.donate') }}</Link>
         </div>
-      </div>
+      </transition>
     </nav>
   </header>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { Link } from '@inertiajs/vue3';
+import { ref, onMounted, onUnmounted } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
 import LanguageSwitcher from '@/Components/LanguageSwitcher.vue';
 import logoImg from '@/assets/favicon.png';
 
 const mobileMenuOpen = ref(false);
+const isScrolled = ref(false);
+const page = usePage();
+
+const navItems = [
+  { href: '/', label: 'nav.home' },
+  { href: '/about', label: 'nav.about' },
+  { href: '/events', label: 'nav.events' },
+  { href: '/gallery', label: 'nav.gallery' },
+  { href: '/contact', label: 'nav.contact' },
+];
+
+const isActive = (href) => {
+  if (href === '/') {
+    return page.url === '/';
+  }
+  return page.url.startsWith(href);
+};
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 20;
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>
-
-<style scoped>
-.nav-link {
-  color: rgb(55 65 81);
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.nav-link:hover {
-  color: var(--color-primary-orange);
-}
-
-.nav-link.active {
-  color: var(--color-primary-orange);
-}
-
-.mobile-nav-link {
-  color: rgb(55 65 81);
-  font-weight: 500;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  transition: color 0.2s;
-}
-
-.mobile-nav-link:hover {
-  color: var(--color-primary-orange);
-}
-
-.btn-primary {
-  background-color: var(--color-primary-orange);
-  color: white;
-  padding: 0.5rem 1.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  transition: background-color 0.2s;
-}
-
-.btn-primary:hover {
-  background-color: #EA580C;
-}
-</style>
