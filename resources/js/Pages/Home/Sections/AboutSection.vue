@@ -29,7 +29,7 @@
                 </svg>
               </div>
               <div>
-                <div class="text-4xl font-bold text-[#252A34] font-display">5000+</div>
+                <div class="text-4xl font-bold text-[#252A34] font-display">Many</div>
                 <div class="text-sm text-[#555555] font-sans font-medium uppercase tracking-wide mt-1">Lives Impacted</div>
               </div>
             </div>

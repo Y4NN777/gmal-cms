@@ -93,7 +93,7 @@ const assetUrl = page.props.assetUrl || '';
 const slides = [
   {
     image: `${assetUrl}/images/home.jpg`, // Correct original image
-    subtitle: 'Give Hope For Homeless',
+    subtitle: 'Give Hope of brighter future',
     title: 'Building a Future for <span class="text-[#EE9446]">Every Child</span>',
     description: 'At Give Me A Lift, we believe that every child in Burkina Faso deserves the chance to learn, grow, and thrive.'
   },

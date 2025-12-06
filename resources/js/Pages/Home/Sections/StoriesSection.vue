@@ -83,7 +83,7 @@
       <div class="text-center mt-16">
         <Link 
           href="/events" 
-          class="inline-flex items-center gap-3 px-10 py-5 bg-gray-900 text-white rounded-full font-sans font-bold text-lg uppercase tracking-wide shadow-xl hover:bg-primary-orange hover:shadow-orange-500/30 transition-all duration-300 transform hover:-translate-y-1"
+          class="inline-flex items-center gap-3 px-10 py-5 border-2 border-primary-orange text-primary-orange hover:bg-primary-orange hover:text-white rounded-full font-sans font-bold text-lg uppercase tracking-wide transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/20"
         >
           View All Stories
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

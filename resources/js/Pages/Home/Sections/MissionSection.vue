@@ -82,7 +82,7 @@
           <!-- Main Image -->
           <div class="relative rounded-[2rem] overflow-hidden shadow-2xl">
             <img 
-              :src="`${$page.props.assetUrl || ''}/images/about_right.jpg`" 
+              :src="`${$page.props.assetUrl || ''}/images/home_Image1.jpg`" 
               alt="Our Mission" 
               class="w-full h-[700px] object-cover transform hover:scale-105 transition-transform duration-700"
               @error="$event.target.style.display='none'"
