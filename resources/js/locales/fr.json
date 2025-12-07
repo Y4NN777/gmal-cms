@@ -328,23 +328,6 @@
     "viewAlbum": "Voir l'Album",
     "photos": "{count} photos"
   },
-  "about": {
-    "title": "À Propos de Nous",
-    "mission": {
-      "title": "Notre Mission",
-      "description": "Nous nous engageons à créer un changement positif durable dans notre communauté."
-    },
-    "values": {
-      "title": "Nos Valeurs",
-      "compassion": "Compassion",
-      "integrity": "Intégrité",
-      "excellence": "Excellence",
-      "collaboration": "Collaboration"
-    },
-    "team": {
-      "title": "Notre Équipe"
-    }
-  },
   "common": {
     "learnMore": "En Savoir Plus",
     "readMore": "Lire Plus",
