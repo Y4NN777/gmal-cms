@@ -1,5 +1,5 @@
 <template>
-  <section class="relative h-screen min-h-[800px] overflow-hidden bg-[#252A34]">
+  <section class="relative h-screen min-h-[800px] overflow-hidden bg-[#252A34] group">
     <swiper
       :modules="modules"
       :effect="'fade'"
@@ -22,7 +22,7 @@
         </div>
         
         <!-- Mixing Layer Effect -->
-        <div class="absolute inset-0 bg-[#252A34] mix-blend-multiply opacity-60"></div>
+        <div class="absolute inset-0 bg-[#252A34] mix-blend-multiply opacity-40 transition-opacity duration-700 group-hover:opacity-80"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-[#252A34] via-transparent to-[#252A34]/30 mix-blend-soft-light"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-[#EE9446]/30 to-transparent mix-blend-overlay"></div>
         

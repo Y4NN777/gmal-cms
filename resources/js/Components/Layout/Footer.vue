@@ -5,7 +5,7 @@
     <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#219D80]/5 rounded-full blur-[100px] pointer-events-none"></div>
     
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
         <!-- Brand Section -->
         <div class="space-y-6">
           <div class="flex items-center gap-3">
@@ -57,7 +57,24 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
-              <span class="text-sm">4517 Washington Ave. Manchester, Kentucky 39495</span>
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <svg viewBox="0 0 640 480" class="w-5 h-3.5 object-cover rounded-sm shadow-sm">
+                    <rect width="640" height="480" fill="#B22234"/>
+                    <path d="M0 37h640M0 111h640M0 185h640M0 259h640M0 333h640M0 407h640" stroke="#FFF" stroke-width="37"/>
+                    <rect width="260" height="260" fill="#3C3B6E"/>
+                  </svg>
+                  <span class="text-sm">United States</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg viewBox="0 0 900 600" class="w-5 h-3.5 object-cover rounded-sm shadow-sm">
+                    <rect width="900" height="300" y="0" fill="#EF3340"/>
+                    <rect width="900" height="300" y="300" fill="#009739"/>
+                    <polygon points="450,200 479,290 573,290 497,345 526,435 450,380 374,435 403,345 327,290 421,290" fill="#FCD116"/>
+                  </svg>
+                  <span class="text-sm">Burkina Faso</span>
+                </div>
+              </div>
             </li>
             <li class="flex items-center gap-3 text-gray-400">
               <svg class="w-5 h-5 text-[#219D80] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,32 +82,17 @@
               </svg>
               <a href="mailto:contactus@givemealift.org" class="text-sm hover:text-white transition-colors">contactus@givemealift.org</a>
             </li>
-            <li class="flex items-center gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-[#EE9446] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-[#EE9446] mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
               </svg>
-              <a href="tel:+14055890915" class="text-sm hover:text-white transition-colors">+1 405 589 0915</a>
+              <div class="flex flex-col">
+                <a href="tel:+14055890915" class="text-sm hover:text-white transition-colors">+1 405 589 0915</a>
+                <a href="tel:+22675434545" class="text-sm hover:text-white transition-colors">+226 75 43 45 45</a>
+                <a href="tel:+22667182438" class="text-sm hover:text-white transition-colors">+226 67 18 24 38</a>
+              </div>
             </li>
           </ul>
-        </div>
-        
-        <!-- Newsletter -->
-        <div>
-          <h3 class="text-xl font-display font-bold mb-6 text-white">Newsletter</h3>
-          <p class="text-gray-400 text-sm mb-4">Subscribe to our newsletter to get the latest news and updates.</p>
-          <form @submit.prevent class="space-y-3">
-            <input 
-              type="email" 
-              placeholder="Your email address" 
-              class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#EE9446] focus:ring-1 focus:ring-[#EE9446] transition-all"
-            >
-            <button 
-              type="submit" 
-              class="w-full px-4 py-3 bg-[#EE9446] hover:bg-[#E17111] text-white rounded-lg font-sans font-bold uppercase tracking-wide transition-all duration-300"
-            >
-              Subscribe
-            </button>
-          </form>
         </div>
       </div>
 
@@ -100,8 +102,6 @@
           &copy; {{ new Date().getFullYear() }} GiveMeALift. All rights reserved.
         </p>
         <div class="flex gap-6 text-sm text-gray-500">
-          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
         </div>
       </div>
     </div>

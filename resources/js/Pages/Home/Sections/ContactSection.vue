@@ -100,7 +100,7 @@
           <!-- Address Card -->
           <div class="bg-gray-50 rounded-[2rem] p-10 border border-gray-100">
             <h3 class="text-gray-900 font-display font-bold text-3xl mb-6">
-              Our Office
+              Reach us
             </h3>
             <p class="text-gray-600 font-sans text-base leading-relaxed mb-10">
               Visit us or reach out through any of these channels. We're here to answer your questions and help you make an impact.
@@ -116,10 +116,63 @@
                   </svg>
                 </div>
                 <div>
-                  <h4 class="text-gray-900 font-sans font-bold text-lg mb-1">Location</h4>
-                  <p class="text-gray-600 font-sans text-base leading-relaxed">
-                    4517 Washington Ave. Manchester,<br/>Kentucky 39495
-                  </p>
+                  <h4 class="text-gray-900 font-sans font-bold text-lg mb-3">Location</h4>
+                  <div class="space-y-4">
+                    <!-- US Address -->
+                    <div>
+                      <div class="flex items-center gap-2">
+                        <svg viewBox="0 0 640 480" class="w-5 h-3.5 object-cover rounded-sm shadow-sm">
+                          <rect width="640" height="480" fill="#B22234"/>
+                          <path d="M0 37h640M0 111h640M0 185h640M0 259h640M0 333h640M0 407h640" stroke="#FFF" stroke-width="37"/>
+                          <rect width="260" height="260" fill="#3C3B6E"/>
+                          <g fill="#FFF">
+                            <g id="s18">
+                              <g id="s9">
+                                <g id="s5">
+                                  <g id="s4">
+                                    <path id="s" d="M24.7 12l5.7-17.6L36 12l-15-10.8 17.6 5.7z" transform="translate(20 25) scale(0.6)"/>
+                                    <use xlink:href="#s" x="42"/>
+                                    <use xlink:href="#s" x="84"/>
+                                    <use xlink:href="#s" x="126"/>
+                                  </g>
+                                  <use xlink:href="#s" x="168"/>
+                                </g>
+                                <use xlink:href="#s4" x="21" y="36"/>
+                                <use xlink:href="#s5" y="72"/>
+                              </g>
+                              <use xlink:href="#s9" y="144"/>
+                            </g>
+                            <use xlink:href="#s18" y="72"/>
+                            <use xlink:href="#s5" y="144"/>
+                            <use xlink:href="#s4" x="21" y="180"/>
+                          </g>
+                        </svg>
+                        <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">United States</span>
+                      </div>
+                    </div>
+                    
+                    <!-- BF Address -->
+                    <div>
+                      <div class="flex items-center gap-2">
+                        <svg viewBox="0 0 900 600" class="w-5 h-3.5 object-cover rounded-sm shadow-sm">
+                          <rect width="900" height="300" y="0" fill="#EF3340"/>
+                          <rect width="900" height="300" y="300" fill="#009739"/>
+                          <g transform="translate(450,300)" fill="#FCD116">
+                            <g id="c">
+                              <path id="t" d="M0-100V0h50" transform="rotate(18 0,-100)" />
+                              <use xlink:href="#t" transform="scale(-1,1)"/>
+                            </g>
+                            <use xlink:href="#c" transform="rotate(72)"/>
+                            <use xlink:href="#c" transform="rotate(144)"/>
+                            <use xlink:href="#c" transform="rotate(216)"/>
+                            <use xlink:href="#c" transform="rotate(288)"/>
+                          </g>
+                          <polygon points="450,200 479,290 573,290 497,345 526,435 450,380 374,435 403,345 327,290 421,290" fill="#FCD116"/>
+                        </svg>
+                        <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">Burkina Faso</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               
@@ -132,10 +185,17 @@
                 </div>
                 <div>
                   <h4 class="text-gray-900 font-sans font-bold text-lg mb-1">Phone</h4>
-                  <p class="text-gray-600 font-sans text-base leading-relaxed">
-                    +1 405 589 0915<br/>
-                    +226 67 18 24 38
-                  </p>
+                  <div class="space-y-1">
+                    <a href="tel:+14055890915" class="block text-gray-600 font-sans text-base hover:text-primary-orange transition-colors">
+                      +1 405 589 0915
+                    </a>
+                    <a href="tel:+22675434545" class="block text-gray-600 font-sans text-base hover:text-primary-orange transition-colors">
+                      +226 75 43 45 45
+                    </a>
+                    <a href="tel:+22667182438" class="block text-gray-600 font-sans text-base hover:text-primary-orange transition-colors">
+                      +226 67 18 24 38
+                    </a>
+                  </div>
                 </div>
               </div>
               
