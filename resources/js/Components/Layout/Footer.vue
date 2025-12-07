@@ -34,7 +34,7 @@
 
         <!-- Quick Links -->
         <div>
-          <h3 class="text-xl font-display font-bold mb-6 text-white">Quick Links</h3>
+          <h3 class="text-xl font-display font-bold mb-6 text-white">{{ $t('footer.quickLinks') }}</h3>
           <ul class="space-y-3">
             <li v-for="item in navItems" :key="item.href">
               <Link 
@@ -64,7 +64,7 @@
                     <path d="M0 37h640M0 111h640M0 185h640M0 259h640M0 333h640M0 407h640" stroke="#FFF" stroke-width="37"/>
                     <rect width="260" height="260" fill="#3C3B6E"/>
                   </svg>
-                  <span class="text-sm">United States</span>
+                  <span class="text-sm">{{ $t('home.contact.info.unitedStates') }}</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <svg viewBox="0 0 900 600" class="w-5 h-3.5 object-cover rounded-sm shadow-sm">
@@ -72,7 +72,7 @@
                     <rect width="900" height="300" y="300" fill="#009739"/>
                     <polygon points="450,200 479,290 573,290 497,345 526,435 450,380 374,435 403,345 327,290 421,290" fill="#FCD116"/>
                   </svg>
-                  <span class="text-sm">Burkina Faso</span>
+                  <span class="text-sm">{{ $t('home.contact.info.burkinaFaso') }}</span>
                 </div>
               </div>
             </li>

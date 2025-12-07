@@ -1,8 +1,9 @@
 <script setup>
 import { ref } from 'vue';
-import { router } from '@inertiajs/vue3';
+import { router, Link } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { useDate } from '@/composables/useDate';
+import { Eye, Check, X, Trash2 } from 'lucide-vue-next';
 
 const { formatShortDate } = useDate();
 
@@ -283,24 +284,34 @@ const formatDate = (date) => {
 
               <!-- Actions -->
               <div class="flex gap-2">
+                <Link
+                  :href="`/admin/testimonials/${testimonial.id}`"
+                  class="px-4 py-2 text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors inline-flex items-center"
+                >
+                  <Eye :size="16" class="mr-1.5" />
+                  {{ $t('testimonials.viewDetails') }}
+                </Link>
                 <button
                   v-if="testimonial.status !== 'approved'"
                   @click="approve(testimonial.id)"
-                  class="px-4 py-2 text-sm font-medium text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg transition-colors"
+                  class="px-4 py-2 text-sm font-medium text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg transition-colors inline-flex items-center"
                 >
-                  ✓ {{ $t('testimonials.approve') }}
+                  <Check :size="16" class="mr-1.5" />
+                  {{ $t('testimonials.approve') }}
                 </button>
                 <button
                   v-if="testimonial.status !== 'rejected'"
                   @click="reject(testimonial.id)"
-                  class="px-4 py-2 text-sm font-medium text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors"
+                  class="px-4 py-2 text-sm font-medium text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors inline-flex items-center"
                 >
-                  ✗ {{ $t('testimonials.reject') }}
+                  <X :size="16" class="mr-1.5" />
+                  {{ $t('testimonials.reject') }}
                 </button>
                 <button
                   @click="confirmDelete(testimonial.id)"
-                  class="px-4 py-2 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg transition-colors"
+                  class="px-4 py-2 text-sm font-medium text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors inline-flex items-center"
                 >
+                  <Trash2 :size="16" class="mr-1.5" />
                   {{ $t('testimonials.delete') }}
                 </button>
               </div>

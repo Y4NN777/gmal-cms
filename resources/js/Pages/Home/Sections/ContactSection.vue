@@ -11,18 +11,17 @@
         <div class="flex items-center justify-center gap-4 mb-6">
           <div class="h-0.5 w-12 bg-primary-orange"></div>
           <span class="text-primary-orange font-sans font-bold text-sm uppercase tracking-[0.2em]">
-            Get In Touch
+            {{ $t('home.contact.sectionLabel') }}
           </span>
           <div class="h-0.5 w-12 bg-primary-orange"></div>
         </div>
         
-        <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-[1.1] mb-6">
-          Let's Make a <span class="text-primary-orange">Difference</span> Together
-        </h2>
+        <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-[1.1] mb-6" v-html="$t('home.contact.title')">
+          </h2>
         
         <p class="text-gray-600 font-sans text-lg leading-relaxed">
-          Have questions or want to get involved? We'd love to hear from you.
-        </p>
+            {{ $t('home.contact.description') }}
+          </p>
       </div>
       
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 max-w-7xl mx-auto">
@@ -32,21 +31,21 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
                 <label class="block text-gray-700 font-sans font-bold text-sm uppercase tracking-wide">
-                  First Name
+                  {{ $t('home.contact.form.firstName') }}
                 </label>
                 <input 
                   type="text" 
-                  placeholder="John" 
+                  :placeholder="$t('home.contact.form.placeholders.firstName')" 
                   class="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-orange/20 focus:border-primary-orange transition-all duration-300"
                 />
               </div>
               <div class="space-y-2">
                 <label class="block text-gray-700 font-sans font-bold text-sm uppercase tracking-wide">
-                  Last Name
+                  {{ $t('home.contact.form.lastName') }}
                 </label>
                 <input 
                   type="text" 
-                  placeholder="Doe" 
+                  :placeholder="$t('home.contact.form.placeholders.lastName')" 
                   class="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-orange/20 focus:border-primary-orange transition-all duration-300"
                 />
               </div>
@@ -55,21 +54,21 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
                 <label class="block text-gray-700 font-sans font-bold text-sm uppercase tracking-wide">
-                  Email
+                  {{ $t('home.contact.form.email') }}
                 </label>
                 <input 
                   type="email" 
-                  placeholder="john@example.com" 
+                  :placeholder="$t('home.contact.form.placeholders.email')" 
                   class="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-orange/20 focus:border-primary-orange transition-all duration-300"
                 />
               </div>
               <div class="space-y-2">
                 <label class="block text-gray-700 font-sans font-bold text-sm uppercase tracking-wide">
-                  Phone
+                  {{ $t('home.contact.form.phone') }}
                 </label>
                 <input 
                   type="tel" 
-                  placeholder="+1 (555) 000-0000" 
+                  :placeholder="$t('home.contact.form.placeholders.phone')" 
                   class="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-orange/20 focus:border-primary-orange transition-all duration-300"
                 />
               </div>
@@ -77,11 +76,11 @@
             
             <div class="space-y-2">
               <label class="block text-gray-700 font-sans font-bold text-sm uppercase tracking-wide">
-                Message
+                {{ $t('home.contact.form.message') }}
               </label>
               <textarea 
                 rows="5" 
-                placeholder="Tell us how you'd like to help or what questions you have..." 
+                :placeholder="$t('home.contact.form.placeholders.message')" 
                 class="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-orange/20 focus:border-primary-orange transition-all duration-300 resize-none"
               ></textarea>
             </div>
@@ -90,7 +89,7 @@
               type="submit" 
               class="w-full py-5 bg-gradient-to-r from-primary-orange to-orange-600 text-white rounded-xl font-sans font-bold text-lg uppercase tracking-wide shadow-lg hover:shadow-2xl hover:shadow-orange-500/30 transition-all duration-300 transform hover:-translate-y-1"
             >
-              Send Message
+              {{ $t('home.contact.form.sendMessage') }}
             </button>
           </form>
         </div>
@@ -100,10 +99,10 @@
           <!-- Address Card -->
           <div class="bg-gray-50 rounded-[2rem] p-10 border border-gray-100">
             <h3 class="text-gray-900 font-display font-bold text-3xl mb-6">
-              Reach us
+              {{ $t('home.contact.info.reachUs') }}
             </h3>
             <p class="text-gray-600 font-sans text-base leading-relaxed mb-10">
-              Visit us or reach out through any of these channels. We're here to answer your questions and help you make an impact.
+              {{ $t('home.contact.info.reachUsDescription') }}
             </p>
             
             <div class="space-y-8">
@@ -116,7 +115,7 @@
                   </svg>
                 </div>
                 <div>
-                  <h4 class="text-gray-900 font-sans font-bold text-lg mb-3">Location</h4>
+                  <h4 class="text-gray-900 font-sans font-bold text-lg mb-3">{{ $t('home.contact.info.location') }}</h4>
                   <div class="space-y-4">
                     <!-- US Address -->
                     <div>
@@ -147,7 +146,7 @@
                             <use xlink:href="#s4" x="21" y="180"/>
                           </g>
                         </svg>
-                        <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">United States</span>
+                        <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">{{ $t('home.contact.info.unitedStates') }}</span>
                       </div>
                     </div>
                     
@@ -169,7 +168,7 @@
                           </g>
                           <polygon points="450,200 479,290 573,290 497,345 526,435 450,380 374,435 403,345 327,290 421,290" fill="#FCD116"/>
                         </svg>
-                        <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">Burkina Faso</span>
+                        <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">{{ $t('home.contact.info.burkinaFaso') }}</span>
                       </div>
                     </div>
                   </div>
@@ -184,7 +183,7 @@
                   </svg>
                 </div>
                 <div>
-                  <h4 class="text-gray-900 font-sans font-bold text-lg mb-1">Phone</h4>
+                  <h4 class="text-gray-900 font-sans font-bold text-lg mb-1">{{ $t('home.contact.info.phone') }}</h4>
                   <div class="space-y-1">
                     <a href="tel:+14055890915" class="block text-gray-600 font-sans text-base hover:text-primary-orange transition-colors">
                       +1 405 589 0915
@@ -207,7 +206,7 @@
                   </svg>
                 </div>
                 <div>
-                  <h4 class="text-gray-900 font-sans font-bold text-lg mb-1">Email</h4>
+                  <h4 class="text-gray-900 font-sans font-bold text-lg mb-1">{{ $t('home.contact.info.email') }}</h4>
                   <a href="mailto:contactus@givemealift.org" class="text-gray-600 font-sans text-base hover:text-primary-orange transition-colors">
                     contactus@givemealift.org
                   </a>
@@ -221,16 +220,16 @@
             <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl transform group-hover:scale-150 transition-transform duration-700"></div>
             
             <h3 class="relative z-10 font-display font-bold text-2xl text-white mb-4">
-              Ready to Donate?
+              {{ $t('home.contact.cta.title') }}
             </h3>
             <p class="relative z-10 font-sans text-white/90 text-base mb-8 leading-relaxed">
-              Your contribution can change lives today. Every donation makes a real difference.
+              {{ $t('home.contact.cta.description') }}
             </p>
             <Link 
               href="/donate" 
               class="relative z-10 inline-flex items-center gap-2 px-8 py-4 bg-white text-primary-orange rounded-xl font-sans font-bold uppercase tracking-wide hover:bg-gray-50 transition-colors shadow-lg"
             >
-              Donate Now
+              {{ $t('home.contact.cta.button') }}
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
               </svg>

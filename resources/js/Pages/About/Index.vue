@@ -4,9 +4,9 @@
     <section class="relative h-[60vh] min-h-[500px] overflow-hidden bg-[#252A34]">
       <div class="absolute inset-0">
         <img 
-          :src="`${$page.props.assetUrl || ''}/images/about_left.jpg`" 
+          :src="`${$page.props.assetUrl || ''}/images/home.jpg`" 
           alt="About Hero" 
-          class="w-full h-full object-cover opacity-40"
+          class="w-full h-full object-cover opacity-100"
           @error="$event.target.style.display='none'"
         />
       </div>

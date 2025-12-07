@@ -7,6 +7,9 @@ import { createI18n } from 'vue-i18n';
 import en from './locales/en.json';
 import fr from './locales/fr.json';
 
+import { ZiggyVue } from 'ziggy-js';
+import { Ziggy } from './ziggy';
+
 // Get locale from HTML lang attribute or default to 'en'
 const locale = document.documentElement.lang || 'en';
 
@@ -26,6 +29,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(i18n)
+            .use(ZiggyVue, Ziggy)
             .mount(el);
     },
 });

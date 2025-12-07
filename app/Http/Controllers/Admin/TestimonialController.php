@@ -105,7 +105,27 @@ class TestimonialController extends Controller
         $testimonial->load(['avatar', 'approver']);
 
         return Inertia::render('Admin/Testimonials/Show', [
-            'testimonial' => $testimonial,
+            'testimonial' => [
+                'id' => $testimonial->id,
+                'name' => $testimonial->name,
+                'email' => $testimonial->email,
+                'position' => $testimonial->position,
+                'organization' => $testimonial->organization,
+                'content' => $testimonial->content,
+                'rating' => $testimonial->rating,
+                'status' => $testimonial->status,
+                'is_featured' => $testimonial->is_featured,
+                'display_order' => $testimonial->display_order,
+                'avatar' => $testimonial->avatar ? [
+                    'url' => $testimonial->avatar->url,
+                    'alt' => $testimonial->avatar->alt_text
+                ] : null,
+                'approver' => $testimonial->approver ? [
+                    'name' => $testimonial->approver->name
+                ] : null,
+                'created_at' => $testimonial->created_at,
+                'updated_at' => $testimonial->updated_at,
+            ]
         ]);
     }
 
@@ -197,5 +217,21 @@ class TestimonialController extends Controller
             ]);
 
         return back()->with('success', 'Testimonials approved successfully!');
+    }
+
+    /**
+     * Toggle the featured status of a testimonial.
+     */
+    public function toggleFeature(Testimonial $testimonial)
+    {
+        $testimonial->update([
+            'is_featured' => !$testimonial->is_featured,
+        ]);
+
+        $message = $testimonial->is_featured 
+            ? 'Testimonial featured successfully!' 
+            : 'Testimonial unfeatured successfully!';
+
+        return back()->with('success', $message);
     }
 }

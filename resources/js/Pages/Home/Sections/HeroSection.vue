@@ -22,7 +22,7 @@
         </div>
         
         <!-- Mixing Layer Effect -->
-        <div class="absolute inset-0 bg-[#252A34] mix-blend-multiply opacity-40 transition-opacity duration-700 group-hover:opacity-80"></div>
+        <div class="absolute inset-0 bg-[#252A34] mix-blend-multiply opacity-40 transition-opacity duration-700 group-hover:opacity-60"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-[#252A34] via-transparent to-[#252A34]/30 mix-blend-soft-light"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-[#EE9446]/30 to-transparent mix-blend-overlay"></div>
         
@@ -58,14 +58,14 @@
                 href="/donate" 
                 class="px-10 py-4 bg-[#EE9446] hover:bg-[#E17111] text-white rounded-full font-sans font-bold text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-[#EE9446]/30"
               >
-                Donate Now
+                {{ $t('home.hero.donateNow') }}
               </Link>
               
-              <Link 
+              <Link opacity
                 href="/about" 
                 class="px-10 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-[#252A34] text-white rounded-full font-sans font-bold text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1"
               >
-                Learn More
+                {{ $t('home.hero.learnMore') }}
               </Link>
             </div>
           </div>
@@ -79,6 +79,8 @@
 import { Link, usePage } from '@inertiajs/vue3';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -89,27 +91,28 @@ import 'swiper/css/pagination';
 const modules = [Autoplay, EffectFade, Navigation, Pagination];
 const page = usePage();
 const assetUrl = page.props.assetUrl || '';
+const { t } = useI18n();
 
-const slides = [
+const slides = computed(() => [
   {
-    image: `${assetUrl}/images/home.jpg`, // Correct original image
-    subtitle: 'Give Hope of brighter future',
-    title: 'Building a Future for <span class="text-[#EE9446]">Every Child</span>',
-    description: 'At Give Me A Lift, we believe that every child in Burkina Faso deserves the chance to learn, grow, and thrive.'
+    image: `${assetUrl}/images/home.jpg`,
+    subtitle: t('home.hero.slides.1.subtitle'),
+    title: t('home.hero.slides.1.title'),
+    description: t('home.hero.slides.1.description')
   },
   {
-    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1600&auto=format&fit=crop', // African community/environment
-    subtitle: 'Empowering Communities',
-    title: 'Supporting Families in <span class="text-[#EE9446]">Burkina Faso</span>',
-    description: 'Join our mission to provide essential resources and support to those who need it most.'
+    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1600&auto=format&fit=crop',
+    subtitle: t('home.hero.slides.2.subtitle'),
+    title: t('home.hero.slides.2.title'),
+    description: t('home.hero.slides.2.description')
   },
   {
-    image: 'https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=1600&auto=format&fit=crop', // Working together/hands
-    subtitle: 'Make A Difference',
-    title: 'Your Support Creates <span class="text-[#EE9446]">Lasting Change</span>',
-    description: 'Every contribution helps us build schools, provide clean water, and support sustainable development.'
+    image: 'https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=1600&auto=format&fit=crop',
+    subtitle: t('home.hero.slides.3.subtitle'),
+    title: t('home.hero.slides.3.title'),
+    description: t('home.hero.slides.3.description')
   }
-];
+]);
 </script>
 
 <style scoped>

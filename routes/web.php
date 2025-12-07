@@ -86,6 +86,7 @@ Route::get('/events/{slug}', function (string $slug) {
 Route::get('/about', fn() => Inertia::render('About/Index'))->name('about');
 Route::get('/contact', fn() => Inertia::render('Contact/Index'))->name('contact');
 Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store']);
+Route::post('/testimonials', [App\Http\Controllers\PublicTestimonialController::class, 'store'])->name('testimonials.store');
 
 // Donation Pages
 Route::get('/donate', fn() => Inertia::render('Donate/Index'))->name('donate');
@@ -114,10 +115,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
     // Analytics - Protected Admin Only
     Route::prefix('analytics')->name('analytics.')->group(function () {
-        Route::get('/visitors', [App\Http\Controllers\Api\AnalyticsController::class, 'visitors'])->name('visitors');
-        Route::get('/donors', [App\Http\Controllers\Api\AnalyticsController::class, 'donors'])->name('donors');
-        Route::get('/dashboard', [App\Http\Controllers\Api\AnalyticsController::class, 'dashboard'])->name('dashboard');
-        Route::get('/reports', [App\Http\Controllers\Api\AnalyticsController::class, 'reports'])->name('reports');
+        Route::get('/visitors', [App\Http\Controllers\Admin\AnalyticsController::class, 'visitors'])->name('visitors');
+        Route::get('/donors', [App\Http\Controllers\Admin\AnalyticsController::class, 'donors'])->name('donors');
+        Route::get('/dashboard', [App\Http\Controllers\Admin\AnalyticsController::class, 'dashboard'])->name('dashboard');
+        Route::get('/reports', [App\Http\Controllers\Admin\AnalyticsController::class, 'reports'])->name('reports');
     });
     
     // Events Management
@@ -129,6 +130,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::post('testimonials/{testimonial}/approve', [App\Http\Controllers\Admin\TestimonialController::class, 'approve'])->name('testimonials.approve');
     Route::post('testimonials/{testimonial}/reject', [App\Http\Controllers\Admin\TestimonialController::class, 'reject'])->name('testimonials.reject');
     Route::post('testimonials/bulk-approve', [App\Http\Controllers\Admin\TestimonialController::class, 'bulkApprove'])->name('testimonials.bulk-approve');
+    Route::post('testimonials/{testimonial}/toggle-feature', [App\Http\Controllers\Admin\TestimonialController::class, 'toggleFeature'])->name('testimonials.toggle-feature');
     
     // Media Library Management
     Route::get('media/list', [App\Http\Controllers\Admin\MediaController::class, 'list'])->name('media.list'); // For ImagePicker component

@@ -5,7 +5,7 @@
     <MissionSection />
     <StoriesSection />
     <GallerySection />
-    <TestimonialsSection />
+    <TestimonialsSection :testimonials="testimonials" />
     <ContactSection />
   </AppLayout>
 </template>
@@ -19,5 +19,12 @@ import StoriesSection from './Sections/StoriesSection.vue';
 import GallerySection from './Sections/GallerySection.vue';
 import TestimonialsSection from './Sections/TestimonialsSection.vue';
 import ContactSection from './Sections/ContactSection.vue';
+
+defineProps({
+  featuredEvents: Array,
+  testimonials: Array,
+  recentGalleryImages: Array,
+  stats: Object,
+});
 </script>
 

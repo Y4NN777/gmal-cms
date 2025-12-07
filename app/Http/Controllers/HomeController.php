@@ -49,7 +49,7 @@ class HomeController extends Controller
             ->approved()
             ->featured()
             ->ordered()
-            ->take(3)
+            ->take(7)
             ->get()
             ->map(function ($testimonial) {
                 return [

@@ -29,8 +29,8 @@
                 </svg>
               </div>
               <div>
-                <div class="text-4xl font-bold text-[#252A34] font-display">Many</div>
-                <div class="text-sm text-[#555555] font-sans font-medium uppercase tracking-wide mt-1">Lives Impacted</div>
+                <div class="text-4xl font-bold text-[#252A34] font-display">{{ $t('home.about.many') }}</div>
+                <div class="text-sm text-[#555555] font-sans font-medium uppercase tracking-wide mt-1">{{ $t('home.about.livesImpacted') }}</div>
               </div>
             </div>
           </div>
@@ -42,18 +42,17 @@
           <div class="flex items-center gap-4 mb-6">
             <div class="h-0.5 w-12 bg-[#EE9446]"></div>
             <span class="text-[#EE9446] font-sans font-bold text-sm uppercase tracking-[0.2em]">
-              About Us
+              {{ $t('home.about.sectionLabel') }}
             </span>
           </div>
           
           <!-- Heading -->
-          <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-[56px] text-[#252A34] leading-[1.2] mb-8">
-            Your Support is <span class="text-[#EE9446]">Really</span> Powerful
+          <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-[56px] text-[#252A34] leading-[1.2] mb-8" v-html="$t('home.about.title')">
           </h2>
           
           <!-- Description -->
           <p class="text-[#555555] font-sans text-lg leading-relaxed mb-10">
-            At Give Me A Lift, we believe that everyone deserves the chance to learn, grow, and thrive. Founded in August 2017 in Oklahoma City, we are a 501(c)(3) non-profit organization dedicated to empowering education, improving health, and providing shelter for communities in Burkina Faso.
+            {{ $t('home.about.description') }}
           </p>
           
           <!-- Key Points -->
@@ -65,8 +64,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="font-display font-bold text-xl text-[#252A34] mb-2">100% Direct Impact</h3>
-                <p class="text-[#555555] font-sans leading-relaxed">Every dollar goes directly to those in need</p>
+                <h3 class="font-display font-bold text-xl text-[#252A34] mb-2">{{ $t('home.about.points.directImpact.title') }}</h3>
+                <p class="text-[#555555] font-sans leading-relaxed">{{ $t('home.about.points.directImpact.description') }}</p>
               </div>
             </div>
             
@@ -77,8 +76,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="font-display font-bold text-xl text-[#252A34] mb-2">Education First</h3>
-                <p class="text-[#555555] font-sans leading-relaxed">Empowering children through quality education</p>
+                <h3 class="font-display font-bold text-xl text-[#252A34] mb-2">{{ $t('home.about.points.educationFirst.title') }}</h3>
+                <p class="text-[#555555] font-sans leading-relaxed">{{ $t('home.about.points.educationFirst.description') }}</p>
               </div>
             </div>
             
@@ -89,8 +88,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="font-display font-bold text-xl text-[#252A34] mb-2">Community Care</h3>
-                <p class="text-[#555555] font-sans leading-relaxed">Building sustainable futures together</p>
+                <h3 class="font-display font-bold text-xl text-[#252A34] mb-2">{{ $t('home.about.points.communityCare.title') }}</h3>
+                <p class="text-[#555555] font-sans leading-relaxed">{{ $t('home.about.points.communityCare.description') }}</p>
               </div>
             </div>
           </div>
@@ -100,7 +99,7 @@
             href="/about" 
             class="inline-flex items-center gap-3 px-8 py-4 bg-[#EE9446] hover:bg-[#E17111] text-white rounded-full font-sans font-bold uppercase tracking-widest shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
           >
-            Learn More About Us
+            {{ $t('home.about.learnMoreButton') }}
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>

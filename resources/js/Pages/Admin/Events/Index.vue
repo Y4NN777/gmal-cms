@@ -5,6 +5,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { useCategory } from '@/composables/useCategory';
 import { useDate } from '@/composables/useDate';
 import { useStatus } from '@/composables/useStatus';
+import { Eye, Edit, Trash2 } from 'lucide-vue-next';
 
 const { translateCategory } = useCategory();
 const { formatShortDate } = useDate();
@@ -225,20 +226,23 @@ const formatDate = (date) => {
               <div class="flex gap-2 mt-3">
                 <button
                   @click="viewEvent(event.id)"
-                  class="px-3 py-1.5 text-sm text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors"
+                  class="px-3 py-1.5 text-sm text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors inline-flex items-center"
                 >
+                  <Eye :size="16" class="mr-1.5" />
                   {{ $t('admin.eventManagement.view') }}
                 </button>
                 <button
                   @click="editEvent(event.id)"
-                  class="px-3 py-1.5 text-sm text-orange-700 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors"
+                  class="px-3 py-1.5 text-sm text-orange-700 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors inline-flex items-center"
                 >
+                  <Edit :size="16" class="mr-1.5" />
                   {{ $t('admin.eventManagement.edit') }}
                 </button>
                 <button
                   @click="deleteEvent(event.id)"
-                  class="px-3 py-1.5 text-sm text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors"
+                  class="px-3 py-1.5 text-sm text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors inline-flex items-center"
                 >
+                  <Trash2 :size="16" class="mr-1.5" />
                   {{ $t('admin.eventManagement.delete') }}
                 </button>
               </div>

@@ -24,47 +24,151 @@
   },
   "home": {
     "hero": {
-      "title": "Supporting Communities Through Compassion",
-      "subtitle": "Join us in making a difference. Every contribution helps build a better tomorrow.",
-      "cta": "Get Involved",
-      "viewEvents": "View Events"
-    },
-    "stats": {
-      "donations": "Donations Received",
-      "events": "Events Hosted",
-      "volunteers": "Volunteers Engaged",
-      "communities": "Communities Reached"
+      "donateNow": "Donate Now",
+      "learnMore": "Learn More",
+      "slides": {
+        "1": {
+          "subtitle": "Give Hope of brighter future",
+          "title": "Building a Future for <span class=\"text-[#EE9446]\">Every Child</span>",
+          "description": "At Give Me A Lift, we believe that every child in Burkina Faso deserves the chance to learn, grow, and thrive."
+        },
+        "2": {
+          "subtitle": "Empowering Communities",
+          "title": "Supporting Families in <span class=\"text-[#EE9446]\">Burkina Faso</span>",
+          "description": "Join our mission to provide essential resources and support to those who need it most."
+        },
+        "3": {
+          "subtitle": "Make A Difference",
+          "title": "Your Support Creates <span class=\"text-[#EE9446]\">Lasting Change</span>",
+          "description": "Every contribution helps us build schools, provide clean water, and support sustainable development."
+        }
+      }
     },
     "about": {
-      "title": "Who We Are",
-      "description1": "GiveMeALift is a nonprofit organization dedicated to supporting communities through compassionate action and sustainable change. We believe in the power of collective effort to transform lives and create lasting impact.",
-      "description2": "Our mission is to empower individuals and communities by providing resources, organizing impactful events, and fostering a spirit of giving that transcends boundaries.",
-      "learnMore": "Learn More About Us"
+      "sectionLabel": "About Us",
+      "title": "Your Support is <span class=\"text-[#EE9446]\">Really</span> Powerful",
+      "description": "At Give Me A Lift, we believe that everyone deserves the chance to learn, grow, and thrive. Founded in August 2017 in Oklahoma City, we are a 501(c)(3) non-profit organization dedicated to empowering education, improving health, and providing shelter for communities in Burkina Faso.",
+      "livesImpacted": "Lives Impacted",
+      "many": "Many",
+      "points": {
+        "directImpact": {
+          "title": "100% Direct Impact",
+          "description": "Every dollar goes directly to those in need"
+        },
+        "educationFirst": {
+          "title": "Education First",
+          "description": "Empowering children through quality education"
+        },
+        "communityCare": {
+          "title": "Community Care",
+          "description": "Building sustainable futures together"
+        }
+      },
+      "learnMoreButton": "Learn More About Us"
     },
-    "events": {
-      "title": "Upcoming Events",
-      "description": "Join us in our upcoming events and be part of the change you want to see in the world.",
-      "viewAll": "View All Events"
+    "mission": {
+      "sectionLabel": "Our Mission",
+      "title": "Let Us Come Together To Make a <span class=\"text-primary-green\">Difference</span>",
+      "description": "Our mission is to empower children with hope and opportunity through education, healthcare, and sustainable community development. We believe in transparency and direct impact.",
+      "cards": {
+        "mission": {
+          "title": "Our Mission",
+          "description": "To provide sustainable solutions for poverty alleviation through education, healthcare, and community empowerment."
+        },
+        "support": {
+          "title": "Your Support",
+          "description": "100% of your donation goes directly to helping children in need, providing them with education, healthcare, and shelter."
+        }
+      },
+      "progress": {
+        "donationsImpact": "Donations Impact",
+        "educationFocus": "Education Focus"
+      },
+      "overlay": {
+        "title": "Together, we create the future",
+        "points": {
+          "1": "Providing safe shelter and basic necessities",
+          "2": "Ensuring access to quality education",
+          "3": "Building sustainable communities"
+        }
+      }
     },
-    "testimonials": {
-      "title": "What People Say",
-      "description": "Hear from those who have experienced the impact of our work firsthand."
+    "stories": {
+      "sectionLabel": "Our Stories",
+      "title": "Stories of <span class=\"text-primary-orange\">Hope</span> & <span class=\"text-primary-green\">Change</span>",
+      "description": "Real stories from the communities we serve, showcasing the transformative power of collective compassion.",
+      "readMore": "Read More",
+      "viewAll": "View All Stories",
+      "cards": {
+        "1": {
+          "category": "Education",
+          "title": "A Year of Growth & Learning",
+          "description": "Celebrating the academic achievements and personal development of our students."
+        },
+        "2": {
+          "category": "Community",
+          "title": "Christmas 2020",
+          "description": "Bringing joy and celebration to children during the holiday season."
+        },
+        "3": {
+          "category": "Food",
+          "title": "Community Support",
+          "description": "Providing nutritious meals to families in need across our communities."
+        },
+        "4": {
+          "category": "Health",
+          "title": "School Year 2022-2023",
+          "description": "Ensuring health and wellness for every student in our programs."
+        }
+      }
     },
     "gallery": {
-      "title": "Recent Moments",
-      "description": "A glimpse into our community's journey through powerful visuals.",
-      "viewGallery": "View Full Gallery"
+      "sectionLabel": "Our Gallery",
+      "title": "See the <span class=\"text-primary-green\">Impact</span> of Your Support",
+      "description": "Real moments, real people, real change. Every image tells a story of hope and transformation.",
+      "viewFullGallery": "View Full Gallery",
+      "captions": {
+        "communityGathering": "Community Gathering",
+        "holidayCelebration": "Holiday Celebration"
+      }
     },
-    "cta": {
-      "donate": {
-        "title": "Make a Donation",
-        "description": "Your contribution helps us continue our vital work in the community.",
-        "button": "Donate Now"
+    "testimonials": {
+      "sectionLabel": "Testimonials",
+      "title": "What People Say About <span class=\"text-primary-orange\">Our Work</span>",
+      "positionPlaceholder": "e.g. Donor, Volunteer, Community Member"
+    },
+    "contact": {
+      "sectionLabel": "Get In Touch",
+      "title": "Let's Make a <span class=\"text-primary-orange\">Difference</span> Together",
+      "description": "Have questions or want to get involved? We'd love to hear from you.",
+      "form": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phone": "Phone",
+        "message": "Message",
+        "sendMessage": "Send Message",
+        "placeholders": {
+          "firstName": "John",
+          "lastName": "Doe",
+          "email": "john@example.com",
+          "phone": "+1 (555) 000-0000",
+          "message": "Tell us how you'd like to help or what questions you have..."
+        }
       },
-      "volunteer": {
-        "title": "Become a Volunteer",
-        "description": "Join our team and make a direct impact in people's lives.",
-        "button": "Get Involved"
+      "info": {
+        "reachUs": "Reach us",
+        "reachUsDescription": "Visit us or reach out through any of these channels. We're here to answer your questions and help you make an impact.",
+        "location": "Location",
+        "phone": "Phone",
+        "email": "Email",
+        "unitedStates": "United States",
+        "burkinaFaso": "Burkina Faso"
+      },
+      "cta": {
+        "title": "Ready to Donate?",
+        "description": "Your contribution can change lives today. Every donation makes a real difference.",
+        "button": "Donate Now"
       }
     }
   },
@@ -550,7 +654,35 @@
     "testimonialsCount": "testimonials",
     "deleteTitle": "Delete Testimonial",
     "deleteConfirm": "Are you sure you want to delete this testimonial? This action cannot be undone.",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "viewDetails": "View Details",
+    "backToTestimonials": "Back to Testimonials",
+    "editTestimonial": "Edit Testimonial",
+    "testimonialDetails": "Testimonial Details",
+    "message": "Testimonial Message",
+    "displayOrder": "Display Order",
+    "featureOnHomepage": "Feature this testimonial on homepage",
+    "saveChanges": "Save Changes",
+    "unfeature": "Unfeature",
+    "feature": "Feature",
+    "approvedBy": "Approved By",
+    "shareYourStory": "Share Your Story",
+    "shareYourStoryDescription": "We'd love to hear about your experience with us. Your story inspires others to join our cause.",
+    "submitModalTitle": "Share Your Story",
+    "submitModalDescription": "Your testimonial helps us grow and reach more people.",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "position": "Position / Role",
+      "organization": "Organization",
+      "content": "Your Testimonial",
+      "rating": "Rating",
+      "photo": "Your Photo",
+      "submit": "Submit Testimonial",
+      "submitting": "Submitting...",
+      "successTitle": "Thank You!",
+      "successMessage": "Your testimonial has been submitted successfully and is pending approval."
+    }
   },
   "categoryManagement": {
     "title": "Categories Management",

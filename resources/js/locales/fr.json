@@ -24,47 +24,151 @@
   },
   "home": {
     "hero": {
-      "title": "Soutenir les Communautés par la Compassion",
-      "subtitle": "Rejoignez-nous pour faire une différence. Chaque contribution aide à construire un meilleur demain.",
-      "cta": "Impliquez-vous",
-      "viewEvents": "Voir les Événements"
-    },
-    "stats": {
-      "donations": "Dons Reçus",
-      "events": "Événements Organisés",
-      "volunteers": "Bénévoles Engagés",
-      "communities": "Communautés Atteintes"
+      "donateNow": "Faire un Don",
+      "learnMore": "En Savoir Plus",
+      "slides": {
+        "1": {
+          "subtitle": "Donner l'espoir d'un avenir meilleur",
+          "title": "Construire un Avenir pour <span class=\"text-[#EE9446]\">Chaque Enfant</span>",
+          "description": "Chez Give Me A Lift, nous croyons que chaque enfant au Burkina Faso mérite la chance d'apprendre, de grandir et de s'épanouir."
+        },
+        "2": {
+          "subtitle": "Autonomiser les Communautés",
+          "title": "Soutenir les Familles au <span class=\"text-[#EE9446]\">Burkina Faso</span>",
+          "description": "Rejoignez notre mission pour fournir des ressources essentielles et un soutien à ceux qui en ont le plus besoin."
+        },
+        "3": {
+          "subtitle": "Faire la Différence",
+          "title": "Votre Soutien Crée un <span class=\"text-[#EE9446]\">Changement Durable</span>",
+          "description": "Chaque contribution nous aide à construire des écoles, à fournir de l'eau potable et à soutenir le développement durable."
+        }
+      }
     },
     "about": {
-      "title": "Qui Nous Sommes",
-      "description1": "GiveMeALift est une organisation à but non lucratif dédiée au soutien des communautés par l'action compassionnelle et le changement durable. Nous croyons au pouvoir de l'effort collectif pour transformer des vies et créer un impact durable.",
-      "description2": "Notre mission est d'autonomiser les individus et les communautés en fournissant des ressources, en organisant des événements impactants et en favorisant un esprit de don qui transcende les frontières.",
-      "learnMore": "En Savoir Plus sur Nous"
+      "sectionLabel": "À Propos de Nous",
+      "title": "Votre Soutien est <span class=\"text-[#EE9446]\">Vraiment</span> Puissant",
+      "description": "Chez Give Me A Lift, nous croyons que chacun mérite la chance d'apprendre, de grandir et de s'épanouir. Fondée en août 2017 à Oklahoma City, nous sommes une organisation à but non lucratif 501(c)(3) dédiée à l'autonomisation de l'éducation, à l'amélioration de la santé et à la fourniture d'abris pour les communautés au Burkina Faso.",
+      "livesImpacted": "Vies Impactées",
+      "many": "Nombreuses",
+      "points": {
+        "directImpact": {
+          "title": "Impact Direct à 100%",
+          "description": "Chaque dollar va directement à ceux qui en ont besoin"
+        },
+        "educationFirst": {
+          "title": "L'Éducation d'Abord",
+          "description": "Autonomiser les enfants par une éducation de qualité"
+        },
+        "communityCare": {
+          "title": "Soin Communautaire",
+          "description": "Construire des avenirs durables ensemble"
+        }
+      },
+      "learnMoreButton": "En Savoir Plus sur Nous"
     },
-    "events": {
-      "title": "Événements à Venir",
-      "description": "Rejoignez-nous lors de nos événements à venir et faites partie du changement que vous voulez voir dans le monde.",
-      "viewAll": "Voir Tous les Événements"
+    "mission": {
+      "sectionLabel": "Notre Mission",
+      "title": "Unissons-nous pour Faire la <span class=\"text-primary-green\">Différence</span>",
+      "description": "Notre mission est d'autonomiser les enfants avec espoir et opportunité par l'éducation, les soins de santé et le développement communautaire durable. Nous croyons en la transparence et l'impact direct.",
+      "cards": {
+        "mission": {
+          "title": "Notre Mission",
+          "description": "Fournir des solutions durables pour l'allègement de la pauvreté par l'éducation, les soins de santé et l'autonomisation communautaire."
+        },
+        "support": {
+          "title": "Votre Soutien",
+          "description": "100% de votre don va directement à aider les enfants dans le besoin, en leur fournissant éducation, soins de santé et abri."
+        }
+      },
+      "progress": {
+        "donationsImpact": "Impact des Dons",
+        "educationFocus": "Focus sur l'Éducation"
+      },
+      "overlay": {
+        "title": "Ensemble, nous créons l'avenir",
+        "points": {
+          "1": "Fournir un abri sûr et des nécessités de base",
+          "2": "Assurer l'accès à une éducation de qualité",
+          "3": "Construire des communautés durables"
+        }
+      }
     },
-    "testimonials": {
-      "title": "Ce Que Disent les Gens",
-      "description": "Écoutez ceux qui ont vécu l'impact de notre travail de première main."
+    "stories": {
+      "sectionLabel": "Nos Histoires",
+      "title": "Histoires d'<span class=\"text-primary-orange\">Espoir</span> & de <span class=\"text-primary-green\">Changement</span>",
+      "description": "Des histoires réelles des communautés que nous servons, montrant le pouvoir transformateur de la compassion collective.",
+      "readMore": "Lire Plus",
+      "viewAll": "Voir Toutes les Histoires",
+      "cards": {
+        "1": {
+          "category": "Éducation",
+          "title": "Une Année de Croissance & d'Apprentissage",
+          "description": "Célébrer les réussites académiques et le développement personnel de nos étudiants."
+        },
+        "2": {
+          "category": "Communauté",
+          "title": "Noël 2020",
+          "description": "Apporter joie et célébration aux enfants pendant la saison des fêtes."
+        },
+        "3": {
+          "category": "Alimentation",
+          "title": "Soutien Communautaire",
+          "description": "Fournir des repas nutritifs aux familles dans le besoin à travers nos communautés."
+        },
+        "4": {
+          "category": "Santé",
+          "title": "Année Scolaire 2022-2023",
+          "description": "Assurer la santé et le bien-être de chaque étudiant dans nos programmes."
+        }
+      }
     },
     "gallery": {
-      "title": "Moments Récents",
-      "description": "Un aperçu du parcours de notre communauté à travers des visuels puissants.",
-      "viewGallery": "Voir la Galerie Complète"
+      "sectionLabel": "Notre Galerie",
+      "title": "Voir l'<span class=\"text-primary-green\">Impact</span> de Votre Soutien",
+      "description": "Des moments réels, des personnes réelles, un changement réel. Chaque image raconte une histoire d'espoir et de transformation.",
+      "viewFullGallery": "Voir la Galerie Complète",
+      "captions": {
+        "communityGathering": "Rassemblement Communautaire",
+        "holidayCelebration": "Célébration des Fêtes"
+      }
     },
-    "cta": {
-      "donate": {
-        "title": "Faire un Don",
-        "description": "Votre contribution nous aide à poursuivre notre travail vital dans la communauté.",
-        "button": "Donner Maintenant"
+    "testimonials": {
+      "sectionLabel": "Témoignages",
+      "title": "Ce Que les Gens Disent de <span class=\"text-primary-orange\">Notre Travail</span>",
+      "positionPlaceholder": "ex. Donateur, Bénévole, Membre de la Communauté"
+    },
+    "contact": {
+      "sectionLabel": "Contactez-Nous",
+      "title": "Faisons la <span class=\"text-primary-orange\">Différence</span> Ensemble",
+      "description": "Vous avez des questions ou vous voulez vous impliquer ? Nous aimerions vous entendre.",
+      "form": {
+        "firstName": "Prénom",
+        "lastName": "Nom de Famille",
+        "email": "Email",
+        "phone": "Téléphone",
+        "message": "Message",
+        "sendMessage": "Envoyer le Message",
+        "placeholders": {
+          "firstName": "Jean",
+          "lastName": "Dupont",
+          "email": "jean@exemple.com",
+          "phone": "+33 1 23 45 67 89",
+          "message": "Dites-nous comment vous aimeriez aider ou quelles questions vous avez..."
+        }
       },
-      "volunteer": {
-        "title": "Devenir Bénévole",
-        "description": "Rejoignez notre équipe et ayez un impact direct sur la vie des gens.",
-        "button": "Impliquez-vous"
+      "info": {
+        "reachUs": "Nous Joindre",
+        "reachUsDescription": "Visitez-nous ou contactez-nous par l'un de ces canaux. Nous sommes là pour répondre à vos questions et vous aider à faire une différence.",
+        "location": "Localisation",
+        "phone": "Téléphone",
+        "email": "Email",
+        "unitedStates": "États-Unis",
+        "burkinaFaso": "Burkina Faso"
+      },
+      "cta": {
+        "title": "Prêt à Faire un Don ?",
+        "description": "Votre contribution peut changer des vies aujourd'hui. Chaque don fait une vraie différence.",
+        "button": "Faire un Don"
       }
     }
   },
@@ -550,7 +654,35 @@
     "testimonialsCount": "témoignages",
     "deleteTitle": "Supprimer le Témoignage",
     "deleteConfirm": "Êtes-vous sûr de vouloir supprimer ce témoignage ? Cette action ne peut pas être annulée.",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "viewDetails": "Voir les Détails",
+    "backToTestimonials": "Retour aux Témoignages",
+    "editTestimonial": "Modifier le Témoignage",
+    "testimonialDetails": "Détails du Témoignage",
+    "message": "Message du Témoignage",
+    "displayOrder": "Ordre d'Affichage",
+    "featureOnHomepage": "Mettre ce témoignage en vedette sur la page d'accueil",
+    "saveChanges": "Enregistrer les Modifications",
+    "unfeature": "Retirer de la Vedette",
+    "feature": "Mettre en Vedette",
+    "approvedBy": "Approuvé Par",
+    "shareYourStory": "Partagez Votre Histoire",
+    "shareYourStoryDescription": "Nous aimerions entendre parler de votre expérience avec nous. Votre histoire inspire les autres à rejoindre notre cause.",
+    "submitModalTitle": "Partagez Votre Histoire",
+    "submitModalDescription": "Votre témoignage nous aide à grandir et à toucher plus de personnes.",
+    "form": {
+      "name": "Nom Complet",
+      "email": "Adresse E-mail",
+      "position": "Poste / Rôle",
+      "organization": "Organisation",
+      "content": "Votre Témoignage",
+      "rating": "Évaluation",
+      "photo": "Votre Photo",
+      "submit": "Soumettre le Témoignage",
+      "submitting": "Soumission en cours...",
+      "successTitle": "Merci !",
+      "successMessage": "Votre témoignage a été soumis avec succès et est en attente d'approbation."
+    }
   },
   "categoryManagement": {
     "title": "Gestion des Catégories",
