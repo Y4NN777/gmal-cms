@@ -337,6 +337,20 @@
     }
   },
   "gallery": {
+    "hero": {
+      "label": "Our Moments",
+      "title": "Capturing <span class=\"text-[#EE9446]\">Impact</span>",
+      "description": "Explore moments of compassion, community action, and the lives we've touched together."
+    },
+    "allPhotos": "All Photos",
+    "albums": "Albums",
+    "filterByAlbum": "Filter by Album",
+    "photos": "{count} photos",
+    "noImagesFound": "No images found",
+    "noImagesDescription": "Try selecting a different album or check back later.",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {current} of {total}",
     "title": "Photo Gallery",
     "subtitle": "Moments that define our journey",
     "viewAlbum": "View Album",

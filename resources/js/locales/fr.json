@@ -337,10 +337,23 @@
     }
   },
   "gallery": {
-    "title": "Galerie Photo",
+    "hero": {
+      "label": "Nos Moments",
+      "title": "Capturer l'<span class=\"text-[#EE9446]\">Impact</span>",
+      "description": "Explorez les moments de compassion, d'action communautaire et les vies que nous avons touchées ensemble."
+    },
+    "allPhotos": "Toutes les Photos",
+    "albums": "Albums",
+    "filterByAlbum": "Filtrer par Album",
+    "photos": "{count} photos",
+    "noImagesFound": "Aucune image trouvée",
+    "noImagesDescription": "Essayez de sélectionner un album différent ou revenez plus tard.",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "pageOf": "Page {current} sur {total}",
+    "title": "Galerie de Photos",
     "subtitle": "Les moments qui définissent notre parcours",
-    "viewAlbum": "Voir l'Album",
-    "photos": "{count} photos"
+    "viewAlbum": "Voir l'Album"
   },
   "common": {
     "learnMore": "En Savoir Plus",

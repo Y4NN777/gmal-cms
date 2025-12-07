@@ -16,21 +16,21 @@
         <div class="flex items-center gap-3 mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
           <div class="h-px w-12 bg-[#EE9446]"></div>
           <span class="text-[#EE9446] font-sans font-bold text-sm uppercase tracking-[0.2em]">
-            Our Moments
+            {{ $t('gallery.hero.label') }}
           </span>
           <div class="h-px w-12 bg-[#EE9446]"></div>
         </div>
         <h1 
           class="text-white font-display font-bold text-5xl md:text-7xl leading-tight mb-6 opacity-0 animate-fade-in-up"
           style="animation-delay: 0.4s; animation-fill-mode: forwards;"
+          v-html="$t('gallery.hero.title')"
         >
-          Capturing <span class="text-[#EE9446]">Impact</span>
         </h1>
         <p 
           class="text-gray-300 font-sans text-lg md:text-xl leading-relaxed max-w-2xl opacity-0 animate-fade-in-up"
           style="animation-delay: 0.6s; animation-fill-mode: forwards;"
         >
-          Explore moments of compassion, community action, and the lives we've touched together.
+          {{ $t('gallery.hero.description') }}
         </p>
       </div>
     </section>
@@ -45,14 +45,14 @@
               class="font-display font-bold text-lg transition-colors relative"
               :class="!selectedAlbum ? 'text-[#EE9446]' : 'text-gray-500 hover:text-[#252A34]'"
             >
-              All Photos
+              {{ $t('gallery.allPhotos') }}
               <span v-if="!selectedAlbum" class="absolute -bottom-6 left-0 w-full h-1 bg-[#EE9446] rounded-t-full"></span>
             </Link>
             <Link 
               href="/gallery/albums" 
               class="font-display font-bold text-lg text-gray-500 hover:text-[#252A34] transition-colors"
             >
-              Albums
+              {{ $t('gallery.albums') }}
             </Link>
           </div>
 
@@ -63,7 +63,7 @@
                 @change="filterByAlbum"
                 class="appearance-none pl-4 pr-10 py-2 bg-gray-50 border border-gray-200 rounded-lg text-[#252A34] font-sans font-medium focus:outline-none focus:ring-2 focus:ring-[#EE9446] focus:border-transparent cursor-pointer"
               >
-                <option value="">Filter by Album</option>
+                <option value="">{{ $t('gallery.filterByAlbum') }}</option>
                 <option v-for="album in albums" :key="album.id" :value="album.slug">
                   {{ album.title }} ({{ album.images_count }})
                 </option>
@@ -73,7 +73,7 @@
               </div>
             </div>
 
-            <span class="text-gray-400 font-sans text-sm">{{ images.total }} photos</span>
+            <span class="text-gray-400 font-sans text-sm">{{ $t('gallery.photos', { count: images.total }) }}</span>
           </div>
         </div>
       </div>
@@ -120,8 +120,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-[#252A34] mb-2">No images found</h3>
-          <p class="text-gray-500">Try selecting a different album or check back later.</p>
+          <h3 class="text-xl font-bold text-[#252A34] mb-2">{{ $t('gallery.noImagesFound') }}</h3>
+          <p class="text-gray-500">{{ $t('gallery.noImagesDescription') }}</p>
         </div>
 
         <!-- Pagination -->
@@ -131,11 +131,11 @@
             @click="loadPage(images.current_page - 1)"
             class="px-6 py-3 bg-white border border-gray-200 rounded-full text-[#252A34] font-medium hover:bg-gray-50 hover:border-[#EE9446] transition-all duration-300"
           >
-            Previous
+            {{ $t('gallery.previous') }}
           </button>
           
           <span class="px-6 py-3 text-gray-500 font-sans">
-            Page {{ images.current_page }} of {{ images.last_page }}
+            {{ $t('gallery.pageOf', { current: images.current_page, total: images.last_page }) }}
           </span>
           
           <button
@@ -143,7 +143,7 @@
             @click="loadPage(images.current_page + 1)"
             class="px-6 py-3 bg-white border border-gray-200 rounded-full text-[#252A34] font-medium hover:bg-gray-50 hover:border-[#EE9446] transition-all duration-300"
           >
-            Next
+            {{ $t('gallery.next') }}
           </button>
         </div>
       </div>

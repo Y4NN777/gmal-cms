@@ -1,12 +1,12 @@
 <template>
   <AppLayout>
     <!-- Hero Section -->
-    <section class="relative h-[60vh] min-h-[500px] overflow-hidden bg-[#252A34]">
+    <section class="relative h-[50vh] min-h-[500px] overflow-hidden bg-[#252A34]">
       <div class="absolute inset-0">
         <img 
           :src="`${$page.props.assetUrl || ''}/images/home.jpg`" 
           alt="About Hero" 
-          class="w-full h-full object-cover opacity-100"
+          class="w-full h-full object-cover opacity-40"
           @error="$event.target.style.display='none'"
         />
       </div>
