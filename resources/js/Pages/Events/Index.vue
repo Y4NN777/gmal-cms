@@ -49,21 +49,21 @@ const goToEvent = (slug) => {
         <div class="flex items-center gap-3 mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
           <div class="h-px w-12 bg-[#EE9446]"></div>
           <span class="text-[#EE9446] font-sans font-bold text-sm uppercase tracking-[0.2em]">
-            Upcoming Events
+            {{ $t('events.hero.label') }}
           </span>
           <div class="h-px w-12 bg-[#EE9446]"></div>
         </div>
         <h1 
           class="text-white font-display font-bold text-5xl md:text-7xl leading-tight mb-6 opacity-0 animate-fade-in-up"
           style="animation-delay: 0.4s; animation-fill-mode: forwards;"
+          v-html="$t('events.hero.title')"
         >
-          Join Us in <span class="text-[#EE9446]">Action</span>
         </h1>
         <p 
           class="text-gray-300 font-sans text-lg md:text-xl leading-relaxed max-w-2xl opacity-0 animate-fade-in-up"
           style="animation-delay: 0.6s; animation-fill-mode: forwards;"
         >
-          Participate in our upcoming events and help us make a difference in the community.
+          {{ $t('events.hero.description') }}
         </p>
       </div>
     </section>
@@ -89,7 +89,7 @@ const goToEvent = (slug) => {
             @click="selectedCategory = null"
             class="px-6 py-3 rounded-full font-sans font-medium bg-gray-200 text-gray-600 hover:bg-gray-300 transition-all duration-300"
           >
-            Clear Filters
+            {{ $t('events.clearFilters') }}
           </button>
         </div>
 
@@ -152,7 +152,7 @@ const goToEvent = (slug) => {
                   {{ new Date(event.event_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
                 </div>
                 <span class="text-[#EE9446] font-bold text-sm uppercase tracking-wide group-hover:translate-x-1 transition-transform duration-300 flex items-center">
-                  Learn More
+                  {{ $t('events.learnMore') }}
                   <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 </span>
               </div>
@@ -167,8 +167,8 @@ const goToEvent = (slug) => {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">No Events Found</h3>
-          <p class="text-gray-500">We couldn't find any events matching your criteria.</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $t('events.noEventsFound') }}</h3>
+          <p class="text-gray-500">{{ $t('events.noEventsDescription') }}</p>
         </div>
       </div>
     </section>

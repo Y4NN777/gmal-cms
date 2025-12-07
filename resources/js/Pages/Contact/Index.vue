@@ -16,21 +16,21 @@
         <div class="flex items-center gap-3 mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
           <div class="h-px w-12 bg-[#EE9446]"></div>
           <span class="text-[#EE9446] font-sans font-bold text-sm uppercase tracking-[0.2em]">
-            Get In Touch
+            {{ $t('contact.hero.label') }}
           </span>
           <div class="h-px w-12 bg-[#EE9446]"></div>
         </div>
         <h1 
           class="text-white font-display font-bold text-5xl md:text-7xl leading-tight mb-6 opacity-0 animate-fade-in-up"
           style="animation-delay: 0.4s; animation-fill-mode: forwards;"
+          v-html="$t('contact.hero.title')"
         >
-          We'd Love to <span class="text-[#EE9446]">Hear From You</span>
         </h1>
         <p 
           class="text-gray-300 font-sans text-lg md:text-xl leading-relaxed max-w-2xl opacity-0 animate-fade-in-up"
           style="animation-delay: 0.6s; animation-fill-mode: forwards;"
         >
-          Have questions or want to get involved? Reach out to us and let's make a difference together.
+          {{ $t('contact.hero.description') }}
         </p>
       </div>
     </section>

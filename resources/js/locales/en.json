@@ -230,6 +230,15 @@
     }
   },
   "events": {
+    "hero": {
+      "label": "Upcoming Events",
+      "title": "Join Us in <span class=\"text-[#EE9446]\">Action</span>",
+      "description": "Participate in our upcoming events and help us make a difference in the community."
+    },
+    "clearFilters": "Clear Filters",
+    "learnMore": "Learn More",
+    "noEventsFound": "No Events Found",
+    "noEventsDescription": "We couldn't find any events matching your criteria.",
     "title": "Our Events",
     "subtitle": "Join us in making a difference in our community",
     "search": "Search events...",
@@ -287,6 +296,11 @@
     }
   },
   "contact": {
+    "hero": {
+      "label": "Get In Touch",
+      "title": "We'd Love to <span class=\"text-[#EE9446]\">Hear From You</span>",
+      "description": "Have questions or want to get involved? Reach out to us and let's make a difference together."
+    },
     "title": "Contact Us",
     "subtitle": "We'd love to hear from you",
     "form": {
