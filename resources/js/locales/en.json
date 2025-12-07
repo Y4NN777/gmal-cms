@@ -172,6 +172,63 @@
       }
     }
   },
+  "about": {
+    "hero": {
+      "label": "Who We Are",
+      "title": "Empowering Communities Through <span class=\"text-[#EE9446]\">Compassion</span>",
+      "description": "We are dedicated to uplifting underserved communities by providing essential resources, education, and opportunities for a brighter future."
+    },
+    "mission": {
+      "label": "Our Mission",
+      "title": "Building a Foundation for <span class=\"text-[#219D80]\">Success</span>",
+      "description": "To uplift and empower underserved communities by providing essential resources, education, and opportunities. We believe every person deserves access to basic necessities, quality education, and the chance to thrive.",
+      "motto": "To serve is to love.",
+      "mottoLabel": "Our Motto",
+      "points": {
+        "1": "Providing quality education to children in need",
+        "2": "Ensuring access to basic healthcare services",
+        "3": "Empowering communities through sustainable development"
+      }
+    },
+    "vision": {
+      "label": "Our Vision",
+      "title": "A World Where No One is <span class=\"text-[#EE9446]\">Left Behind</span>",
+      "description": "A world where no one is left behind, where communities are self-sufficient, and where compassion drives action. We envision thriving neighborhoods where everyone has the tools to build a better future.",
+      "quote": "We dream of a future where every child has a school to go to, every family has food on the table, and every community has the power to shape its own destiny."
+    },
+    "values": {
+      "title": "Our Core Values",
+      "description": "The principles that guide our every action and decision.",
+      "compassion": {
+        "title": "Compassion",
+        "description": "We lead with empathy and understanding in everything we do."
+      },
+      "community": {
+        "title": "Community",
+        "description": "Together we achieve more than we ever could alone."
+      },
+      "integrity": {
+        "title": "Integrity",
+        "description": "Transparency and honesty in all our actions and operations."
+      },
+      "impact": {
+        "title": "Impact",
+        "description": "Dedicated to making a real, measurable difference."
+      }
+    },
+    "stats": {
+      "familiesHelped": "Families Helped",
+      "communityEvents": "Community Events",
+      "fundsRaised": "Funds Raised",
+      "volunteers": "Volunteers"
+    },
+    "cta": {
+      "title": "Join Our Movement",
+      "description": "Together, we can create lasting change in our communities. Whether you donate, volunteer, or spread the word, every action counts.",
+      "viewEvents": "View Our Events",
+      "getInvolved": "Get Involved"
+    }
+  },
   "events": {
     "title": "Our Events",
     "subtitle": "Join us in making a difference in our community",

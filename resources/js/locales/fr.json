@@ -172,6 +172,63 @@
       }
     }
   },
+  "about": {
+    "hero": {
+      "label": "Qui Nous Sommes",
+      "title": "Autonomiser les Communautés par la <span class=\"text-[#EE9446]\">Compassion</span>",
+      "description": "Nous nous consacrons à l'élévation des communautés mal desservies en fournissant des ressources essentielles, de l'éducation et des opportunités pour un avenir meilleur."
+    },
+    "mission": {
+      "label": "Notre Mission",
+      "title": "Construire une Fondation pour le <span class=\"text-[#219D80]\">Succès</span>",
+      "description": "Élever et autonomiser les communautés mal desservies en fournissant des ressources essentielles, de l'éducation et des opportunités. Nous croyons que chaque personne mérite l'accès aux nécessités de base, à une éducation de qualité et à la chance de s'épanouir.",
+      "motto": "Servir, c'est aimer.",
+      "mottoLabel": "Notre Devise",
+      "points": {
+        "1": "Fournir une éducation de qualité aux enfants dans le besoin",
+        "2": "Assurer l'accès aux services de santé de base",
+        "3": "Autonomiser les communautés par le développement durable"
+      }
+    },
+    "vision": {
+      "label": "Notre Vision",
+      "title": "Un Monde Où Personne n'est <span class=\"text-[#EE9446]\">Laissé Pour Compte</span>",
+      "description": "Un monde où personne n'est laissé pour compte, où les communautés sont autosuffisantes et où la compassion guide l'action. Nous envisageons des quartiers prospères où chacun dispose des outils pour construire un avenir meilleur.",
+      "quote": "Nous rêvons d'un avenir où chaque enfant a une école où aller, chaque famille a de la nourriture sur la table, et chaque communauté a le pouvoir de façonner son propre destin."
+    },
+    "values": {
+      "title": "Nos Valeurs Fondamentales",
+      "description": "Les principes qui guident chacune de nos actions et décisions.",
+      "compassion": {
+        "title": "Compassion",
+        "description": "Nous agissons avec empathie et compréhension dans tout ce que nous faisons."
+      },
+      "community": {
+        "title": "Communauté",
+        "description": "Ensemble, nous accomplissons plus que nous ne pourrions jamais seuls."
+      },
+      "integrity": {
+        "title": "Intégrité",
+        "description": "Transparence et honnêteté dans toutes nos actions et opérations."
+      },
+      "impact": {
+        "title": "Impact",
+        "description": "Dédiés à faire une différence réelle et mesurable."
+      }
+    },
+    "stats": {
+      "familiesHelped": "Familles Aidées",
+      "communityEvents": "Événements Communautaires",
+      "fundsRaised": "Fonds Collectés",
+      "volunteers": "Bénévoles"
+    },
+    "cta": {
+      "title": "Rejoignez Notre Mouvement",
+      "description": "Ensemble, nous pouvons créer un changement durable dans nos communautés. Que vous fassiez un don, que vous soyez bénévole ou que vous passiez le mot, chaque action compte.",
+      "viewEvents": "Voir Nos Événements",
+      "getInvolved": "S'Impliquer"
+    }
+  },
   "events": {
     "title": "Nos Événements",
     "subtitle": "Rejoignez-nous pour faire une différence dans notre communauté",
