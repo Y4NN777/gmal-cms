@@ -353,8 +353,7 @@
     "pageOf": "Page {current} of {total}",
     "title": "Photo Gallery",
     "subtitle": "Moments that define our journey",
-    "viewAlbum": "View Album",
-    "photos": "{count} photos"
+    "viewAlbum": "View Album"
   },
   "common": {
     "learnMore": "Learn More",
