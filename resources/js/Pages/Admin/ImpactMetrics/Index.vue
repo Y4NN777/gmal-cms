@@ -103,11 +103,44 @@
         </div>
       </div>
     </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div v-if="showDeleteModal" class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50" @click="showDeleteModal = false">
+      <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-8" @click.stop>
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900">Delete Impact Metric</h3>
+        </div>
+
+        <p class="text-gray-600 mb-6">
+          Are you sure you want to delete this metric? This action cannot be undone and the metric will be removed from the About page.
+        </p>
+
+        <div class="flex gap-3">
+          <button
+            @click="showDeleteModal = false"
+            class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            @click="confirmDelete"
+            class="flex-1 px-4 py-2 bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg hover:from-red-100 hover:to-red-50 font-medium transition-colors"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
   </AdminLayout>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 
@@ -118,13 +151,31 @@ const props = defineProps({
   }
 });
 
+const showDeleteModal = ref(false);
+const selectedMetricId = ref(null);
+
 const activeMetrics = computed(() => {
   return props.metrics.filter(m => m.is_active);
 });
 
 const deleteMetric = (id) => {
-  if (confirm('Are you sure you want to delete this metric?')) {
-    router.delete(route('admin.impact-metrics.destroy', id));
-  }
+  selectedMetricId.value = id;
+  showDeleteModal.value = true;
+};
+
+const confirmDelete = () => {
+  if (!selectedMetricId.value) return;
+  
+  router.delete(route('admin.impact-metrics.destroy', selectedMetricId.value), {
+    preserveScroll: true,
+    onSuccess: () => {
+      showDeleteModal.value = false;
+      selectedMetricId.value = null;
+    },
+    onError: () => {
+      showDeleteModal.value = false;
+      selectedMetricId.value = null;
+    }
+  });
 };
 </script>

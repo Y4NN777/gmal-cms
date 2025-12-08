@@ -114,6 +114,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('impact-metrics', \App\Http\Controllers\Admin\ImpactMetricController::class);
     Route::post('impact-metrics/reorder', [\App\Http\Controllers\Admin\ImpactMetricController::class, 'updateOrder'])->name('impact-metrics.reorder');
     
+    // Donations
+    Route::get('/donations', [App\Http\Controllers\Admin\DonationController::class, 'index'])->name('donations.index');
+    
     // Analytics
     Route::get('/analytics', [App\Http\Controllers\Admin\AnalyticsController::class, 'index'])->name('analytics.index');
 
