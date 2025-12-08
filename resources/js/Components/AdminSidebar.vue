@@ -6,6 +6,7 @@ import {
   Calendar, 
   MessageSquareQuote, 
   Heart, 
+  BarChart3, 
   Images, 
   Tags, 
   FolderOpen, 
@@ -69,6 +70,14 @@ const logout = () => {
       >
         <Heart :size="20" class="mr-2" />
         {{ $t('admin.donations') }}
+      </a>
+      <a
+        href="/admin/impact-metrics"
+        class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
+        :class="isActive('/admin/impact-metrics') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
+      >
+        <BarChart3 :size="20" class="mr-2" />
+        Impact Metrics
       </a>
       <a
         href="/admin/gallery"
