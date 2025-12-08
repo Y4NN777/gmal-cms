@@ -83,7 +83,7 @@ Route::get('/events/{slug}', function (string $slug) {
     ]);
 })->name('events.show');
 
-Route::get('/about', fn() => Inertia::render('About/Index'))->name('about');
+Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/contact', fn() => Inertia::render('Contact/Index'))->name('contact');
 Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store']);
 Route::post('/testimonials', [App\Http\Controllers\PublicTestimonialController::class, 'store'])->name('testimonials.store');
@@ -110,8 +110,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     // Dashboard
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     
-    // Donations
-    Route::get('/donations', [App\Http\Controllers\Admin\DonationController::class, 'index'])->name('donations.index');
+    // Impact Metrics Management
+    Route::resource('impact-metrics', \App\Http\Controllers\Admin\ImpactMetricController::class);
+    Route::post('impact-metrics/reorder', [\App\Http\Controllers\Admin\ImpactMetricController::class, 'updateOrder'])->name('impact-metrics.reorder');
+    
+    // Analytics
+    Route::get('/analytics', [App\Http\Controllers\Admin\AnalyticsController::class, 'index'])->name('analytics.index');
 
     // Analytics - Protected Admin Only
     Route::prefix('analytics')->name('analytics.')->group(function () {

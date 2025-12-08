@@ -189,21 +189,13 @@
       
       <div class="container mx-auto px-4 relative z-10">
         <div class="grid md:grid-cols-4 gap-12 text-center">
-          <div class="group">
-            <div class="text-5xl md:text-6xl font-display font-bold text-white mb-2 group-hover:text-[#EE9446] transition-colors duration-300">500+</div>
-            <p class="text-gray-400 font-sans uppercase tracking-widest text-sm">{{ $t('about.stats.familiesHelped') }}</p>
-          </div>
-          <div class="group">
-            <div class="text-5xl md:text-6xl font-display font-bold text-white mb-2 group-hover:text-[#219D80] transition-colors duration-300">50+</div>
-            <p class="text-gray-400 font-sans uppercase tracking-widest text-sm">{{ $t('about.stats.communityEvents') }}</p>
-          </div>
-          <div class="group">
-            <div class="text-5xl md:text-6xl font-display font-bold text-white mb-2 group-hover:text-[#EE9446] transition-colors duration-300">$250K+</div>
-            <p class="text-gray-400 font-sans uppercase tracking-widest text-sm">{{ $t('about.stats.fundsRaised') }}</p>
-          </div>
-          <div class="group">
-            <div class="text-5xl md:text-6xl font-display font-bold text-white mb-2 group-hover:text-[#219D80] transition-colors duration-300">1,000+</div>
-            <p class="text-gray-400 font-sans uppercase tracking-widest text-sm">{{ $t('about.stats.volunteers') }}</p>
+          <div v-for="metric in metrics" :key="metric.id" class="group">
+            <div class="text-5xl md:text-6xl font-display font-bold text-white mb-2 group-hover:text-[#EE9446] transition-colors duration-300">
+              {{ metric.value }}
+            </div>
+            <p class="text-gray-400 font-sans uppercase tracking-widest text-sm">
+              {{ $i18n.locale === 'fr' ? metric.label_fr : metric.label_en }}
+            </p>
           </div>
         </div>
       </div>
@@ -244,4 +236,11 @@
 
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+
+defineProps({
+  metrics: {
+    type: Array,
+    default: () => []
+  }
+});
 </script>
