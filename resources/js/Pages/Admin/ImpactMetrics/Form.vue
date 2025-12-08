@@ -22,7 +22,7 @@
                   id="key"
                   v-model="form.key"
                   type="text"
-                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500"
                   :class="{ 'border-red-500': form.errors.key }"
                   required
                   placeholder="e.g., families_helped"
@@ -40,7 +40,7 @@
                   id="value"
                   v-model="form.value"
                   type="text"
-                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500"
                   :class="{ 'border-red-500': form.errors.value }"
                   required
                   placeholder="e.g., 200+, $75K+"
@@ -58,7 +58,7 @@
                   id="label_en"
                   v-model="form.label_en"
                   type="text"
-                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500"
                   :class="{ 'border-red-500': form.errors.label_en }"
                   required
                   placeholder="e.g., Families Helped"
@@ -75,7 +75,7 @@
                   id="label_fr"
                   v-model="form.label_fr"
                   type="text"
-                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500"
                   :class="{ 'border-red-500': form.errors.label_fr }"
                   required
                   placeholder="e.g., Familles Aidées"
@@ -93,7 +93,7 @@
                   v-model.number="form.order"
                   type="number"
                   min="0"
-                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500"
                   :class="{ 'border-red-500': form.errors.order }"
                   required
                 />
@@ -107,7 +107,7 @@
                   <input
                     v-model="form.is_active"
                     type="checkbox"
-                    class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    class="rounded border-gray-300 text-orange-600 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
                   />
                   <span class="ml-2 text-sm text-gray-700">Active (display on About page)</span>
                 </label>
@@ -124,7 +124,7 @@
                 <button
                   type="submit"
                   :disabled="form.processing"
-                  class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition"
+                  class="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-md hover:from-orange-600 hover:to-orange-700 disabled:opacity-50 transition"
                 >
                   {{ form.processing ? 'Saving...' : (metric ? 'Update Metric' : 'Create Metric') }}
                 </button>

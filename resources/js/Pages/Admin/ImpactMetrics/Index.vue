@@ -12,7 +12,7 @@
           </div>
           <Link
             :href="route('admin.impact-metrics.create')"
-            class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150"
+            class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:from-orange-600 hover:to-orange-700 active:from-orange-700 active:to-orange-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150"
           >
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -50,7 +50,7 @@
                       {{ metric.order }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <span class="text-2xl font-bold text-blue-600">{{ metric.value }}</span>
+                      <span class="text-2xl font-bold text-orange-600">{{ metric.value }}</span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {{ metric.label_en }}
@@ -69,7 +69,7 @@
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <Link
                         :href="route('admin.impact-metrics.edit', metric.id)"
-                        class="text-blue-600 hover:text-blue-900 mr-4"
+                        class="text-orange-600 hover:text-orange-900 mr-4"
                       >
                         Edit
                       </Link>
@@ -88,7 +88,7 @@
         </div>
 
         <!-- Preview Section -->
-        <div v-if="metrics.length > 0" class="mt-8 bg-gray-900 rounded-lg p-8">
+        <div v-if="metrics.length > 0" class="mt-8 bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg p-8 shadow-xl">
           <h3 class="text-white text-xl font-bold mb-6 text-center">Preview (as shown on About page)</h3>
           <div class="grid md:grid-cols-4 gap-12 text-center">
             <div v-for="metric in activeMetrics" :key="metric.id" class="group">
