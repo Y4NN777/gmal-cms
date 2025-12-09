@@ -29,6 +29,9 @@ WORKDIR /var/www
 # Copy application files
 COPY . /var/www
 
+# Create .env file from example (Render will override with environment variables)
+RUN cp .env.example .env
+
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
@@ -69,14 +72,25 @@ COPY docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
-# Create startup script
+# Create startup script with error handling
 RUN echo '#!/bin/bash\n\
-php artisan config:cache\n\
-php artisan route:cache\n\
-php artisan view:cache\n\
-php artisan migrate --force\n\
-php artisan storage:link\n\
-/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf' > /start.sh && chmod +x /start.sh
+set -e\n\
+echo "Starting application..."\n\
+\n\
+# Wait for database to be ready\n\
+echo "Waiting for database..."\n\
+sleep 5\n\
+\n\
+# Run Laravel setup commands\n\
+echo "Running artisan commands..."\n\
+php artisan config:cache || { echo "Config cache failed"; exit 1; }\n\
+php artisan route:cache || { echo "Route cache failed"; exit 1; }\n\
+php artisan view:cache || { echo "View cache failed"; exit 1; }\n\
+php artisan migrate --force || { echo "Migration failed"; exit 1; }\n\
+php artisan storage:link || echo "Storage link already exists"\n\
+\n\
+echo "Starting supervisor..."\n\
+exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf' > /start.sh && chmod +x /start.sh
 
 EXPOSE 80
 
