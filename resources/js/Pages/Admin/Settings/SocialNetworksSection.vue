@@ -2,8 +2,8 @@
   <div class="p-6">
     <div class="flex justify-between items-center mb-6">
       <div>
-        <h3 class="text-xl font-semibold text-gray-900">Social Networks</h3>
-        <p class="text-sm text-gray-500 mt-1">Toggle visibility to show/hide networks on your website</p>
+        <h3 class="text-xl font-semibold text-gray-900">{{ t('admin.settingsPage.social.title') }}</h3>
+        <p class="text-sm text-gray-500 mt-1">{{ t('admin.settingsPage.social.description') }}</p>
       </div>
       <button
         type="button"
@@ -13,7 +13,7 @@
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
         </svg>
-        Add Custom Network
+        {{ t('admin.settingsPage.social.addCustom') }}
       </button>
     </div>
     
@@ -37,7 +37,7 @@
                 class="sr-only peer"
               >
               <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-500"></div>
-              <span class="ml-2 text-xs text-gray-500">{{ commonNetworksActive.facebook ? 'Visible' : 'Hidden' }}</span>
+              <span class="ml-2 text-xs text-gray-500">{{ commonNetworksActive.facebook ? t('admin.settingsPage.social.visible') : t('admin.settingsPage.social.hidden') }}</span>
             </label>
           </div>
           <input
@@ -224,6 +224,10 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+
 defineProps({
   commonNetworks: {
     type: Object,

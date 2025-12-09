@@ -52,9 +52,9 @@ class AdminUserSeeder extends Seeder
             ]
         );
 
-        $this->command->info('✅ Admin users created successfully!');
-        $this->command->info('📧 Admin: admin@givemealift.org / password');
-        $this->command->info('📧 Editor: editor@givemealift.org / password');
-        $this->command->info('📧 Viewer: viewer@givemealift.org / password');
+        $this->command->info(' Admin users created successfully!');
+        $this->command->info(' Admin: admin@givemealift.org / password');
+        $this->command->info(' Editor: editor@givemealift.org / password');
+        $this->command->info(' Viewer: viewer@givemealift.org / password');
     }
 }

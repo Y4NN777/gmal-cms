@@ -6,8 +6,8 @@
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="mb-8">
-          <h2 class="text-3xl font-bold text-gray-900">Settings</h2>
-          <p class="mt-2 text-sm text-gray-600">Manage your website settings, social links, and appearance</p>
+          <h2 class="text-3xl font-bold text-gray-900">{{ t('admin.settingsPage.title') }}</h2>
+          <p class="mt-2 text-sm text-gray-600">{{ t('admin.settingsPage.description') }}</p>
         </div>
 
         <!-- Settings Form -->
@@ -15,13 +15,13 @@
           <!-- General Settings -->
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 border-b border-gray-200">
-              <h3 class="text-xl font-semibold text-gray-900 mb-4">General Information</h3>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">{{ t('admin.settingsPage.general.title') }}</h3>
               
               <div class="space-y-6">
                 <!-- Site Name -->
                 <div>
                   <label for="site_name" class="block text-sm font-medium text-gray-700 mb-2">
-                    Site Name <span class="text-red-500">*</span>
+                    {{ t('admin.settingsPage.general.siteName') }} <span class="text-red-500">*</span>
                   </label>
                   <input
                     id="site_name"
@@ -29,21 +29,21 @@
                     type="text"
                     required
                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                    placeholder="Give Me A Lift"
+                    :placeholder="t('admin.settingsPage.general.siteNamePlaceholder')"
                   />
                 </div>
 
                 <!-- Site Description -->
                 <div>
                   <label for="site_description" class="block text-sm font-medium text-gray-700 mb-2">
-                    Site Description
+                    {{ t('admin.settingsPage.general.siteDescription') }}
                   </label>
                   <textarea
                     id="site_description"
                     v-model="form.general.site_description"
                     rows="3"
                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                    placeholder="Empowering communities through education and support"
+                    :placeholder="t('admin.settingsPage.general.siteDescriptionPlaceholder')"
                   ></textarea>
                 </div>
               </div>
@@ -53,22 +53,27 @@
           <!-- Appearance Settings -->
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 border-b border-gray-200">
-              <h3 class="text-xl font-semibold text-gray-900 mb-4">Appearance</h3>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">{{ t('admin.settingsPage.appearance.title') }}</h3>
               
               <div class="space-y-6">
                 <!-- Logo Upload -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2">
-                    Site Logo
+                    {{ t('admin.settingsPage.appearance.siteLogo') }}
                   </label>
                   
                   <!-- Current Logo Preview -->
-                  <div v-if="form.appearance.site_logo" class="mb-4">
-                    <img 
-                      :src="form.appearance.site_logo" 
-                      alt="Current Logo" 
-                      class="h-20 object-contain bg-gray-100 p-2 rounded"
-                    />
+                  <div class="mb-4">
+                    <div class="inline-block bg-gray-100 p-3 rounded-lg">
+                      <img 
+                        :src="form.appearance.site_logo || '/images/favicon.png'" 
+                        alt="Current Logo" 
+                        class="h-16 object-contain"
+                      />
+                    </div>
+                    <p v-if="!form.appearance.site_logo" class="text-xs text-gray-500 mt-2">
+                      Using default favicon. Upload a custom logo above.
+                    </p>
                   </div>
 
                   <!-- Logo Upload Input -->
@@ -85,11 +90,11 @@
                       @click="$refs.logoInput.click()"
                       class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium"
                     >
-                      Choose New Logo
+                      {{ t('admin.settingsPage.appearance.chooseNewLogo') }}
                     </button>
-                    <span class="text-sm text-gray-500">PNG, JPG, SVG (max 2MB)</span>
+                    <span class="text-sm text-gray-500">{{ t('admin.settingsPage.appearance.logoFormat') }}</span>
                   </div>
-                  <p v-if="logoUploading" class="text-sm text-orange-600 mt-2">Uploading...</p>
+                  <p v-if="logoUploading" class="text-sm text-orange-600 mt-2">{{ t('admin.settingsPage.appearance.uploading') }}</p>
                 </div>
               </div>
             </div>
@@ -127,7 +132,7 @@
               :disabled="submitting"
               class="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg hover:from-orange-600 hover:to-orange-700 font-semibold disabled:opacity-50"
             >
-              {{ submitting ? 'Saving...' : 'Save Settings' }}
+              {{ submitting ? t('admin.settingsPage.saving') : t('admin.settingsPage.submit') }}
             </button>
           </div>
         </form>
@@ -139,9 +144,12 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import ContactSection from './ContactSection.vue';
 import SocialNetworksSection from './SocialNetworksSection.vue';
+
+const { t } = useI18n();
 
 const props = defineProps({
   settings: {

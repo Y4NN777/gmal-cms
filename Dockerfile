@@ -88,7 +88,7 @@ php artisan config:cache || { echo "Config cache failed"; exit 1; }\n\
 php artisan route:cache || { echo "Route cache failed"; exit 1; }\n\
 php artisan view:cache || { echo "View cache failed"; exit 1; }\n\
 php artisan migrate --force || { echo "Migration failed"; exit 1; }\n\
-php artisan db:seed --class=AdminUserSeeder --force || echo "Admin seeder skipped"\n\
+php artisan db:seed --class=ProductionDataSeeder --force || echo "Production seeder skipped"\n\
 php artisan storage:link || echo "Storage link already exists"\n\
 \n\
 echo "Starting supervisor..."\n\
