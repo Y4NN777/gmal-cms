@@ -114,6 +114,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('impact-metrics', \App\Http\Controllers\Admin\ImpactMetricController::class);
     Route::post('impact-metrics/reorder', [\App\Http\Controllers\Admin\ImpactMetricController::class, 'updateOrder'])->name('impact-metrics.reorder');
     
+    // Settings Management
+    Route::get('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
+    Route::post('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
+    Route::post('/settings/upload-logo', [\App\Http\Controllers\Admin\SettingController::class, 'uploadLogo'])->name('settings.upload-logo');
+    
     // Donations
     Route::get('/donations', [App\Http\Controllers\Admin\DonationController::class, 'index'])->name('donations.index');
     
