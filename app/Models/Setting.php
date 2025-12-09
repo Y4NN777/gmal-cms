@@ -51,7 +51,10 @@ class Setting extends Model
                 'group' => $group,
             ]
         );
+        
+        // Clear both individual and grouped cache
         Cache::forget("setting_{$key}");
+        Cache::forget('settings_grouped');
     }
 
     /**

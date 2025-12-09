@@ -42,10 +42,10 @@ class SettingController extends Controller
             Setting::set($setting['key'], $setting['value']);
         }
 
+        // Clear all caches to ensure fresh data
         Setting::clearCache();
 
-        return redirect()->route('admin.settings.index')
-            ->with('success', 'Settings updated successfully.');
+        return back()->with('success', 'Settings updated successfully.');
     }
 
     /**
