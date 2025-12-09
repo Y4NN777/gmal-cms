@@ -11,10 +11,10 @@
         <div class="flex items-center">
           <Link href="/" class="flex items-center gap-3 group">
             <div class="h-12 w-12 rounded-xl overflow-hidden flex-shrink-0 shadow-sm group-hover:shadow-md transition-all duration-300">
-              <img :src="logoImg" alt="GiveMeALift" class="h-full w-full object-cover">
+              <img :src="siteLogo" :alt="siteName" class="h-full w-full object-cover">
             </div>
             <span class="text-2xl font-display font-bold text-[#252A34] tracking-tight group-hover:text-[#EE9446] transition-colors">
-              GiveMeALift
+              {{ siteName }}
             </span>
           </Link>
         </div>
@@ -118,7 +118,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import LanguageSwitcher from '@/Components/LanguageSwitcher.vue';
 import logoImg from '@/assets/favicon.png';
@@ -126,6 +126,10 @@ import logoImg from '@/assets/favicon.png';
 const mobileMenuOpen = ref(false);
 const isScrolled = ref(false);
 const page = usePage();
+
+const settings = computed(() => page.props.settings || {});
+const siteName = computed(() => settings.value.general?.site_name || 'GiveMeALift');
+const siteLogo = computed(() => settings.value.appearance?.site_logo || logoImg);
 
 const navItems = [
   { href: '/', label: 'nav.home' },

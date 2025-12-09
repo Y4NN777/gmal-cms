@@ -176,7 +176,7 @@
               </div>
               
               <!-- Phone -->
-              <div class="flex items-start gap-6 group">
+              <div v-if="phoneNumbers.length > 0" class="flex items-start gap-6 group">
                 <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform duration-300">
                   <svg class="w-6 h-6 text-primary-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
@@ -185,21 +185,20 @@
                 <div>
                   <h4 class="text-gray-900 font-sans font-bold text-lg mb-1">{{ $t('home.contact.info.phone') }}</h4>
                   <div class="space-y-1">
-                    <a href="tel:+14055890915" class="block text-gray-600 font-sans text-base hover:text-primary-orange transition-colors">
-                      +1 405 589 0915
-                    </a>
-                    <a href="tel:+22675434545" class="block text-gray-600 font-sans text-base hover:text-primary-orange transition-colors">
-                      +226 75 43 45 45
-                    </a>
-                    <a href="tel:+22667182438" class="block text-gray-600 font-sans text-base hover:text-primary-orange transition-colors">
-                      +226 67 18 24 38
+                    <a 
+                      v-for="phone in phoneNumbers" 
+                      :key="phone"
+                      :href="`tel:${phone.replace(/\s/g, '')}`" 
+                      class="block text-gray-600 font-sans text-base hover:text-primary-orange transition-colors"
+                    >
+                      {{ phone }}
                     </a>
                   </div>
                 </div>
               </div>
               
               <!-- Email -->
-              <div class="flex items-start gap-6 group">
+              <div v-if="contactEmail" class="flex items-start gap-6 group">
                 <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform duration-300">
                   <svg class="w-6 h-6 text-primary-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -207,8 +206,8 @@
                 </div>
                 <div>
                   <h4 class="text-gray-900 font-sans font-bold text-lg mb-1">{{ $t('home.contact.info.email') }}</h4>
-                  <a href="mailto:contactus@givemealift.org" class="text-gray-600 font-sans text-base hover:text-primary-orange transition-colors">
-                    contactus@givemealift.org
+                  <a :href="`mailto:${contactEmail}`" class="text-gray-600 font-sans text-base hover:text-primary-orange transition-colors">
+                    {{ contactEmail }}
                   </a>
                 </div>
               </div>
@@ -242,5 +241,18 @@
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+
+const page = usePage();
+const settings = computed(() => page.props.settings || {});
+
+const contactEmail = computed(() => settings.value.contact?.contact_email || 'contactus@givemealift.org');
+const contactPhone = computed(() => settings.value.contact?.contact_phone || '+1 405 589 0915');
+const contactAddress = computed(() => settings.value.contact?.contact_address || 'United States & Burkina Faso');
+
+const phoneNumbers = computed(() => {
+  if (!contactPhone.value) return [];
+  return contactPhone.value.split('\n').map(phone => phone.trim()).filter(phone => phone);
+});
 </script>
