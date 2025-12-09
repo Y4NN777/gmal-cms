@@ -3,7 +3,7 @@ services:
   - type: web
     name: gmal-web
     runtime: docker
-    plan: starter
+    plan: free
     dockerfilePath: ./Dockerfile
     envVars:
       - key: APP_NAME
@@ -68,4 +68,4 @@ databases:
   - name: gmal-db
     databaseName: gmal
     user: gmal
-    plan: starter
+    plan: free
