@@ -13,7 +13,7 @@ services:
       - key: APP_DEBUG
         value: false
       - key: APP_URL
-        sync: false
+        value: https://gmal-web.onrender.com
       - key: APP_KEY
         generateValue: true
       - key: DB_CONNECTION
@@ -47,19 +47,19 @@ services:
       - key: SESSION_LIFETIME
         value: 120
       - key: MAIL_MAILER
-        value: smtp
+        value: log
       - key: MAIL_HOST
-        sync: false
+        value: mailpit
       - key: MAIL_PORT
-        value: 587
+        value: 1025
       - key: MAIL_USERNAME
-        sync: false
+        value: null
       - key: MAIL_PASSWORD
-        sync: false
+        value: null
       - key: MAIL_ENCRYPTION
-        value: tls
+        value: null
       - key: MAIL_FROM_ADDRESS
-        sync: false
+        value: hello@givemealift.org
       - key: MAIL_FROM_NAME
         value: GiveMeALift
 
