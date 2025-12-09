@@ -83,6 +83,7 @@ sleep 5\n\
 \n\
 # Run Laravel setup commands\n\
 echo "Running artisan commands..."\n\
+php artisan cache:clear || echo "Cache clear skipped"\n\
 php artisan config:cache || { echo "Config cache failed"; exit 1; }\n\
 php artisan route:cache || { echo "Route cache failed"; exit 1; }\n\
 php artisan view:cache || { echo "View cache failed"; exit 1; }\n\
