@@ -26,9 +26,7 @@ class ImpactMetricController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/ImpactMetrics/Form', [
-            'metric' => null
-        ]);
+        return Inertia::render('Admin/ImpactMetrics/Create');
     }
 
     /**
@@ -47,7 +45,7 @@ class ImpactMetricController extends Controller
 
         ImpactMetric::create($validated);
 
-        return redirect()->route('impact-metrics.index')
+        return redirect()->route('admin.impact-metrics.index')
             ->with('success', 'Impact metric created successfully.');
     }
 
@@ -56,7 +54,7 @@ class ImpactMetricController extends Controller
      */
     public function edit(ImpactMetric $impactMetric)
     {
-        return Inertia::render('Admin/ImpactMetrics/Form', [
+        return Inertia::render('Admin/ImpactMetrics/Edit', [
             'metric' => $impactMetric
         ]);
     }
@@ -77,7 +75,7 @@ class ImpactMetricController extends Controller
 
         $impactMetric->update($validated);
 
-        return redirect()->route('impact-metrics.index')
+        return redirect()->route('admin.impact-metrics.index')
             ->with('success', 'Impact metric updated successfully.');
     }
 
@@ -88,7 +86,7 @@ class ImpactMetricController extends Controller
     {
         $impactMetric->delete();
 
-        return redirect()->route('impact-metrics.index')
+        return redirect()->route('admin.impact-metrics.index')
             ->with('success', 'Impact metric deleted successfully.');
     }
 
