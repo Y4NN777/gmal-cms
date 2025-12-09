@@ -151,7 +151,7 @@
         "placeholders": {
           "firstName": "Jean",
           "lastName": "Dupont",
-          "email": "jean@exemple.com",
+          "email": "jean{'@'}exemple.com",
           "phone": "+33 1 23 45 67 89",
           "message": "Dites-nous comment vous aimeriez aider ou quelles questions vous avez..."
         }
