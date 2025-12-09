@@ -113,8 +113,8 @@
               :commonNetworks="commonNetworks"
               :commonNetworksActive="commonNetworksActive"
               :customNetworks="customNetworks"
-              @update:commonNetworks="commonNetworks = $event"
-              @update:commonNetworksActive="commonNetworksActive = $event"
+              @update:commonNetworks="(newValue) => Object.assign(commonNetworks, newValue)"
+              @update:commonNetworksActive="(newValue) => Object.assign(commonNetworksActive, newValue)"
               @addCustom="addSocialNetwork"
               @removeCustom="removeCustomNetwork"
             />
