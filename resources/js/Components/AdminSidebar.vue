@@ -24,24 +24,50 @@ const isActive = (path) => {
   return currentRoute.value.startsWith(path);
 };
 
-defineProps({
+const props = defineProps({
   unreadContactsCount: {
     type: Number,
     default: 0,
   },
   user: Object,
+  mobileMenuOpen: {
+    type: Boolean,
+    default: false,
+  },
 });
+
+const emit = defineEmits(['close']);
 
 const logout = () => {
   router.post('/logout');
 };
+
+const handleLinkClick = () => {
+  if (window.innerWidth < 1024) {
+    emit('close');
+  }
+};
 </script>
 
 <template>
-  <aside class="w-64 bg-white shadow-sm flex flex-col fixed left-0 top-16 bottom-0">
+  <!-- Mobile Overlay -->
+  <div 
+    v-if="mobileMenuOpen" 
+    @click="emit('close')"
+    class="fixed inset-0 bg-black bg-opacity-50 z-10 lg:hidden"
+  ></div>
+
+  <aside 
+    class="w-64 bg-white shadow-sm flex flex-col fixed left-0 top-16 bottom-0 transition-transform duration-300 z-10"
+    :class="{
+      'translate-x-0': mobileMenuOpen,
+      '-translate-x-full lg:translate-x-0': !mobileMenuOpen
+    }"
+  >
     <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
       <a
         href="/admin/dashboard"
+        @click="handleLinkClick"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/dashboard') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
       >
@@ -50,6 +76,7 @@ const logout = () => {
       </a>
       <a
         href="/admin/events"
+        @click="handleLinkClick"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/events') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
       >
@@ -58,6 +85,7 @@ const logout = () => {
       </a>
       <a
         href="/admin/testimonials"
+        @click="handleLinkClick"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/testimonials') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
       >
@@ -66,6 +94,7 @@ const logout = () => {
       </a>
       <a
         href="/admin/donations"
+        @click="handleLinkClick"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/donations') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
       >
@@ -74,6 +103,7 @@ const logout = () => {
       </a>
       <a
         href="/admin/impact-metrics"
+        @click="handleLinkClick"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/impact-metrics') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
       >
@@ -82,6 +112,7 @@ const logout = () => {
       </a>
       <a
         href="/admin/gallery"
+        @click="handleLinkClick"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/gallery') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
       >
@@ -90,6 +121,7 @@ const logout = () => {
       </a>
       <a
         href="/admin/categories"
+        @click="handleLinkClick"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/categories') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
       >
@@ -98,6 +130,7 @@ const logout = () => {
       </a>
       <a
         href="/admin/media"
+        @click="handleLinkClick"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/media') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
       >
@@ -108,6 +141,7 @@ const logout = () => {
       <div class="pt-4 mt-4 border-t border-gray-200">
         <a
           href="/admin/users"
+          @click="handleLinkClick"
           class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
           :class="isActive('/admin/users') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
         >
@@ -117,6 +151,7 @@ const logout = () => {
       </div>
       <a
         href="/admin/contact-messages"
+        @click="handleLinkClick"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/contact-messages') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
       >
@@ -131,6 +166,7 @@ const logout = () => {
       </a>
       <a
         href="/admin/settings"
+        @click="handleLinkClick"
         class="flex items-center px-4 py-3 text-sm font-medium rounded-lg"
         :class="isActive('/admin/settings') ? 'bg-orange-50 text-orange-700' : 'text-gray-700 hover:bg-gray-50'"
       >

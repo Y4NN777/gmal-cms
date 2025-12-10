@@ -76,7 +76,7 @@ const vClickOutside = {
       <div 
         v-if="isOpen"
         v-click-outside="closeDropdown"
-        class="absolute right-0 mt-2 w-44 origin-top-right bg-white rounded-lg shadow-lg border border-gray-200 z-[100]"
+        class="absolute right-0 sm:right-0 left-1/2 sm:left-auto -translate-x-1/2 sm:translate-x-0 mt-2 w-44 origin-top bg-white rounded-lg shadow-lg border border-gray-200 z-[100]"
       >
         <div class="py-1">
           <button

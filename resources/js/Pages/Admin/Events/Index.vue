@@ -87,38 +87,38 @@ const formatDate = (date) => {
   <AdminLayout :user="user">
     <div class="max-w-7xl mx-auto">
       <!-- Header -->
-      <div class="mb-8 flex justify-between items-center">
+      <div class="mb-6 sm:mb-8 flex flex-col sm:flex-row gap-4 sm:justify-between sm:items-center">
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">{{ $t('admin.eventManagement.title') }}</h2>
-          <p class="text-gray-600 mt-1">{{ $t('admin.eventManagement.description') }}</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-900">{{ $t('admin.eventManagement.title') }}</h2>
+          <p class="text-sm sm:text-base text-gray-600 mt-1">{{ $t('admin.eventManagement.description') }}</p>
         </div>
         <button
           @click="createEvent"
-          class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium"
+          class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium text-sm sm:text-base whitespace-nowrap"
         >
           + {{ $t('admin.eventManagement.createEvent') }}
         </button>
       </div>
 
       <!-- Filters -->
-      <div class="bg-white rounded-lg shadow p-4 mb-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-lg shadow p-4 mb-4 sm:mb-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('admin.eventManagement.search') }}</label>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">{{ $t('admin.eventManagement.search') }}</label>
             <input
               v-model="searchQuery"
               type="text"
               :placeholder="$t('admin.eventManagement.searchEvents')"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @input="applyFilters"
             />
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('admin.eventManagement.status') }}</label>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">{{ $t('admin.eventManagement.status') }}</label>
             <select
               v-model="statusFilter"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @change="applyFilters"
             >
               <option value="">{{ $t('admin.eventManagement.allStatus') }}</option>
@@ -129,10 +129,10 @@ const formatDate = (date) => {
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('admin.eventManagement.category') }}</label>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">{{ $t('admin.eventManagement.category') }}</label>
             <select
               v-model="categoryFilter"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @change="applyFilters"
             >
               <option value="">{{ $t('admin.eventManagement.allCategories') }}</option>
@@ -145,7 +145,7 @@ const formatDate = (date) => {
           <div class="flex items-end">
             <button
               @click="searchQuery = ''; statusFilter = ''; categoryFilter = ''; applyFilters()"
-              class="w-full px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
+              class="w-full px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
             >
               {{ $t('admin.eventManagement.clearFilters') }}
             </button>
@@ -154,51 +154,51 @@ const formatDate = (date) => {
       </div>
 
       <!-- Events List -->
-      <div v-if="events.data && events.data.length > 0" class="space-y-4">
+      <div v-if="events.data && events.data.length > 0" class="space-y-3 sm:space-y-4">
         <div
           v-for="event in events.data"
           :key="event.id"
-          class="bg-white rounded-lg shadow hover:shadow-md transition-shadow p-6"
+          class="bg-white rounded-lg shadow hover:shadow-md transition-shadow p-4 sm:p-6"
         >
-          <div class="flex gap-4 items-start">
+          <div class="flex gap-3 sm:gap-4 items-start">
             <!-- Event Thumbnail -->
             <div class="flex-shrink-0">
               <img 
                 v-if="event.featured_image"
                 :src="event.featured_image" 
                 :alt="event.title"
-                class="w-24 h-24 rounded-lg object-cover border-2 border-gray-200"
+                class="w-16 h-16 sm:w-24 sm:h-24 rounded-lg object-cover border-2 border-gray-200"
               />
               <div 
                 v-else
-                class="w-24 h-24 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center border-2 border-gray-300"
+                class="w-16 h-16 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center border-2 border-gray-300"
               >
-                <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
             </div>
 
             <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-3 mb-2">
-                <h3 class="text-xl font-bold text-gray-900 truncate">{{ event.title }}</h3>
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <h3 class="text-base sm:text-xl font-bold text-gray-900 truncate">{{ event.title }}</h3>
                 <span
-                  class="px-2 py-1 text-xs font-medium rounded"
+                  class="px-2 py-0.5 sm:py-1 text-xs font-medium rounded whitespace-nowrap"
                   :class="getStatusClass(event.status)"
                 >
                   {{ translateStatus(event.status) }}
                 </span>
                 <span
                   v-if="event.is_featured"
-                  class="px-2 py-1 text-xs font-medium bg-orange-100 text-orange-800 rounded"
+                  class="px-2 py-0.5 sm:py-1 text-xs font-medium bg-orange-100 text-orange-800 rounded whitespace-nowrap"
                 >
                   ⭐ {{ $t('admin.eventManagement.featured') }}
                 </span>
               </div>
 
-              <p class="text-gray-600 text-sm mb-3">{{ event.excerpt || $t('admin.eventManagement.noDescription') }}</p>
+              <p class="text-gray-600 text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2">{{ event.excerpt || $t('admin.eventManagement.noDescription') }}</p>
 
-              <div class="flex items-center gap-6 text-sm text-gray-500">
+              <div class="flex flex-wrap items-center gap-3 sm:gap-6 text-xs sm:text-sm text-gray-500">
                 <div class="flex items-center gap-1">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -223,27 +223,27 @@ const formatDate = (date) => {
                 </div>
               </div>
 
-              <div class="flex gap-2 mt-3">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 mt-2 sm:mt-3">
                 <button
                   @click="viewEvent(event.id)"
-                  class="px-3 py-1.5 text-sm text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors inline-flex items-center"
+                  class="px-2 sm:px-3 py-1.5 text-xs sm:text-sm text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors inline-flex items-center"
                 >
-                  <Eye :size="16" class="mr-1.5" />
-                  {{ $t('admin.eventManagement.view') }}
+                  <Eye :size="14" class="sm:mr-1.5" />
+                  <span class="hidden sm:inline">{{ $t('admin.eventManagement.view') }}</span>
                 </button>
                 <button
                   @click="editEvent(event.id)"
-                  class="px-3 py-1.5 text-sm text-orange-700 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors inline-flex items-center"
+                  class="px-2 sm:px-3 py-1.5 text-xs sm:text-sm text-orange-700 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors inline-flex items-center"
                 >
-                  <Edit :size="16" class="mr-1.5" />
-                  {{ $t('admin.eventManagement.edit') }}
+                  <Edit :size="14" class="sm:mr-1.5" />
+                  <span class="hidden sm:inline">{{ $t('admin.eventManagement.edit') }}</span>
                 </button>
                 <button
                   @click="deleteEvent(event.id)"
-                  class="px-3 py-1.5 text-sm text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors inline-flex items-center"
+                  class="px-2 sm:px-3 py-1.5 text-xs sm:text-sm text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors inline-flex items-center"
                 >
-                  <Trash2 :size="16" class="mr-1.5" />
-                  {{ $t('admin.eventManagement.delete') }}
+                  <Trash2 :size="14" class="sm:mr-1.5" />
+                  <span class="hidden sm:inline">{{ $t('admin.eventManagement.delete') }}</span>
                 </button>
               </div>
             </div>
