@@ -123,7 +123,7 @@ const formatDate = (date) => {
         </div>
         
         <!-- Stats -->
-        <div class="flex gap-3 sm:gap-4 flex-wrap">m:gap-4 flex-wrap">
+        <div class="flex gap-3 sm:gap-4 flex-wrap">
           <div class="bg-yellow-50 px-3 sm:px-4 py-2 rounded-lg">
             <div class="text-xl sm:text-2xl font-bold text-yellow-800">{{ stats.pending }}</div>
             <div class="text-xs text-yellow-600">{{ $t('testimonials.pending') }}</div>
@@ -141,9 +141,9 @@ const formatDate = (date) => {
 
       <!-- Filters & Actions -->
       <div class="bg-white rounded-lg shadow p-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           <!-- Search -->
-          <div class="sm:col-span-2 lg:col-span-1">
+          <div>
             <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">{{ $t('testimonials.search') }}</label>
             <input
               v-model="searchQuery"
@@ -181,20 +181,21 @@ const formatDate = (date) => {
               <option value="true">{{ $t('testimonials.featuredOnly') }}</option>
             </select>
           </div>
+        </div>
 
-          <!-- Clear Filters -->
+        <!-- Action Buttons -->
+        <div class="flex gap-2 mt-4">
           <button
             @click="searchQuery = ''; statusFilter = ''; featuredFilter = ''; applyFilters()"
-            class="px-3 sm:px-4 py-2 text-sm sm:text-base bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium whitespace-nowrap"
+            class="px-3 sm:px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
           >
             {{ $t('testimonials.clear') }}
           </button>
 
-          <!-- Bulk Approve -->
           <button
             v-if="selectedTestimonials.length > 0"
             @click="bulkApprove"
-            class="px-3 sm:px-4 py-2 text-sm sm:text-base bg-green-50 text-green-700 border border-green-200 rounded-lg hover:bg-green-100 font-medium transition-colors whitespace-nowrap"
+            class="px-3 sm:px-4 py-2 text-sm bg-green-50 text-green-700 border border-green-200 rounded-lg hover:bg-green-100 font-medium transition-colors"
           >
             ✓ <span class="hidden sm:inline">{{ $t('testimonials.approveSelected') }}</span> ({{ selectedTestimonials.length }})
           </button>
