@@ -2,9 +2,9 @@
   <div>
     <Head title="Testimonial Details" />
     
-    <div class="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
       <!-- Header with Back Button -->
-      <div class="mb-6 flex items-center justify-between">
+      <div class="mb-4 sm:mb-6 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
         <Link 
           :href="route('admin.testimonials.index', undefined, undefined, Ziggy)" 
           class="inline-flex items-center text-gray-600 hover:text-gray-900 transition font-medium"
@@ -29,9 +29,9 @@
       <!-- Main Card -->
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <!-- Header with Avatar -->
-        <div class="bg-gradient-to-r from-primary-green to-green-600 p-8 text-white">
-          <div class="flex items-center space-x-4">
-            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-3xl font-bold text-primary-green overflow-hidden">
+        <div class="bg-gradient-to-r from-primary-green to-green-600 p-4 sm:p-8 text-white">
+          <div class="flex items-center space-x-3 sm:space-x-4">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold text-primary-green overflow-hidden">
               <img 
                 v-if="testimonial.avatar"
                 :src="testimonial.avatar.url" 
@@ -41,15 +41,15 @@
               <span v-else>{{ testimonial.name.charAt(0) }}</span>
             </div>
             <div>
-              <h1 class="text-3xl font-bold">{{ testimonial.name }}</h1>
-              <p class="text-green-50">{{ testimonial.position }}</p>
+              <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold">{{ testimonial.name }}</h1>
+              <p class="text-sm sm:text-base text-green-50">{{ testimonial.position }}</p>
               <p v-if="testimonial.organization" class="text-green-100 text-sm">{{ testimonial.organization }}</p>
             </div>
           </div>
         </div>
 
         <!-- Content -->
-        <div class="p-8 space-y-6">
+        <div class="p-4 sm:p-8 space-y-4 sm:space-y-6">
           <!-- Rating -->
           <div>
             <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">{{ $t('testimonials.rating') }}</h3>
@@ -71,7 +71,7 @@
           </div>
 
           <!-- Metadata -->
-          <div class="grid grid-cols-2 gap-4 pt-4 border-t">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-4 border-t">
             <div>
               <h3 class="text-sm font-semibold text-gray-500 uppercase mb-1">{{ $t('testimonials.form.email') }}</h3>
               <p class="text-gray-800">{{ testimonial.email || 'Not provided' }}</p>
@@ -92,7 +92,7 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="bg-gray-50 px-8 py-4 flex flex-wrap gap-3">
+        <div class="bg-gray-50 px-4 sm:px-8 py-4 flex flex-wrap gap-2 sm:gap-3">
           <!-- Approve Button -->
           <button
             v-if="testimonial.status !== 'approved'"

@@ -116,24 +116,24 @@ const formatDate = (date) => {
   <AdminLayout :user="user">
     <div class="space-y-6">
       <!-- Header -->
-      <div class="flex justify-between items-center">
+      <div class="mb-6 sm:mb-8 flex flex-col sm:flex-row gap-4 sm:justify-between sm:items-center">
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">{{ $t('testimonials.title') }}</h2>
-          <p class="text-gray-600 mt-1">{{ $t('testimonials.description') }}</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-900">{{ $t('testimonials.title') }}</h2>
+          <p class="text-sm sm:text-base text-gray-600 mt-1">{{ $t('testimonials.description') }}</p>
         </div>
         
         <!-- Stats -->
-        <div class="flex gap-4">
-          <div class="bg-yellow-50 px-4 py-2 rounded-lg">
-            <div class="text-2xl font-bold text-yellow-800">{{ stats.pending }}</div>
+        <div class="flex gap-3 sm:gap-4 flex-wrap">m:gap-4 flex-wrap">
+          <div class="bg-yellow-50 px-3 sm:px-4 py-2 rounded-lg">
+            <div class="text-xl sm:text-2xl font-bold text-yellow-800">{{ stats.pending }}</div>
             <div class="text-xs text-yellow-600">{{ $t('testimonials.pending') }}</div>
           </div>
-          <div class="bg-green-50 px-4 py-2 rounded-lg">
-            <div class="text-2xl font-bold text-green-800">{{ stats.approved }}</div>
+          <div class="bg-green-50 px-3 sm:px-4 py-2 rounded-lg">
+            <div class="text-xl sm:text-2xl font-bold text-green-800">{{ stats.approved }}</div>
             <div class="text-xs text-green-600">{{ $t('testimonials.approved') }}</div>
           </div>
-          <div class="bg-red-50 px-4 py-2 rounded-lg">
-            <div class="text-2xl font-bold text-red-800">{{ stats.rejected }}</div>
+          <div class="bg-red-50 px-3 sm:px-4 py-2 rounded-lg">
+            <div class="text-xl sm:text-2xl font-bold text-red-800">{{ stats.rejected }}</div>
             <div class="text-xs text-red-600">{{ $t('testimonials.rejected') }}</div>
           </div>
         </div>
@@ -141,25 +141,25 @@ const formatDate = (date) => {
 
       <!-- Filters & Actions -->
       <div class="bg-white rounded-lg shadow p-4">
-        <div class="flex gap-4 items-end">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
           <!-- Search -->
-          <div class="flex-1">
-            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('testimonials.search') }}</label>
+          <div class="sm:col-span-2 lg:col-span-1">
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">{{ $t('testimonials.search') }}</label>
             <input
               v-model="searchQuery"
               type="text"
               :placeholder="$t('testimonials.searchPlaceholder')"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @input="applyFilters"
             />
           </div>
           
           <!-- Status Filter -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('testimonials.status') }}</label>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">{{ $t('testimonials.status') }}</label>
             <select
               v-model="statusFilter"
-              class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @change="applyFilters"
             >
               <option value="">{{ $t('testimonials.allStatus') }}</option>
@@ -171,10 +171,10 @@ const formatDate = (date) => {
 
           <!-- Featured Filter -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('testimonials.featured') }}</label>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">{{ $t('testimonials.featured') }}</label>
             <select
               v-model="featuredFilter"
-              class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               @change="applyFilters"
             >
               <option value="">{{ $t('testimonials.all') }}</option>
@@ -185,7 +185,7 @@ const formatDate = (date) => {
           <!-- Clear Filters -->
           <button
             @click="searchQuery = ''; statusFilter = ''; featuredFilter = ''; applyFilters()"
-            class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
+            class="px-3 sm:px-4 py-2 text-sm sm:text-base bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium whitespace-nowrap"
           >
             {{ $t('testimonials.clear') }}
           </button>
@@ -194,15 +194,15 @@ const formatDate = (date) => {
           <button
             v-if="selectedTestimonials.length > 0"
             @click="bulkApprove"
-            class="px-4 py-2 bg-green-50 text-green-700 border border-green-200 rounded-lg hover:bg-green-100 font-medium transition-colors"
+            class="px-3 sm:px-4 py-2 text-sm sm:text-base bg-green-50 text-green-700 border border-green-200 rounded-lg hover:bg-green-100 font-medium transition-colors whitespace-nowrap"
           >
-            ✓ {{ $t('testimonials.approveSelected') }} ({{ selectedTestimonials.length }})
+            ✓ <span class="hidden sm:inline">{{ $t('testimonials.approveSelected') }}</span> ({{ selectedTestimonials.length }})
           </button>
         </div>
       </div>
 
       <!-- Testimonials Grid -->
-      <div v-if="testimonials.data && testimonials.data.length > 0" class="space-y-4">
+      <div v-if="testimonials.data && testimonials.data.length > 0" class="space-y-3 sm:space-y-4">
         <!-- Select All -->
         <div class="flex items-center gap-2 px-4">
           <input
@@ -217,9 +217,9 @@ const formatDate = (date) => {
         <div
           v-for="testimonial in testimonials.data"
           :key="testimonial.id"
-          class="bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow"
+          class="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-md transition-shadow"
         >
-          <div class="flex gap-4">
+          <div class="flex gap-3 sm:gap-4">
             <!-- Checkbox -->
             <input
               type="checkbox"
@@ -234,11 +234,11 @@ const formatDate = (date) => {
                 v-if="testimonial.avatar"
                 :src="testimonial.avatar" 
                 :alt="testimonial.name"
-                class="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
+                class="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-200"
               />
               <div 
                 v-else
-                class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-xl border-2 border-orange-300"
+                class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl border-2 border-orange-300"
               >
                 {{ testimonial.name?.charAt(0).toUpperCase() || '?' }}
               </div>
@@ -246,14 +246,14 @@ const formatDate = (date) => {
 
             <!-- Content -->
             <div class="flex-1">
-              <div class="flex items-start justify-between mb-3">
+              <div class="flex items-start justify-between mb-3 flex-wrap gap-2">
                 <div>
-                  <h3 class="font-bold text-gray-900">{{ testimonial.name }}</h3>
-                  <p v-if="testimonial.position" class="text-sm text-gray-600">{{ testimonial.position }}</p>
+                  <h3 class="text-sm sm:text-base font-bold text-gray-900">{{ testimonial.name }}</h3>
+                  <p v-if="testimonial.position" class="text-xs sm:text-sm text-gray-600">{{ testimonial.position }}</p>
                   <p v-if="testimonial.organization" class="text-xs text-gray-500">{{ testimonial.organization }}</p>
                 </div>
                 
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                   <!-- Rating -->
                   <div class="flex items-center gap-1">
                     <svg v-for="i in testimonial.rating" :key="i" class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -262,19 +262,19 @@ const formatDate = (date) => {
                   </div>
                   
                   <!-- Status -->
-                  <span class="px-2 py-1 text-xs font-medium rounded" :class="getStatusColor(testimonial.status)">
+                  <span class="px-2 py-1 text-xs font-medium rounded whitespace-nowrap" :class="getStatusColor(testimonial.status)">
                     {{ $t('status.' + testimonial.status) }}
                   </span>
 
                   <!-- Featured Badge -->
-                  <span v-if="testimonial.is_featured" class="px-2 py-1 text-xs font-medium bg-orange-100 text-orange-800 rounded">
+                  <span v-if="testimonial.is_featured" class="px-2 py-1 text-xs font-medium bg-orange-100 text-orange-800 rounded whitespace-nowrap">
                     ⭐ {{ $t('testimonials.featured') }}
                   </span>
                 </div>
               </div>
 
               <!-- Testimonial Content -->
-              <p class="text-gray-700 mb-4 leading-relaxed">{{ testimonial.content }}</p>
+              <p class="text-sm sm:text-base text-gray-700 mb-4 leading-relaxed">{{ testimonial.content }}</p>
 
               <!-- Meta Info -->
               <div class="flex items-center gap-4 text-xs text-gray-500 mb-3">
@@ -283,36 +283,36 @@ const formatDate = (date) => {
               </div>
 
               <!-- Actions -->
-              <div class="flex gap-2">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
                 <Link
                   :href="`/admin/testimonials/${testimonial.id}`"
-                  class="px-4 py-2 text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors inline-flex items-center"
+                  class="px-2 sm:px-4 py-2 text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors inline-flex items-center"
                 >
-                  <Eye :size="16" class="mr-1.5" />
-                  {{ $t('testimonials.viewDetails') }}
+                  <Eye :size="14" class="sm:mr-1.5" />
+                  <span class="hidden sm:inline ml-1.5">{{ $t('testimonials.viewDetails') }}</span>
                 </Link>
                 <button
                   v-if="testimonial.status !== 'approved'"
                   @click="approve(testimonial.id)"
-                  class="px-4 py-2 text-sm font-medium text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg transition-colors inline-flex items-center"
+                  class="px-2 sm:px-4 py-2 text-sm font-medium text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg transition-colors inline-flex items-center"
                 >
-                  <Check :size="16" class="mr-1.5" />
-                  {{ $t('testimonials.approve') }}
+                  <Check :size="14" class="sm:mr-1.5" />
+                  <span class="hidden sm:inline ml-1.5">{{ $t('testimonials.approve') }}</span>
                 </button>
                 <button
                   v-if="testimonial.status !== 'rejected'"
                   @click="reject(testimonial.id)"
-                  class="px-4 py-2 text-sm font-medium text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors inline-flex items-center"
+                  class="px-2 sm:px-4 py-2 text-sm font-medium text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors inline-flex items-center"
                 >
-                  <X :size="16" class="mr-1.5" />
-                  {{ $t('testimonials.reject') }}
+                  <X :size="14" class="sm:mr-1.5" />
+                  <span class="hidden sm:inline ml-1.5">{{ $t('testimonials.reject') }}</span>
                 </button>
                 <button
                   @click="confirmDelete(testimonial.id)"
-                  class="px-4 py-2 text-sm font-medium text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors inline-flex items-center"
+                  class="px-2 sm:px-4 py-2 text-sm font-medium text-red-700 bg-gradient-to-r from-red-50 to-white hover:from-red-100 hover:to-red-50 border border-red-200 rounded-lg transition-colors inline-flex items-center"
                 >
-                  <Trash2 :size="16" class="mr-1.5" />
-                  {{ $t('testimonials.delete') }}
+                  <Trash2 :size="14" class="sm:mr-1.5" />
+                  <span class="hidden sm:inline ml-1.5">{{ $t('testimonials.delete') }}</span>
                 </button>
               </div>
             </div>

@@ -32,24 +32,24 @@ const submit = () => {
   <AdminLayout>
     <div class="max-w-4xl mx-auto py-8">
       <!-- Header -->
-      <div class="mb-6 flex items-center justify-between">
-        <div class="flex items-center gap-4">
+      <div class="mb-4 sm:mb-6 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
           <Link 
             :href="route('admin.testimonials.show', testimonial.id, undefined, Ziggy)" 
-            class="inline-flex items-center text-gray-600 hover:text-gray-900 transition font-medium"
+            class="inline-flex items-center text-sm sm:text-base text-gray-600 hover:text-gray-900 transition font-medium"
           >
-            <ArrowLeft :size="20" class="mr-2" />
+            <ArrowLeft :size="18" class="mr-2" />
             {{ $t('testimonials.backToTestimonials') }}
           </Link>
-          <h1 class="text-2xl font-bold text-gray-900">{{ $t('testimonials.editTestimonial') }}</h1>
+          <h1 class="text-xl sm:text-2xl font-bold text-gray-900">{{ $t('testimonials.editTestimonial') }}</h1>
         </div>
       </div>
 
       <!-- Form Card -->
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <form @submit.prevent="submit" class="p-8 space-y-6">
+        <form @submit.prevent="submit" class="p-4 sm:p-8 space-y-4 sm:space-y-6">
           
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <!-- Name -->
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('testimonials.form.name') }}</label>
@@ -106,7 +106,7 @@ const submit = () => {
             <div v-if="form.errors.content" class="text-red-500 text-sm mt-1">{{ form.errors.content }}</div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <!-- Rating -->
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('testimonials.form.rating') }}</label>

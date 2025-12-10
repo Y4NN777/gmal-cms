@@ -2,20 +2,20 @@
   <AdminLayout :user="user">
     <div class="max-w-7xl mx-auto">
       <!-- Header -->
-      <div class="mb-8">
-        <h2 class="text-3xl font-bold text-gray-900">{{ $t('contactMessages.title') }}</h2>
-        <p class="mt-2 text-gray-600">{{ $t('contactMessages.description') }}</p>
+      <div class="mb-6 sm:mb-8">
+        <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">{{ $t('contactMessages.title') }}</h2>
+        <p class="mt-2 text-sm sm:text-base text-gray-600">{{ $t('contactMessages.description') }}</p>
       </div>
 
       <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+        <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6 border border-gray-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">{{ $t('contactMessages.totalMessages') }}</p>
-              <p class="text-3xl font-bold text-gray-900 mt-2">{{ stats.total }}</p>
+              <p class="text-xs sm:text-sm font-medium text-gray-600">{{ $t('contactMessages.totalMessages') }}</p>
+              <p class="text-2xl sm:text-3xl font-bold text-gray-900 mt-2">{{ stats.total }}</p>
             </div>
-            <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 rounded-xl flex items-center justify-center">
               <svg class="w-7 h-7 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
@@ -23,13 +23,13 @@
           </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm p-6 border border-orange-100">
+        <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6 border border-orange-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">{{ $t('contactMessages.unread') }}</p>
-              <p class="text-3xl font-bold text-orange-600 mt-2">{{ stats.unread }}</p>
+              <p class="text-xs sm:text-sm font-medium text-gray-600">{{ $t('contactMessages.unread') }}</p>
+              <p class="text-2xl sm:text-3xl font-bold text-orange-600 mt-2">{{ stats.unread }}</p>
             </div>
-            <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-orange-100 rounded-xl flex items-center justify-center">
               <svg class="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
               </svg>
@@ -37,13 +37,13 @@
           </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm p-6 border border-green-100">
+        <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6 border border-green-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">{{ $t('contactMessages.read') }}</p>
-              <p class="text-3xl font-bold text-green-600 mt-2">{{ stats.read }}</p>
+              <p class="text-xs sm:text-sm font-medium text-gray-600">{{ $t('contactMessages.read') }}</p>
+              <p class="text-2xl sm:text-3xl font-bold text-green-600 mt-2">{{ stats.read }}</p>
             </div>
-            <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-green-100 rounded-xl flex items-center justify-center">
               <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -53,27 +53,27 @@
       </div>
 
       <!-- Filters -->
-      <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6 mb-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <!-- Search -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('contactMessages.search') }}</label>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">{{ $t('contactMessages.search') }}</label>
             <input
               v-model="searchQuery"
               @input="debouncedSearch"
               type="text"
               :placeholder="$t('contactMessages.searchPlaceholder')"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
           </div>
 
           <!-- Status Filter -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('contactMessages.status') }}</label>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">{{ $t('contactMessages.status') }}</label>
             <select
               v-model="statusFilter"
               @change="applyFilters"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             >
               <option value="">{{ $t('contactMessages.allMessages') }}</option>
               <option value="unread">{{ $t('contactMessages.unreadOnly') }}</option>
@@ -83,8 +83,8 @@
         </div>
 
         <!-- Bulk Actions -->
-        <div v-if="selectedMessages.length > 0" class="mt-6 flex items-center justify-between p-4 bg-orange-50 border border-orange-200 rounded-xl">
-          <span class="text-sm font-medium text-gray-700">
+        <div v-if="selectedMessages.length > 0" class="mt-4 sm:mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 bg-orange-50 border border-orange-200 rounded-xl">
+          <span class="text-xs sm:text-sm font-medium text-gray-700">
             {{ selectedMessages.length }} {{ $t('contactMessages.messagesSelected') }}
           </span>
           <button
@@ -128,7 +128,7 @@
           >
             <!-- Message Header -->
             <div
-              class="px-6 py-4 flex items-start gap-4 cursor-pointer hover:bg-gray-50 transition-colors"
+              class="px-4 sm:px-6 py-4 flex items-start gap-3 sm:gap-4 cursor-pointer hover:bg-gray-50 transition-colors"
               :class="{ 'bg-orange-50': !message.read_at }"
               @click="toggleMessage(message.id)"
             >
@@ -142,19 +142,19 @@
 
               <!-- Message Content -->
               <div class="flex-1 min-w-0">
-                <div class="flex items-start justify-between mb-2">
-                  <div class="flex-1">
-                    <div class="flex items-center gap-3 mb-1">
-                      <h3 class="font-semibold text-gray-900">{{ message.name }}</h3>
-                      <span v-if="!message.read_at" class="px-2 py-0.5 bg-orange-100 text-orange-700 text-xs font-medium rounded-full border border-orange-200">
+                <div class="flex items-start justify-between mb-2 flex-wrap gap-2">
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2 sm:gap-3 mb-1 flex-wrap">
+                      <h3 class="text-sm sm:text-base font-semibold text-gray-900">{{ message.name }}</h3>
+                      <span v-if="!message.read_at" class="px-2 py-0.5 bg-orange-100 text-orange-700 text-xs font-medium rounded-full border border-orange-200 whitespace-nowrap">
                         {{ $t('contactMessages.new') }}
                       </span>
-                      <span v-if="message.priority" class="px-2 py-0.5 text-xs font-medium rounded-full border" :class="getPriorityColor(message.priority)">
+                      <span v-if="message.priority" class="px-2 py-0.5 text-xs font-medium rounded-full border whitespace-nowrap" :class="getPriorityColor(message.priority)">
                         {{ message.priority }}
                       </span>
                     </div>
-                    <p class="text-sm text-gray-600">{{ message.email }}</p>
-                    <p v-if="message.phone" class="text-sm text-gray-500">{{ message.phone }}</p>
+                    <p class="text-xs sm:text-sm text-gray-600">{{ message.email }}</p>
+                    <p v-if="message.phone" class="text-xs sm:text-sm text-gray-500">{{ message.phone }}</p>
                   </div>
                   
                   <span class="text-sm text-gray-500 whitespace-nowrap ml-4">
@@ -163,29 +163,29 @@
                 </div>
 
                 <div class="mb-2">
-                  <p class="font-medium text-gray-900">{{ message.subject || $t('contactMessages.noSubject') }}</p>
-                  <p class="text-sm text-gray-600 line-clamp-2 mt-1">{{ message.message }}</p>
+                  <p class="text-sm sm:text-base font-medium text-gray-900">{{ message.subject || $t('contactMessages.noSubject') }}</p>
+                  <p class="text-xs sm:text-sm text-gray-600 line-clamp-2 mt-1">{{ message.message }}</p>
                 </div>
 
                 <!-- Actions -->
-                <div class="flex gap-2 mt-3">
+                <div class="flex flex-wrap gap-1.5 sm:gap-2 mt-3">
                   <button
                     v-if="!message.read_at"
                     @click.stop="markAsRead(message.id)"
-                    class="px-3 py-1.5 bg-green-50 text-green-700 border border-green-200 rounded-lg text-sm font-medium hover:bg-green-100 transition-colors"
+                    class="px-2 sm:px-3 py-1.5 bg-green-50 text-green-700 border border-green-200 rounded-lg text-xs sm:text-sm font-medium hover:bg-green-100 transition-colors whitespace-nowrap"
                   >
                     {{ $t('contactMessages.markAsRead') }}
                   </button>
                   <button
                     v-else
                     @click.stop="markAsUnread(message.id)"
-                    class="px-3 py-1.5 bg-gray-50 text-gray-700 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-100 transition-colors"
+                    class="px-2 sm:px-3 py-1.5 bg-gray-50 text-gray-700 border border-gray-200 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-100 transition-colors whitespace-nowrap"
                   >
                     {{ $t('contactMessages.markAsUnread') }}
                   </button>
                   <button
                     @click.stop="deleteMessage(message.id)"
-                    class="px-3 py-1.5 bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg text-sm font-medium hover:from-red-100 hover:to-red-50 transition-colors"
+                    class="px-2 sm:px-3 py-1.5 bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg text-xs sm:text-sm font-medium hover:from-red-100 hover:to-red-50 transition-colors whitespace-nowrap"
                   >
                     {{ $t('contactMessages.delete') }}
                   </button>
@@ -194,7 +194,7 @@
             </div>
 
             <!-- Expanded Message Content -->
-            <div v-if="expandedMessage === message.id" class="px-6 py-6 bg-gray-50 border-t">
+            <div v-if="expandedMessage === message.id" class="px-4 sm:px-6 py-4 sm:py-6 bg-gray-50 border-t">
               <div class="max-w-4xl">
                 <h4 class="text-sm font-semibold text-gray-900 mb-3">{{ $t('contactMessages.fullMessage') }}</h4>
                 <div class="bg-white rounded-lg p-4 border border-gray-200">
@@ -252,17 +252,17 @@
 
     <!-- Delete Confirmation Modal -->
     <div v-if="showDeleteModal" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center p-4" @click="showDeleteModal = false">
-      <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6" @click.stop>
+      <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-4 sm:p-6" @click.stop>
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
             <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900">{{ $t('contactMessages.deleteTitle') }}</h3>
+          <h3 class="text-base sm:text-xl font-bold text-gray-900">{{ $t('contactMessages.deleteTitle') }}</h3>
         </div>
 
-        <p class="text-gray-600 mb-6">
+        <p class="text-sm sm:text-base text-gray-600 mb-6">
           {{ $t('contactMessages.deleteConfirm') }}
         </p>
 

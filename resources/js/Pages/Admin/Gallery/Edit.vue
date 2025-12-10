@@ -2,28 +2,28 @@
   <AdminLayout :user="user">
     <div class="max-w-7xl mx-auto">
       <!-- Header -->
-      <div class="mb-8">
-        <div class="flex items-center gap-2 text-sm text-gray-600 mb-4">
+      <div class="mb-6 sm:mb-8">
+        <div class="flex items-center gap-2 text-xs sm:text-sm text-gray-600 mb-4">
           <a href="/admin/gallery" class="hover:text-orange-600 transition-colors">{{ t('galleryManagement.title') }}</a>
           <span>/</span>
           <span class="text-gray-900 font-medium">{{ t('galleryManagement.edit') }}</span>
         </div>
-        <div class="flex justify-between items-start">
+        <div class="flex flex-col sm:flex-row gap-4 sm:justify-between sm:items-start">
           <div>
-            <h2 class="text-3xl font-bold text-gray-900">{{ album.title }}</h2>
-            <p class="text-gray-600 mt-2">{{ t('galleryManagement.description') }}</p>
+            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">{{ album.title }}</h2>
+            <p class="text-sm sm:text-base text-gray-600 mt-2">{{ t('galleryManagement.description') }}</p>
           </div>
           <button
             @click="showDeleteAlbumModal = true"
-            class="px-4 py-2 bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg hover:from-red-100 hover:to-red-50 font-medium transition-colors"
+            class="px-3 sm:px-4 py-2 text-sm sm:text-base bg-gradient-to-r from-red-50 to-white text-red-700 border border-red-200 rounded-lg hover:from-red-100 hover:to-red-50 font-medium transition-colors whitespace-nowrap"
           >
-            {{ t('galleryManagement.delete') }} {{ t('galleryManagement.albumTitle') }}
+            {{ t('galleryManagement.delete') }} <span class="hidden sm:inline">{{ t('galleryManagement.albumTitle') }}</span>
           </button>
         </div>
       </div>
 
       <!-- Album Info Form -->
-      <form @submit.prevent="submitForm" class="bg-white rounded-xl shadow-sm p-6 mb-8">
+      <form @submit.prevent="submitForm" class="bg-white rounded-xl shadow-sm p-4 sm:p-6 mb-6 sm:mb-8">
         <h3 class="text-lg font-semibold text-gray-900 mb-6">{{ t('galleryManagement.albumTitle') }}</h3>
         
         <div class="space-y-6">
@@ -94,13 +94,13 @@
       </form>
 
       <!-- Images Section -->
-      <div class="bg-white rounded-xl shadow-sm p-6">
-        <div class="flex justify-between items-center mb-6">
+      <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6">
+        <div class="flex flex-col sm:flex-row gap-3 sm:justify-between sm:items-center mb-4 sm:mb-6">
           <div>
-            <h3 class="text-lg font-semibold text-gray-900">{{ t('galleryManagement.images') }}</h3>
-            <p class="text-sm text-gray-600 mt-1">{{ images?.length || 0 }} {{ t('galleryManagement.images') }}</p>
+            <h3 class="text-base sm:text-lg font-semibold text-gray-900">{{ t('galleryManagement.images') }}</h3>
+            <p class="text-xs sm:text-sm text-gray-600 mt-1">{{ images?.length || 0 }} {{ t('galleryManagement.images') }}</p>
           </div>
-          <label class="px-6 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg hover:from-orange-600 hover:to-orange-700 font-medium shadow-sm cursor-pointer transition-all">
+          <label class="px-4 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg hover:from-orange-600 hover:to-orange-700 font-medium shadow-sm cursor-pointer transition-all whitespace-nowrap text-center">
             <span class="inline-flex items-center">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />

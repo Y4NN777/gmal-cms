@@ -75,20 +75,20 @@ const performSearch = () => {
     <div class="space-y-6">
       <!-- Header -->
       <div>
-        <h2 class="text-2xl font-bold text-gray-900">{{ $t('donationsManagement.title') }}</h2>
-        <p class="text-gray-600 mt-1">{{ $t('donationsManagement.description') }}</p>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900">{{ $t('donationsManagement.title') }}</h2>
+        <p class="text-sm sm:text-base text-gray-600 mt-1">{{ $t('donationsManagement.description') }}</p>
       </div>
 
       <!-- Statistics Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg shadow p-6 border border-green-100">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg shadow p-4 sm:p-6 border border-green-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-green-600">{{ $t('donationsManagement.thisMonth') }}</p>
-              <p class="text-3xl font-bold text-green-900 mt-2">{{ stats.this_month_count }}</p>
+              <p class="text-xs sm:text-sm font-medium text-green-600">{{ $t('donationsManagement.thisMonth') }}</p>
+              <p class="text-2xl sm:text-3xl font-bold text-green-900 mt-2">{{ stats.this_month_count }}</p>
               <p class="text-xs text-green-600 mt-1">{{ $t('donationsManagement.donationsCount') }}</p>
             </div>
-            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center">
               <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -96,14 +96,14 @@ const performSearch = () => {
           </div>
         </div>
 
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow p-6 border border-blue-100">
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow p-4 sm:p-6 border border-blue-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-blue-600">{{ $t('donationsManagement.thisMonth') }}</p>
-              <p class="text-3xl font-bold text-blue-900 mt-2">{{ formatCurrency(stats.this_month_amount) }}</p>
+              <p class="text-xs sm:text-sm font-medium text-blue-600">{{ $t('donationsManagement.thisMonth') }}</p>
+              <p class="text-2xl sm:text-3xl font-bold text-blue-900 mt-2">{{ formatCurrency(stats.this_month_amount) }}</p>
               <p class="text-xs text-blue-600 mt-1">{{ $t('donationsManagement.totalRaised') }}</p>
             </div>
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
               <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -111,14 +111,14 @@ const performSearch = () => {
           </div>
         </div>
 
-        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg shadow p-6 border border-purple-100">
+        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg shadow p-4 sm:p-6 border border-purple-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-purple-600">{{ $t('donationsManagement.averageDonation') }}</p>
-              <p class="text-3xl font-bold text-purple-900 mt-2">{{ formatCurrency(stats.average_donation) }}</p>
+              <p class="text-xs sm:text-sm font-medium text-purple-600">{{ $t('donationsManagement.averageDonation') }}</p>
+              <p class="text-2xl sm:text-3xl font-bold text-purple-900 mt-2">{{ formatCurrency(stats.average_donation) }}</p>
               <p class="text-xs text-purple-600 mt-1">{{ $t('donationsManagement.perDonation') }}</p>
             </div>
-            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center">
               <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
@@ -126,14 +126,14 @@ const performSearch = () => {
           </div>
         </div>
 
-        <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg shadow p-6 border border-orange-100">
+        <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg shadow p-4 sm:p-6 border border-orange-100">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-orange-600">{{ $t('donationsManagement.totalAllTime') }}</p>
-              <p class="text-3xl font-bold text-orange-900 mt-2">{{ formatCurrency(stats.total_all_time) }}</p>
+              <p class="text-xs sm:text-sm font-medium text-orange-600">{{ $t('donationsManagement.totalAllTime') }}</p>
+              <p class="text-2xl sm:text-3xl font-bold text-orange-900 mt-2">{{ formatCurrency(stats.total_all_time) }}</p>
               <p class="text-xs text-orange-600 mt-1">{{ $t('donationsManagement.lifetimeTotal') }}</p>
             </div>
-            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center">
               <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
@@ -144,19 +144,19 @@ const performSearch = () => {
 
       <!-- Search Bar -->
       <div class="bg-white rounded-lg shadow p-4">
-        <div class="flex gap-4">
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
           <div class="flex-1">
             <input
               v-model="searchQuery"
               @keyup.enter="performSearch"
               type="text"
               :placeholder="$t('donationsManagement.searchPlaceholder')"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
           </div>
           <button
             @click="performSearch"
-            class="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-medium"
+            class="px-4 sm:px-6 py-2 text-sm sm:text-base bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-medium whitespace-nowrap"
           >
             {{ $t('donationsManagement.search') }}
           </button>
@@ -165,12 +165,12 @@ const performSearch = () => {
 
       <!-- Donations Table -->
       <div class="bg-white rounded-lg shadow overflow-hidden">
-        <div class="px-6 py-4 border-b border-gray-200">
-          <h3 class="text-lg font-semibold text-gray-900">{{ $t('donationsManagement.title') }}</h3>
+        <div class="px-4 sm:px-6 py-4 border-b border-gray-200">
+          <h3 class="text-base sm:text-lg font-semibold text-gray-900">{{ $t('donationsManagement.title') }}</h3>
         </div>
 
         <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200">
+          <table class="min-w-full divide-y divide-gray-200 text-xs sm:text-sm">
             <thead class="bg-gray-50">
               <tr>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('donationsManagement.donor') }}</th>
@@ -184,12 +184,12 @@ const performSearch = () => {
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
               <tr v-if="items.length === 0">
-                <td colspan="7" class="px-6 py-12 text-center text-gray-500">
-                  <svg class="w-12 h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <td colspan="7" class="px-4 sm:px-6 py-8 sm:py-12 text-center text-gray-500">
+                  <svg class="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <p class="text-lg font-medium">{{ $t('donationsManagement.noDonationsYet') }}</p>
-                  <p class="text-sm mt-1">{{ $t('donationsManagement.donationsWillAppear') }}</p>
+                  <p class="text-base sm:text-lg font-medium">{{ $t('donationsManagement.noDonationsYet') }}</p>
+                  <p class="text-xs sm:text-sm mt-1">{{ $t('donationsManagement.donationsWillAppear') }}</p>
                 </td>
               </tr>
               <tr 
@@ -284,8 +284,8 @@ const performSearch = () => {
         class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         @click.stop
       >
-        <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white">
-          <h3 class="text-lg font-semibold text-gray-900">{{ $t('donationsManagement.donationDetails') }}</h3>
+        <div class="px-4 sm:px-6 py-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white">
+          <h3 class="text-base sm:text-lg font-semibold text-gray-900">{{ $t('donationsManagement.donationDetails') }}</h3>
           <button
             @click="closeModal"
             class="text-gray-400 hover:text-gray-600 transition-colors"
@@ -296,7 +296,7 @@ const performSearch = () => {
           </button>
         </div>
 
-        <div v-if="selectedDonation" class="p-6 space-y-4">
+        <div v-if="selectedDonation" class="p-4 sm:p-6 space-y-4">
           <!-- Donor Information -->
           <div>
             <h4 class="text-sm font-semibold text-gray-700 mb-3">{{ $t('donationsManagement.donorInformation') }}</h4>

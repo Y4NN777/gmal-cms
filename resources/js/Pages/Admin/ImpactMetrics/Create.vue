@@ -5,20 +5,20 @@
     <div class="py-12">
       <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
         <!-- Header -->
-        <div class="mb-8">
-          <div class="flex items-center gap-2 text-sm text-gray-600 mb-4">
+        <div class="mb-6 sm:mb-8">
+          <div class="flex items-center gap-2 text-xs sm:text-sm text-gray-600 mb-4">
             <Link href="/admin/impact-metrics" class="hover:text-orange-600">Impact Metrics</Link>
             <span>/</span>
             <span class="text-gray-900">Create New</span>
           </div>
-          <h2 class="text-2xl font-bold text-gray-900">Create New Impact Metric</h2>
-          <p class="text-gray-600 mt-1">Add a new statistic to display on the About page</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Create New Impact Metric</h2>
+          <p class="text-sm sm:text-base text-gray-600 mt-1">Add a new statistic to display on the About page</p>
         </div>
 
         <!-- Form -->
         <form @submit.prevent="submitForm" class="space-y-6">
           <!-- Basic Info Card -->
-          <div class="bg-white rounded-lg shadow p-6 space-y-6">
+          <div class="bg-white rounded-lg shadow p-4 sm:p-6 space-y-4 sm:space-y-6">
             <h3 class="text-lg font-semibold text-gray-900">Basic Information</h3>
 
             <!-- Key -->
@@ -59,7 +59,7 @@
           </div>
 
           <!-- Labels Card -->
-          <div class="bg-white rounded-lg shadow p-6 space-y-6">
+          <div class="bg-white rounded-lg shadow p-4 sm:p-6 space-y-4 sm:space-y-6">
             <h3 class="text-lg font-semibold text-gray-900">Display Labels (Bilingual)</h3>
 
             <!-- Label EN -->
@@ -98,7 +98,7 @@
           </div>
 
           <!-- Display Settings Card -->
-          <div class="bg-white rounded-lg shadow p-6 space-y-6">
+          <div class="bg-white rounded-lg shadow p-4 sm:p-6 space-y-4 sm:space-y-6">
             <h3 class="text-lg font-semibold text-gray-900">Display Settings</h3>
 
             <!-- Order -->
@@ -134,10 +134,10 @@
           </div>
 
           <!-- Preview Card -->
-          <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg shadow-xl p-8">
-            <h3 class="text-white text-lg font-semibold mb-6 text-center">Preview</h3>
+          <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg shadow-xl p-6 sm:p-8">
+            <h3 class="text-white text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-center">Preview</h3>
             <div class="text-center">
-              <div class="text-5xl md:text-6xl font-display font-bold text-white mb-2">
+              <div class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-bold text-white mb-2">
                 {{ form.value || '---' }}
               </div>
               <p class="text-gray-400 font-sans uppercase tracking-widest text-sm">

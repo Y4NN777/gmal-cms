@@ -145,14 +145,14 @@ const cancelDelete = () => {
   <AdminLayout>
     <div class="space-y-6">
       <!-- Header -->
-      <div class="flex items-center justify-between">
+      <div class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">{{ $t('categoryManagement.title') }}</h2>
-          <p class="text-gray-600 mt-1">{{ $t('categoryManagement.description') }}</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-900">{{ $t('categoryManagement.title') }}</h2>
+          <p class="text-sm sm:text-base text-gray-600 mt-1">{{ $t('categoryManagement.description') }}</p>
         </div>
         <button
           @click="openCreateModal"
-          class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-medium flex items-center gap-2"
+          class="px-4 py-2 text-sm sm:text-base bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-medium flex items-center gap-2 whitespace-nowrap"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -164,7 +164,7 @@ const cancelDelete = () => {
       <!-- Categories Table -->
       <div class="bg-white rounded-lg shadow overflow-hidden">
         <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200">
+          <table class="min-w-full divide-y divide-gray-200 text-xs sm:text-sm">
             <thead class="bg-gray-50">
               <tr>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('categoryManagement.name') }}</th>
@@ -176,12 +176,12 @@ const cancelDelete = () => {
               </tr>
             </thead>            <tbody class="bg-white divide-y divide-gray-200">
               <tr v-if="categories.length === 0">
-                <td colspan="6" class="px-6 py-12 text-center text-gray-500">
-                  <svg class="w-12 h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <td colspan="6" class="px-4 sm:px-6 py-8 sm:py-12 text-center text-gray-500">
+                  <svg class="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                   </svg>
-                  <p class="text-lg font-medium">{{ $t('categoryManagement.noCategoriesYet') }}</p>
-                  <p class="text-sm mt-1">{{ $t('categoryManagement.createFirstCategory') }}</p>
+                  <p class="text-base sm:text-lg font-medium">{{ $t('categoryManagement.noCategoriesYet') }}</p>
+                  <p class="text-xs sm:text-sm mt-1">{{ $t('categoryManagement.createFirstCategory') }}</p>
                 </td>
               </tr>
               <tr v-for="category in categories" :key="category.id" class="hover:bg-gray-50 transition-colors">
@@ -258,16 +258,16 @@ const cancelDelete = () => {
       @click="closeModal"
     >
       <div
-        class="bg-white rounded-lg shadow-xl max-w-md w-full"
+        class="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto"
         @click.stop
       >
-        <div class="px-6 py-4 border-b border-gray-200">
-          <h3 class="text-lg font-semibold text-gray-900">
+        <div class="px-4 sm:px-6 py-4 border-b border-gray-200">
+          <h3 class="text-base sm:text-lg font-semibold text-gray-900">
             {{ editingCategory ? $t('categoryManagement.editCategory') : $t('categoryManagement.newCategory') }}
           </h3>
         </div>
 
-        <form @submit.prevent="saveCategory" class="p-6 space-y-4">
+        <form @submit.prevent="saveCategory" class="p-4 sm:p-6 space-y-4">
           <!-- Language Tabs -->
           <div class="border-b border-gray-200">
             <div class="flex gap-4">
@@ -377,7 +377,7 @@ const cancelDelete = () => {
             <label class="block text-sm font-medium text-gray-700 mb-2">
               {{ $t('categoryManagement.icon') }}
             </label>
-            <div class="grid grid-cols-8 gap-2">
+            <div class="grid grid-cols-6 sm:grid-cols-8 gap-2">
               <button
                 v-for="icon in availableIcons"
                 :key="icon.name"
@@ -426,7 +426,7 @@ const cancelDelete = () => {
       @click="cancelDelete"
     >
       <div
-        class="bg-white rounded-lg shadow-xl max-w-md w-full p-6"
+        class="bg-white rounded-lg shadow-xl max-w-md w-full p-4 sm:p-6"
         @click.stop
       >
         <div class="flex items-center gap-4 mb-4">
@@ -436,8 +436,8 @@ const cancelDelete = () => {
             </svg>
           </div>
           <div>
-            <h3 class="text-lg font-semibold text-gray-900">{{ $t('categoryManagement.deleteCategory') }}</h3>
-            <p class="text-sm text-gray-600 mt-1">
+            <h3 class="text-base sm:text-lg font-semibold text-gray-900">{{ $t('categoryManagement.deleteCategory') }}</h3>
+            <p class="text-xs sm:text-sm text-gray-600 mt-1">
               {{ $t('categoryManagement.deleteConfirm', { name: categoryToDelete?.name }) }}
             </p>
           </div>
