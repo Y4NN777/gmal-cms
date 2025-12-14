@@ -1,6 +1,6 @@
 # GiveMeALift CMS
 
-A comprehensive Content Management System designed for NGOs and non-profit organizations, built with Laravel 12 and Vue 3 using modern web development practices.
+A comprehensive Content Management System for the GiveMeALift NGO, built with Laravel 12 and Vue 3 using modern web development practices.
 
 ![Build Status](https://img.shields.io/badge/build-in_progress-yellow)
 ![Laravel](https://img.shields.io/badge/Laravel-12.x-red)
@@ -11,7 +11,7 @@ A comprehensive Content Management System designed for NGOs and non-profit organ
 
 ## Overview
 
-GiveMeALift CMS is a feature-rich content management system specifically designed for non-governmental organizations. It provides a complete platform for managing events, testimonials, gallery content, donations, contact messages, and analytics. The system features a modern Vue 3 frontend integrated with Laravel 12 backend using Inertia.js for seamless single-page application functionality.
+GiveMeALift CMS is a feature-rich content management system for the GiveMeALift non-governmental organization. It provides a complete platform for managing events, testimonials, gallery content, donations, contact messages, and analytics. The system features a modern Vue 3 frontend integrated with Laravel 12 backend using Inertia.js for seamless single-page application functionality.
 
 **Current Status:** This project is actively under development. The backend architecture and core database models are complete, with frontend pages being progressively implemented.
 
@@ -813,4 +813,4 @@ For additional information and support:
 
 ## Acknowledgments
 
-Built with Laravel 12 and Vue 3, leveraging modern web technologies and best practices for NGO content management.
+Built with Laravel 12 and Vue 3, leveraging modern web technologies and best practices for the GiveMeALift NGO.
