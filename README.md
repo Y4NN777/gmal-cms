@@ -37,12 +37,6 @@ npm run build
 
 # 5. Start server
 php artisan serve
-```
-
-**Default Admin Account:**
-- Email: `admin@givemealift.org`
-- Password: `password`
-
 ---
 
 ## Features
