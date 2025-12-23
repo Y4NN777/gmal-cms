@@ -140,9 +140,111 @@
                   </div>
                 </div>
 
-                <!-- PayPal Button -->
+                <!-- Payment Method Selection -->
+                <div class="mb-8">
+                  <h3 class="font-display font-bold text-xl text-[#252A34] mb-4">Payment Method</h3>
+                  <div class="grid md:grid-cols-2 gap-4">
+                    <!-- PayPal Option -->
+                    <button
+                      @click="paymentMethod = 'paypal'"
+                      class="p-6 rounded-xl border-2 transition-all duration-300 text-left"
+                      :class="[
+                        paymentMethod === 'paypal'
+                          ? 'border-[#0070BA] bg-[#0070BA]/5 shadow-lg'
+                          : 'border-gray-100 hover:border-gray-200'
+                      ]"
+                    >
+                      <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-[#0070BA]/10 flex items-center justify-center">
+                          <svg class="w-6 h-6 text-[#0070BA]" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.72a.77.77 0 0 1 .76-.633h8.78c2.93 0 4.954 1.607 4.954 4.42 0 3.903-3.244 6.294-7.38 6.294H9.53l-1.698 7.536a.64.64 0 0 1-.756.5zm10.117-11.24c2.93 0 4.954 1.607 4.954 4.42 0 3.903-3.244 6.294-7.38 6.294h-2.528l-1.698 7.536a.64.64 0 0 1-.756.5H5.18a.641.641 0 0 1-.633-.74l3.107-16.877a.77.77 0 0 1 .76-.633h8.78z"/>
+                          </svg>
+                        </div>
+                        <div>
+                          <div class="font-bold text-[#252A34]">PayPal</div>
+                          <div class="text-sm text-gray-500">Credit/Debit Card</div>
+                        </div>
+                      </div>
+                    </button>
+
+                    <!-- Mobile Money Option -->
+                    <button
+                      @click="paymentMethod = 'mobile_money'"
+                      class="p-6 rounded-xl border-2 transition-all duration-300 text-left"
+                      :class="[
+                        paymentMethod === 'mobile_money'
+                          ? 'border-[#EE9446] bg-[#EE9446]/5 shadow-lg'
+                          : 'border-gray-100 hover:border-gray-200'
+                      ]"
+                    >
+                      <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-[#EE9446]/10 flex items-center justify-center">
+                          <svg class="w-6 h-6 text-[#EE9446]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                          </svg>
+                        </div>
+                        <div>
+                          <div class="font-bold text-[#252A34]">Mobile Money</div>
+                          <div class="text-sm text-gray-500">Orange, Moov</div>
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Mobile Money Form (shown when selected) -->
+                <div v-if="paymentMethod === 'mobile_money'" class="mb-8 space-y-4">
+                  <!-- Country Selection -->
+                  <div>
+                    <label class="block text-[#555555] font-sans font-semibold mb-2 text-sm">Country</label>
+                    <select
+                      v-model="mobileMoneyData.country"
+                      @change="loadOperators"
+                      class="w-full px-6 py-4 bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-[#EE9446] focus:bg-white focus:outline-none transition-all"
+                    >
+                      <option value="">Select Country</option>
+                      <option value="BF">🇧🇫 Burkina Faso</option>
+                      <option value="CI">🇨🇮 Côte d'Ivoire</option>
+                    </select>
+                  </div>
+
+                  <!-- Operator Selection -->
+                  <div v-if="mobileMoneyData.country">
+                    <label class="block text-[#555555] font-sans font-semibold mb-2 text-sm">Mobile Money Operator</label>
+                    <div class="grid grid-cols-2 gap-4">
+                      <button
+                        v-for="operator in availableOperators"
+                        :key="operator.code"
+                        @click="mobileMoneyData.operator = operator.code"
+                        class="p-4 rounded-xl border-2 transition-all duration-300"
+                        :class="[
+                          mobileMoneyData.operator === operator.code
+                            ? 'border-[#EE9446] bg-[#EE9446]/5'
+                            : 'border-gray-100 hover:border-gray-200'
+                        ]"
+                      >
+                        <div class="font-bold text-[#252A34]">{{ operator.name }}</div>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Phone Number -->
+                  <div v-if="mobileMoneyData.operator">
+                    <label class="block text-[#555555] font-sans font-semibold mb-2 text-sm">Phone Number</label>
+                    <input
+                      v-model="mobileMoneyData.phone"
+                      type="tel"
+                      :placeholder="phoneFormat"
+                      class="w-full px-6 py-4 bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-[#EE9446] focus:bg-white focus:outline-none transition-all"
+                    />
+                    <p class="text-xs text-gray-500 mt-2">Enter your mobile money number</p>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
                 <div class="text-center">
                   <button
+                    v-if="paymentMethod === 'paypal'"
                     @click="proceedToPayPal"
                     class="w-full md:w-auto px-12 py-5 bg-[#EE9446] hover:bg-[#E17111] text-white rounded-xl font-sans font-bold text-lg uppercase tracking-widest shadow-xl hover:shadow-2xl hover:shadow-[#EE9446]/30 transition-all duration-300 transform hover:-translate-y-1"
                   >
@@ -153,6 +255,22 @@
                       Donate via PayPal
                     </span>
                   </button>
+
+                  <button
+                    v-else-if="paymentMethod === 'mobile_money'"
+                    @click="initiateMobileMoneyPayment"
+                    :disabled="!canProcessMobileMoney || isProcessing"
+                    class="w-full md:w-auto px-12 py-5 bg-[#EE9446] hover:bg-[#E17111] disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-xl font-sans font-bold text-lg uppercase tracking-widest shadow-xl hover:shadow-2xl hover:shadow-[#EE9446]/30 transition-all duration-300 transform hover:-translate-y-1 disabled:transform-none"
+                  >
+                    <span v-if="isProcessing">Processing...</span>
+                    <span v-else-if="finalAmount > 0">
+                      Pay {{ convertedAmount }} XOF via Mobile Money
+                    </span>
+                    <span v-else>
+                      Pay via Mobile Money
+                    </span>
+                  </button>
+
                   <p class="text-xs text-gray-400 mt-4 flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                     Secure SSL Encrypted Transaction
@@ -164,6 +282,47 @@
         </div>
       </div>
     </section>
+
+    <!-- OTP Modal -->
+    <div
+      v-if="showOtpModal"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      @click.self="showOtpModal = false"
+    >
+      <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 animate-fade-in-up">
+        <h3 class="font-display font-bold text-2xl text-[#252A34] mb-4">Enter OTP Code</h3>
+        <p class="text-gray-600 mb-6">
+          An OTP code has been sent to your phone <span class="font-bold">{{ mobileMoneyData.phone }}</span>
+        </p>
+        
+        <input
+          v-model="otpCode"
+          type="text"
+          maxlength="6"
+          placeholder="000000"
+          class="w-full px-6 py-4 text-center text-2xl font-bold tracking-widest bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-[#EE9446] focus:bg-white focus:outline-none transition-all mb-6"
+          @keyup.enter="confirmPayment"
+        />
+
+        <div class="flex gap-4">
+          <button
+            @click="showOtpModal = false"
+            class="flex-1 px-6 py-3 border-2 border-gray-200 text-gray-700 rounded-xl font-bold hover:bg-gray-50 transition-all"
+          >
+            Cancel
+          </button>
+          <button
+            @click="confirmPayment"
+            :disabled="otpCode.length !== 6 || isProcessing"
+            class="flex-1 px-6 py-3 bg-[#EE9446] hover:bg-[#E17111] disabled:bg-gray-300 text-white rounded-xl font-bold transition-all disabled:cursor-not-allowed"
+          >
+            <span v-if="isProcessing">Confirming...</span>
+            <span v-else>Confirm</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 
     <!-- Impact Examples -->
     <section class="py-24 bg-white">
@@ -235,7 +394,9 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import axios from 'axios';
 
 const suggestedAmounts = [
   { value: 10, label: 'Feed' },
@@ -251,9 +412,118 @@ const donorInfo = ref({
   email: ''
 });
 
+const paymentMethod = ref('paypal');
+const mobileMoneyData = ref({
+  country: '',
+  operator: '',
+  phone: ''
+});
+
+const availableOperators = ref([]);
+const showOtpModal = ref(false);
+const otpCode = ref('');
+const currentDonationId = ref(null);
+const isProcessing = ref(false);
+
 const finalAmount = computed(() => {
   return customAmount.value || selectedAmount.value || 0;
 });
+
+const convertedAmount = computed(() => {
+  return Math.round(finalAmount.value * 600); // 1 USD = 600 XOF
+});
+
+const phoneFormat = computed(() => {
+  const formats = {
+    'BF': '+226 XX XX XX XX',
+    'CI': '+225 XX XX XX XX XX'
+  };
+  return formats[mobileMoneyData.value.country] || 'Phone Number';
+});
+
+const canProcessMobileMoney = computed(() => {
+  return finalAmount.value > 0 &&
+         mobileMoneyData.value.country &&
+         mobileMoneyData.value.operator &&
+         mobileMoneyData.value.phone;
+});
+
+const loadOperators = async () => {
+  if (!mobileMoneyData.value.country) return;
+  
+  try {
+    const response = await axios.get(`/donate/ligdicash/operators?country=${mobileMoneyData.value.country}`);
+    if (response.data.success) {
+      availableOperators.value = response.data.operators;
+    }
+  } catch (error) {
+    console.error('Failed to load operators:', error);
+    alert('Failed to load mobile money operators. Please try again.');
+  }
+};
+
+const initiateMobileMoneyPayment = async () => {
+  if (!canProcessMobileMoney.value || isProcessing.value) return;
+  
+  isProcessing.value = true;
+  
+  try {
+    const response = await axios.post('/donate/ligdicash/initiate', {
+      amount: finalAmount.value,
+      phone: mobileMoneyData.value.phone,
+      operator_code: mobileMoneyData.value.operator,
+      country_code: mobileMoneyData.value.country,
+      donor_name: donorInfo.value.name || 'Anonymous',
+      donor_email: donorInfo.value.email || null
+    });
+    
+    if (response.data.success) {
+      currentDonationId.value = response.data.donation_id;
+      showOtpModal.value = true;
+    } else {
+      alert(response.data.error || 'Failed to initiate payment. Please try again.');
+    }
+  } catch (error) {
+    console.error('Payment initiation failed:', error);
+    alert(error.response?.data?.error || 'Failed to initiate payment. Please try again.');
+  } finally {
+    isProcessing.value = false;
+  }
+};
+
+const confirmPayment = async () => {
+  if (otpCode.value.length !== 6 || isProcessing.value) return;
+  
+  isProcessing.value = true;
+  
+  try {
+    const response = await axios.post('/donate/ligdicash/confirm', {
+      otp: otpCode.value,
+      donation_id: currentDonationId.value
+    });
+    
+    if (response.data.success) {
+      // Payment successful - redirect to thank you page
+      router.visit('/donate/thank-you', {
+        method: 'get',
+        data: {
+          amount: finalAmount.value,
+          currency: 'XOF',
+          method: 'mobile_money'
+        }
+      });
+    } else {
+      alert(response.data.error || 'Invalid OTP. Please try again.');
+      otpCode.value = '';
+    }
+  } catch (error) {
+    console.error('Payment confirmation failed:', error);
+    alert(error.response?.data?.error || 'Payment confirmation failed. Please try again.');
+    otpCode.value = '';
+  } finally {
+    isProcessing.value = false;
+  }
+};
 
 const proceedToPayPal = () => {
   if (finalAmount.value === 0) return;
