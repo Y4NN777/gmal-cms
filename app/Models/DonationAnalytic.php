@@ -17,6 +17,7 @@ class DonationAnalytic extends Model
         'campaign_id',
         'payment_method',
         'payment_reference',
+        'transaction_id',
         'status',
         'donor_metadata',
     ];
@@ -61,5 +62,15 @@ class DonationAnalytic extends Model
     public function scopeThisYear($query)
     {
         return $query->whereYear('created_at', now()->year);
+    }
+
+    public function scopeMobileMoney($query)
+    {
+        return $query->where('payment_method', 'mobile_money');
+    }
+
+    public function scopePaypal($query)
+    {
+        return $query->where('payment_method', 'paypal');
     }
 }

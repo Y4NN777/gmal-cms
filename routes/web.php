@@ -95,6 +95,15 @@ Route::get('/donate/thank-you', fn() => Inertia::render('Donate/ThankYou'))->nam
 // PayPal IPN Webhook (must be publicly accessible, no auth middleware)
 Route::post('/webhooks/paypal-ipn', [App\Http\Controllers\DonationController::class, 'handlePayPalIPN'])->name('webhooks.paypal-ipn');
 
+// Ligdicash Mobile Money Routes
+Route::post('/donate/ligdicash/initiate', [App\Http\Controllers\LigdicashController::class, 'initiate'])->name('donate.ligdicash.initiate');
+Route::post('/donate/ligdicash/confirm', [App\Http\Controllers\LigdicashController::class, 'confirm'])->name('donate.ligdicash.confirm');
+Route::get('/donate/ligdicash/status/{token}', [App\Http\Controllers\LigdicashController::class, 'status'])->name('donate.ligdicash.status');
+Route::get('/donate/ligdicash/operators', [App\Http\Controllers\LigdicashController::class, 'operators'])->name('donate.ligdicash.operators');
+
+// Ligdicash Webhook (must be publicly accessible, no auth middleware)
+Route::post('/webhooks/ligdicash', [App\Http\Controllers\LigdicashWebhookController::class, 'handle'])->name('webhooks.ligdicash');
+
 // Public Gallery Routes
 Route::get('/gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
 Route::get('/gallery/albums', [App\Http\Controllers\GalleryController::class, 'albums'])->name('gallery.albums');
