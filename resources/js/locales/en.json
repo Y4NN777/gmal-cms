@@ -289,6 +289,26 @@
       "anonymous": "Make this donation anonymous"
     },
     "payment": "Payment Method",
+    "paymentMethods": {
+      "paypal": "PayPal",
+      "mobileMoney": "Mobile Money"
+    },
+    "mobileMoney": {
+      "title": "Mobile Money Payment",
+      "selectCountry": "Select Country",
+      "selectOperator": "Select Mobile Money Operator",
+      "phoneNumber": "Phone Number",
+      "phonePlaceholder": "Enter your mobile money number",
+      "orangeMoney": "Orange Money",
+      "moovMoney": "Moov Money",
+      "processing": "Processing payment...",
+      "checkPhone": "Please check your phone to complete the payment",
+      "instructions": "You will receive a prompt on your phone to authorize the payment",
+      "statusChecking": "Checking payment status...",
+      "completed": "Payment completed successfully!",
+      "failed": "Payment failed. Please try again.",
+      "pending": "Payment pending. Please complete on your phone."
+    },
     "submit": "Complete Donation",
     "why": {
       "title": "Why Your Donation Matters",
